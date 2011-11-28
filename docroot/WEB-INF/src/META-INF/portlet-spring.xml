@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="net.sareweb.mshowcase.service.InstanceLocalService" class="net.sareweb.mshowcase.service.impl.InstanceLocalServiceImpl" />
+	<bean id="net.sareweb.mshowcase.service.InstanceLocalServiceUtil" class="net.sareweb.mshowcase.service.InstanceLocalServiceUtil">
+		<property name="service" ref="net.sareweb.mshowcase.service.InstanceLocalService" />
+	</bean>
+	<bean id="net.sareweb.mshowcase.service.InstanceService" class="net.sareweb.mshowcase.service.impl.InstanceServiceImpl" />
+	<bean id="net.sareweb.mshowcase.service.InstanceServiceUtil" class="net.sareweb.mshowcase.service.InstanceServiceUtil">
+		<property name="service" ref="net.sareweb.mshowcase.service.InstanceService" />
+	</bean>
+	<bean id="net.sareweb.mshowcase.service.persistence.InstancePersistence" class="net.sareweb.mshowcase.service.persistence.InstancePersistenceImpl" parent="basePersistence" />
+</beans>

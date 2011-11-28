@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.msc", "net.sareweb.mshowcase.service", "mShowCase-portlet");
