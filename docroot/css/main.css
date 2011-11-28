@@ -1,0 +1,21 @@
+.content-box {
+	-moz-border-radius: 17px;
+	-webkit-border-radius: 17px;
+	border-radius: 17px;
+	-moz-box-shadow: 0px 0px 13px #000000;
+	-webkit-box-shadow: 0px 0px 13px #000000;
+	box-shadow: 0px 0px 13px #000000;
+	background-image: -moz-linear-gradient(top, #ffffff, #000000);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#ffffff),
+		to(#000000) );
+	background-image: -o-linear-gradient(top, #ffffff, #000000);
+	background-image: linear-gradient(top, #ffffff, #000000);
+	-moz-background-clip: padding-box;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	/*Use "background-clip: padding-box" when using rounded corners to avoid the gradient bleeding through the corners*/
+	/*--IE9 DOES NOT SUPPORT GRADIENT BACKGROUNDS--*/
+	opacity: 0.34;
+	
+	min-height:100px;
+}

@@ -1,3 +1,5 @@
 <%@include file="/jsp/init.jsp"%>
 
-aaa
+<div>
+	<aui:input name="subdomain"/><%=themeDisplay.getCompany().getVirtualHostname()%>
+</div>
