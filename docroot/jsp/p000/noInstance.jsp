@@ -1,3 +1,4 @@
+<%@page import="net.sareweb.mshowcase.portlets.p000.InstancesPortlet"%>
 <%@include file="/jsp/init.jsp"%>
 
 
@@ -10,8 +11,14 @@
 		<aui:input name="subdomain"/><%=themeDisplay.getCompany().getVirtualHostname()%>
 	</div>
 	
+	
 	<aui:button-row>
 		<aui:button type="submit"/>
 	</aui:button-row>
 	</aui:form>
 </div>
+
+
+<portlet:resourceURL  var="completeHostname">
+	<portlet:param name="resType" value="<%=InstancesPortlet.RES_TYPE_HOSTNAMES%>"/>
+</portlet:resourceURL>
