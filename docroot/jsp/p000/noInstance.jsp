@@ -17,8 +17,3 @@
 	</aui:button-row>
 	</aui:form>
 </div>
-
-
-<portlet:resourceURL  var="completeHostname">
-	<portlet:param name="resType" value="<%=InstancesPortlet.RES_TYPE_HOSTNAMES%>"/>
-</portlet:resourceURL>

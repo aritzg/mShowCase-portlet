@@ -7,24 +7,20 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
 
 import net.sareweb.mshowcase.Constants;
+import net.sareweb.mshowcase.portlets.GenericMSCPortlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 /**
  * Portlet implementation class InstancesPortlet
  */
-public class InstancesPortlet extends MVCPortlet {
+public class InstancesPortlet extends GenericMSCPortlet {
 
 	@Override
 	public void doView(RenderRequest renderRequest,
@@ -47,25 +43,24 @@ public class InstancesPortlet extends MVCPortlet {
 			try {
 				addCompany(hostname);
 			} catch (Exception e) {
-				SessionErrors.add(actionRequest, "validation-instance-already-exists");
+				SessionErrors.add(actionRequest,
+						"validation-instance-already-exists");
 				_log.error("Error creating new instance", e);
 			}
 		} else {
-			SessionErrors.add(actionRequest, "validation-instance-already-exists");
+			SessionErrors.add(actionRequest,
+					"validation-instance-already-exists");
 		}
 
 	}
 
-	private void addCompany(String hostname) throws PortalException, SystemException {
-		CompanyLocalServiceUtil.addCompany(hostname, 
-											hostname + "." + Constants.BASE_HOST_NAME, 
-											hostname + "." + Constants.BASE_HOST_NAME, 
-											"default", 
-											false, 
-											0, 
-											true);
+	private void addCompany(String hostname) throws PortalException,
+			SystemException {
+		CompanyLocalServiceUtil.addCompany(hostname, hostname + "."
+				+ Constants.BASE_HOST_NAME, hostname + "."
+				+ Constants.BASE_HOST_NAME, "default", false, 0, true);
 	}
-	
+
 	private boolean existsCompany(String hostname) {
 		try {
 			CompanyLocalServiceUtil.getCompanyByWebId(hostname);
@@ -74,8 +69,6 @@ public class InstancesPortlet extends MVCPortlet {
 		}
 		return true;
 	}
-	
-	private static Log _log = LogFactoryUtil.getLog(InstancesPortlet.class);
-	
+
 	public static final String RES_TYPE_PARAM = "resType";
 }

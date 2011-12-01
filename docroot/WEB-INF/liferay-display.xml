@@ -5,4 +5,7 @@
 	<category name="mShowCase">
 		<portlet id="instancesportlet"></portlet>
 	</category>
+	<category name="category.sample">
+		<portlet id="instanceadminportlet"></portlet>
+	</category>
 </display>
