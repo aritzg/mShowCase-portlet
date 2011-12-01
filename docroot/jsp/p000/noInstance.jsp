@@ -8,7 +8,7 @@
 	
 	<aui:form action="<%=createInstanceURL.toString()%>" method="post" name="fm">
 	<div>
-		<aui:input name="subdomain"/><%=themeDisplay.getCompany().getVirtualHostname()%>
+		<aui:input name="hostname"/><%=themeDisplay.getCompany().getVirtualHostname()%>
 	</div>
 	
 	

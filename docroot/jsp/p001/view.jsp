@@ -16,7 +16,7 @@ List<Company> companies = (List<Company>)request.getAttribute(InstanceAdminPortl
 			<liferay-ui:search-container-row className="com.liferay.portal.model.Company" modelVar="company">
 				<liferay-ui:search-container-column-text 
 					name=""
-					value="<%=company.getDefaultWebId()%>" 
+					value="<%=company.getVirtualHostname()%>" 
 				/>
 				<liferay-ui:search-container-column-jsp 
 					path="/jsp/p001/instance_actions.jsp" name="msc-p001-actions"/>
