@@ -3,8 +3,23 @@
 <model-hints>
 	<model name="net.sareweb.mshowcase.model.Instance">
 		<field name="InstanceId" type="long" />
+		<field name="name" type="String" />
 		<field name="userId" type="long" />
 		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="lastModifiedDate" type="Date" />
+	</model>
+	<model name="net.sareweb.mshowcase.model.Location">
+		<field name="locationId" type="long" />
+		<field name="address" type="String" />
+		<field name="lat" type="float" />
+		<field name="lng" type="float" />
+		<field name="imageId" type="long" />
+		<field name="imageURL" type="String" />
+		<field name="userId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
 		<field name="createDate" type="Date" />
 	</model>
 </model-hints>

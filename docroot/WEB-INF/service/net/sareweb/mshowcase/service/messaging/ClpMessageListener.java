@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.messaging.Message;
 import net.sareweb.mshowcase.service.ClpSerializer;
 import net.sareweb.mshowcase.service.InstanceLocalServiceUtil;
 import net.sareweb.mshowcase.service.InstanceServiceUtil;
+import net.sareweb.mshowcase.service.LocationLocalServiceUtil;
+import net.sareweb.mshowcase.service.LocationServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -39,6 +41,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			InstanceLocalServiceUtil.clearService();
 
 			InstanceServiceUtil.clearService();
+			LocationLocalServiceUtil.clearService();
+
+			LocationServiceUtil.clearService();
 		}
 	}
 }

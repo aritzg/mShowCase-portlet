@@ -10,4 +10,13 @@
 		<property name="service" ref="net.sareweb.mshowcase.service.InstanceService" />
 	</bean>
 	<bean id="net.sareweb.mshowcase.service.persistence.InstancePersistence" class="net.sareweb.mshowcase.service.persistence.InstancePersistenceImpl" parent="basePersistence" />
+	<bean id="net.sareweb.mshowcase.service.LocationLocalService" class="net.sareweb.mshowcase.service.impl.LocationLocalServiceImpl" />
+	<bean id="net.sareweb.mshowcase.service.LocationLocalServiceUtil" class="net.sareweb.mshowcase.service.LocationLocalServiceUtil">
+		<property name="service" ref="net.sareweb.mshowcase.service.LocationLocalService" />
+	</bean>
+	<bean id="net.sareweb.mshowcase.service.LocationService" class="net.sareweb.mshowcase.service.impl.LocationServiceImpl" />
+	<bean id="net.sareweb.mshowcase.service.LocationServiceUtil" class="net.sareweb.mshowcase.service.LocationServiceUtil">
+		<property name="service" ref="net.sareweb.mshowcase.service.LocationService" />
+	</bean>
+	<bean id="net.sareweb.mshowcase.service.persistence.LocationPersistence" class="net.sareweb.mshowcase.service.persistence.LocationPersistenceImpl" parent="basePersistence" />
 </beans>

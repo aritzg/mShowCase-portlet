@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
-import net.sareweb.mshowcase.service.InstanceLocalServiceUtil;
+import net.sareweb.mshowcase.service.LocationLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -32,48 +32,80 @@ import java.util.Date;
 /**
  * @author Aritz Galdos
  */
-public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
-	public InstanceClp() {
+public class LocationClp extends BaseModelImpl<Location> implements Location {
+	public LocationClp() {
 	}
 
 	public Class<?> getModelClass() {
-		return Instance.class;
+		return Location.class;
 	}
 
 	public String getModelClassName() {
-		return Instance.class.getName();
+		return Location.class.getName();
 	}
 
 	public long getPrimaryKey() {
-		return _InstanceId;
+		return _locationId;
 	}
 
 	public void setPrimaryKey(long primaryKey) {
-		setInstanceId(primaryKey);
+		setLocationId(primaryKey);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_InstanceId);
+		return new Long(_locationId);
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
-	public long getInstanceId() {
-		return _InstanceId;
+	public long getLocationId() {
+		return _locationId;
 	}
 
-	public void setInstanceId(long InstanceId) {
-		_InstanceId = InstanceId;
+	public void setLocationId(long locationId) {
+		_locationId = locationId;
 	}
 
-	public String getName() {
-		return _name;
+	public String getAddress() {
+		return _address;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setAddress(String address) {
+		_address = address;
+	}
+
+	public float getLat() {
+		return _lat;
+	}
+
+	public void setLat(float lat) {
+		_lat = lat;
+	}
+
+	public float getLng() {
+		return _lng;
+	}
+
+	public void setLng(float lng) {
+		_lng = lng;
+	}
+
+	public long getImageId() {
+		return _imageId;
+	}
+
+	public void setImageId(long imageId) {
+		_imageId = imageId;
+	}
+
+	public String getImageURL() {
+		return _imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		_imageURL = imageURL;
 	}
 
 	public long getUserId() {
@@ -116,43 +148,38 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		_createDate = createDate;
 	}
 
-	public Date getLastModifiedDate() {
-		return _lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		_lastModifiedDate = lastModifiedDate;
-	}
-
 	public void persist() throws SystemException {
-		InstanceLocalServiceUtil.updateInstance(this);
+		LocationLocalServiceUtil.updateLocation(this);
 	}
 
 	@Override
-	public Instance toEscapedModel() {
-		return (Instance)Proxy.newProxyInstance(Instance.class.getClassLoader(),
-			new Class[] { Instance.class }, new AutoEscapeBeanHandler(this));
+	public Location toEscapedModel() {
+		return (Location)Proxy.newProxyInstance(Location.class.getClassLoader(),
+			new Class[] { Location.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override
 	public Object clone() {
-		InstanceClp clone = new InstanceClp();
+		LocationClp clone = new LocationClp();
 
-		clone.setInstanceId(getInstanceId());
-		clone.setName(getName());
+		clone.setLocationId(getLocationId());
+		clone.setAddress(getAddress());
+		clone.setLat(getLat());
+		clone.setLng(getLng());
+		clone.setImageId(getImageId());
+		clone.setImageURL(getImageURL());
 		clone.setUserId(getUserId());
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
 		clone.setCreateDate(getCreateDate());
-		clone.setLastModifiedDate(getLastModifiedDate());
 
 		return clone;
 	}
 
-	public int compareTo(Instance instance) {
+	public int compareTo(Location location) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(), instance.getCreateDate());
+		value = DateUtil.compareTo(getCreateDate(), location.getCreateDate());
 
 		if (value != 0) {
 			return value;
@@ -167,16 +194,16 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 			return false;
 		}
 
-		InstanceClp instance = null;
+		LocationClp location = null;
 
 		try {
-			instance = (InstanceClp)obj;
+			location = (LocationClp)obj;
 		}
 		catch (ClassCastException cce) {
 			return false;
 		}
 
-		long primaryKey = instance.getPrimaryKey();
+		long primaryKey = location.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -193,12 +220,20 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(21);
 
-		sb.append("{InstanceId=");
-		sb.append(getInstanceId());
-		sb.append(", name=");
-		sb.append(getName());
+		sb.append("{locationId=");
+		sb.append(getLocationId());
+		sb.append(", address=");
+		sb.append(getAddress());
+		sb.append(", lat=");
+		sb.append(getLat());
+		sb.append(", lng=");
+		sb.append(getLng());
+		sb.append(", imageId=");
+		sb.append(getImageId());
+		sb.append(", imageURL=");
+		sb.append(getImageURL());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", companyId=");
@@ -207,27 +242,41 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		sb.append(getGroupId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
-		sb.append(", lastModifiedDate=");
-		sb.append(getLastModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
-		sb.append("net.sareweb.mshowcase.model.Instance");
+		sb.append("net.sareweb.mshowcase.model.Location");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
-		sb.append(getInstanceId());
+			"<column><column-name>locationId</column-name><column-value><![CDATA[");
+		sb.append(getLocationId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
+			"<column><column-name>address</column-name><column-value><![CDATA[");
+		sb.append(getAddress());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lat</column-name><column-value><![CDATA[");
+		sb.append(getLat());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lng</column-name><column-value><![CDATA[");
+		sb.append(getLng());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>imageId</column-name><column-value><![CDATA[");
+		sb.append(getImageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>imageURL</column-name><column-value><![CDATA[");
+		sb.append(getImageURL());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -245,22 +294,21 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastModifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getLastModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
 		return sb.toString();
 	}
 
-	private long _InstanceId;
-	private String _name;
+	private long _locationId;
+	private String _address;
+	private float _lat;
+	private float _lng;
+	private long _imageId;
+	private String _imageURL;
 	private long _userId;
 	private String _userUuid;
 	private long _companyId;
 	private long _groupId;
 	private Date _createDate;
-	private Date _lastModifiedDate;
 }

@@ -15,9 +15,12 @@
 package net.sareweb.mshowcase.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Instance;
+
+import java.io.Serializable;
 
 import java.util.Date;
 
@@ -28,19 +31,25 @@ import java.util.Date;
  * @see Instance
  * @generated
  */
-public class InstanceCacheModel implements CacheModel<Instance> {
+public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{InstanceId=");
 		sb.append(InstanceId);
+		sb.append(", name=");
+		sb.append(name);
 		sb.append(", userId=");
 		sb.append(userId);
 		sb.append(", companyId=");
 		sb.append(companyId);
+		sb.append(", groupId=");
+		sb.append(groupId);
 		sb.append(", createDate=");
 		sb.append(createDate);
+		sb.append(", lastModifiedDate=");
+		sb.append(lastModifiedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -50,8 +59,17 @@ public class InstanceCacheModel implements CacheModel<Instance> {
 		InstanceImpl instanceImpl = new InstanceImpl();
 
 		instanceImpl.setInstanceId(InstanceId);
+
+		if (name == null) {
+			instanceImpl.setName(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setName(name);
+		}
+
 		instanceImpl.setUserId(userId);
 		instanceImpl.setCompanyId(companyId);
+		instanceImpl.setGroupId(groupId);
 
 		if (createDate == Long.MIN_VALUE) {
 			instanceImpl.setCreateDate(null);
@@ -60,13 +78,23 @@ public class InstanceCacheModel implements CacheModel<Instance> {
 			instanceImpl.setCreateDate(new Date(createDate));
 		}
 
+		if (lastModifiedDate == Long.MIN_VALUE) {
+			instanceImpl.setLastModifiedDate(null);
+		}
+		else {
+			instanceImpl.setLastModifiedDate(new Date(lastModifiedDate));
+		}
+
 		instanceImpl.resetOriginalValues();
 
 		return instanceImpl;
 	}
 
 	public long InstanceId;
+	public String name;
 	public long userId;
 	public long companyId;
+	public long groupId;
 	public long createDate;
+	public long lastModifiedDate;
 }

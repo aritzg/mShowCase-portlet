@@ -21,21 +21,21 @@ import com.liferay.portal.kernel.util.MethodKey;
 /**
  * @author Aritz Galdos
  */
-public class InstanceLocalServiceClp implements InstanceLocalService {
-	public InstanceLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+public class LocationLocalServiceClp implements LocationLocalService {
+	public LocationLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 
-		_addInstanceMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addInstance", net.sareweb.mshowcase.model.Instance.class);
+		_addLocationMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addLocation", net.sareweb.mshowcase.model.Location.class);
 
-		_createInstanceMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-				"createInstance", long.class);
+		_createLocationMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createLocation", long.class);
 
-		_deleteInstanceMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteInstance", long.class);
+		_deleteLocationMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteLocation", long.class);
 
-		_deleteInstanceMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteInstance", net.sareweb.mshowcase.model.Instance.class);
+		_deleteLocationMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteLocation", net.sareweb.mshowcase.model.Location.class);
 
 		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
 				"dynamicQuery",
@@ -56,26 +56,26 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_fetchInstanceMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-				"fetchInstance", long.class);
+		_fetchLocationMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchLocation", long.class);
 
-		_getInstanceMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getInstance", long.class);
+		_getLocationMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLocation", long.class);
 
 		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getInstancesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getInstances", int.class, int.class);
+		_getLocationsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLocations", int.class, int.class);
 
-		_getInstancesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getInstancesCount");
+		_getLocationsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLocationsCount");
 
-		_updateInstanceMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateInstance", net.sareweb.mshowcase.model.Instance.class);
+		_updateLocationMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateLocation", net.sareweb.mshowcase.model.Location.class);
 
-		_updateInstanceMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateInstance", net.sareweb.mshowcase.model.Instance.class,
+		_updateLocationMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateLocation", net.sareweb.mshowcase.model.Location.class,
 				boolean.class);
 
 		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -85,13 +85,13 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
-	public net.sareweb.mshowcase.model.Instance addInstance(
-		net.sareweb.mshowcase.model.Instance instance)
+	public net.sareweb.mshowcase.model.Location addLocation(
+		net.sareweb.mshowcase.model.Location location)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addInstanceMethodKey0,
-				ClpSerializer.translateInput(instance));
+		MethodHandler methodHandler = new MethodHandler(_addLocationMethodKey0,
+				ClpSerializer.translateInput(location));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -110,14 +110,14 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public net.sareweb.mshowcase.model.Instance createInstance(long InstanceId) {
+	public net.sareweb.mshowcase.model.Location createLocation(long locationId) {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_createInstanceMethodKey1,
-				InstanceId);
+		MethodHandler methodHandler = new MethodHandler(_createLocationMethodKey1,
+				locationId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -132,14 +132,14 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteInstance(long InstanceId)
+	public void deleteLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteInstanceMethodKey2,
-				InstanceId);
+		MethodHandler methodHandler = new MethodHandler(_deleteLocationMethodKey2,
+				locationId);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -163,10 +163,10 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		}
 	}
 
-	public void deleteInstance(net.sareweb.mshowcase.model.Instance instance)
+	public void deleteLocation(net.sareweb.mshowcase.model.Location location)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteInstanceMethodKey3,
-				ClpSerializer.translateInput(instance));
+		MethodHandler methodHandler = new MethodHandler(_deleteLocationMethodKey3,
+				ClpSerializer.translateInput(location));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -304,12 +304,12 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public net.sareweb.mshowcase.model.Instance fetchInstance(long InstanceId)
+	public net.sareweb.mshowcase.model.Location fetchLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_fetchInstanceMethodKey8,
-				InstanceId);
+		MethodHandler methodHandler = new MethodHandler(_fetchLocationMethodKey8,
+				locationId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -328,16 +328,16 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public net.sareweb.mshowcase.model.Instance getInstance(long InstanceId)
+	public net.sareweb.mshowcase.model.Location getLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstanceMethodKey9,
-				InstanceId);
+		MethodHandler methodHandler = new MethodHandler(_getLocationMethodKey9,
+				locationId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -360,7 +360,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -396,12 +396,12 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<net.sareweb.mshowcase.model.Instance> getInstances(
+	public java.util.List<net.sareweb.mshowcase.model.Location> getLocations(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstancesMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_getLocationsMethodKey11,
 				start, end);
 
 		try {
@@ -421,14 +421,14 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (java.util.List<net.sareweb.mshowcase.model.Instance>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<net.sareweb.mshowcase.model.Location>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getInstancesCount()
+	public int getLocationsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstancesCountMethodKey12);
+		MethodHandler methodHandler = new MethodHandler(_getLocationsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -450,13 +450,13 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public net.sareweb.mshowcase.model.Instance updateInstance(
-		net.sareweb.mshowcase.model.Instance instance)
+	public net.sareweb.mshowcase.model.Location updateLocation(
+		net.sareweb.mshowcase.model.Location location)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateInstanceMethodKey13,
-				ClpSerializer.translateInput(instance));
+		MethodHandler methodHandler = new MethodHandler(_updateLocationMethodKey13,
+				ClpSerializer.translateInput(location));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -475,16 +475,16 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public net.sareweb.mshowcase.model.Instance updateInstance(
-		net.sareweb.mshowcase.model.Instance instance, boolean merge)
+	public net.sareweb.mshowcase.model.Location updateLocation(
+		net.sareweb.mshowcase.model.Location location, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateInstanceMethodKey14,
-				ClpSerializer.translateInput(instance), merge);
+		MethodHandler methodHandler = new MethodHandler(_updateLocationMethodKey14,
+				ClpSerializer.translateInput(location), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -503,7 +503,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			}
 		}
 
-		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -550,21 +550,21 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addInstanceMethodKey0;
-	private MethodKey _createInstanceMethodKey1;
-	private MethodKey _deleteInstanceMethodKey2;
-	private MethodKey _deleteInstanceMethodKey3;
+	private MethodKey _addLocationMethodKey0;
+	private MethodKey _createLocationMethodKey1;
+	private MethodKey _deleteLocationMethodKey2;
+	private MethodKey _deleteLocationMethodKey3;
 	private MethodKey _dynamicQueryMethodKey4;
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _fetchInstanceMethodKey8;
-	private MethodKey _getInstanceMethodKey9;
+	private MethodKey _fetchLocationMethodKey8;
+	private MethodKey _getLocationMethodKey9;
 	private MethodKey _getPersistedModelMethodKey10;
-	private MethodKey _getInstancesMethodKey11;
-	private MethodKey _getInstancesCountMethodKey12;
-	private MethodKey _updateInstanceMethodKey13;
-	private MethodKey _updateInstanceMethodKey14;
+	private MethodKey _getLocationsMethodKey11;
+	private MethodKey _getLocationsCountMethodKey12;
+	private MethodKey _updateLocationMethodKey13;
+	private MethodKey _updateLocationMethodKey14;
 	private MethodKey _getBeanIdentifierMethodKey15;
 	private MethodKey _setBeanIdentifierMethodKey16;
 }

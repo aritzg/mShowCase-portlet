@@ -18,65 +18,65 @@ import com.liferay.portal.service.ServiceWrapper;
 
 /**
  * <p>
- * This class is a wrapper for {@link InstanceLocalService}.
+ * This class is a wrapper for {@link LocationLocalService}.
  * </p>
  *
  * @author    Aritz Galdos
- * @see       InstanceLocalService
+ * @see       LocationLocalService
  * @generated
  */
-public class InstanceLocalServiceWrapper implements InstanceLocalService,
-	ServiceWrapper<InstanceLocalService> {
-	public InstanceLocalServiceWrapper(
-		InstanceLocalService instanceLocalService) {
-		_instanceLocalService = instanceLocalService;
+public class LocationLocalServiceWrapper implements LocationLocalService,
+	ServiceWrapper<LocationLocalService> {
+	public LocationLocalServiceWrapper(
+		LocationLocalService locationLocalService) {
+		_locationLocalService = locationLocalService;
 	}
 
 	/**
-	* Adds the instance to the database. Also notifies the appropriate model listeners.
+	* Adds the location to the database. Also notifies the appropriate model listeners.
 	*
-	* @param instance the instance
-	* @return the instance that was added
+	* @param location the location
+	* @return the location that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.sareweb.mshowcase.model.Instance addInstance(
-		net.sareweb.mshowcase.model.Instance instance)
+	public net.sareweb.mshowcase.model.Location addLocation(
+		net.sareweb.mshowcase.model.Location location)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.addInstance(instance);
+		return _locationLocalService.addLocation(location);
 	}
 
 	/**
-	* Creates a new instance with the primary key. Does not add the instance to the database.
+	* Creates a new location with the primary key. Does not add the location to the database.
 	*
-	* @param InstanceId the primary key for the new instance
-	* @return the new instance
+	* @param locationId the primary key for the new location
+	* @return the new location
 	*/
-	public net.sareweb.mshowcase.model.Instance createInstance(long InstanceId) {
-		return _instanceLocalService.createInstance(InstanceId);
+	public net.sareweb.mshowcase.model.Location createLocation(long locationId) {
+		return _locationLocalService.createLocation(locationId);
 	}
 
 	/**
-	* Deletes the instance with the primary key from the database. Also notifies the appropriate model listeners.
+	* Deletes the location with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param InstanceId the primary key of the instance
-	* @throws PortalException if a instance with the primary key could not be found
+	* @param locationId the primary key of the location
+	* @throws PortalException if a location with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteInstance(long InstanceId)
+	public void deleteLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_instanceLocalService.deleteInstance(InstanceId);
+		_locationLocalService.deleteLocation(locationId);
 	}
 
 	/**
-	* Deletes the instance from the database. Also notifies the appropriate model listeners.
+	* Deletes the location from the database. Also notifies the appropriate model listeners.
 	*
-	* @param instance the instance
+	* @param location the location
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteInstance(net.sareweb.mshowcase.model.Instance instance)
+	public void deleteLocation(net.sareweb.mshowcase.model.Location location)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_instanceLocalService.deleteInstance(instance);
+		_locationLocalService.deleteLocation(location);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.dynamicQuery(dynamicQuery);
+		return _locationLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _locationLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.dynamicQuery(dynamicQuery, start, end,
+		return _locationLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
 
@@ -147,89 +147,89 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.dynamicQueryCount(dynamicQuery);
+		return _locationLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public net.sareweb.mshowcase.model.Instance fetchInstance(long InstanceId)
+	public net.sareweb.mshowcase.model.Location fetchLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.fetchInstance(InstanceId);
+		return _locationLocalService.fetchLocation(locationId);
 	}
 
 	/**
-	* Returns the instance with the primary key.
+	* Returns the location with the primary key.
 	*
-	* @param InstanceId the primary key of the instance
-	* @return the instance
-	* @throws PortalException if a instance with the primary key could not be found
+	* @param locationId the primary key of the location
+	* @return the location
+	* @throws PortalException if a location with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.sareweb.mshowcase.model.Instance getInstance(long InstanceId)
+	public net.sareweb.mshowcase.model.Location getLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.getInstance(InstanceId);
+		return _locationLocalService.getLocation(locationId);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.getPersistedModel(primaryKeyObj);
+		return _locationLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
-	* Returns a range of all the instances.
+	* Returns a range of all the locations.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of instances
-	* @param end the upper bound of the range of instances (not inclusive)
-	* @return the range of instances
+	* @param start the lower bound of the range of locations
+	* @param end the upper bound of the range of locations (not inclusive)
+	* @return the range of locations
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<net.sareweb.mshowcase.model.Instance> getInstances(
+	public java.util.List<net.sareweb.mshowcase.model.Location> getLocations(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.getInstances(start, end);
+		return _locationLocalService.getLocations(start, end);
 	}
 
 	/**
-	* Returns the number of instances.
+	* Returns the number of locations.
 	*
-	* @return the number of instances
+	* @return the number of locations
 	* @throws SystemException if a system exception occurred
 	*/
-	public int getInstancesCount()
+	public int getLocationsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.getInstancesCount();
+		return _locationLocalService.getLocationsCount();
 	}
 
 	/**
-	* Updates the instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Updates the location in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param instance the instance
-	* @return the instance that was updated
+	* @param location the location
+	* @return the location that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.sareweb.mshowcase.model.Instance updateInstance(
-		net.sareweb.mshowcase.model.Instance instance)
+	public net.sareweb.mshowcase.model.Location updateLocation(
+		net.sareweb.mshowcase.model.Location location)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.updateInstance(instance);
+		return _locationLocalService.updateLocation(location);
 	}
 
 	/**
-	* Updates the instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Updates the location in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param instance the instance
-	* @param merge whether to merge the instance with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the instance that was updated
+	* @param location the location
+	* @param merge whether to merge the location with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the location that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public net.sareweb.mshowcase.model.Instance updateInstance(
-		net.sareweb.mshowcase.model.Instance instance, boolean merge)
+	public net.sareweb.mshowcase.model.Location updateLocation(
+		net.sareweb.mshowcase.model.Location location, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.updateInstance(instance, merge);
+		return _locationLocalService.updateLocation(location, merge);
 	}
 
 	/**
@@ -238,7 +238,7 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier() {
-		return _instanceLocalService.getBeanIdentifier();
+		return _locationLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -247,31 +247,31 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_instanceLocalService.setBeanIdentifier(beanIdentifier);
+		_locationLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
-	public InstanceLocalService getWrappedInstanceLocalService() {
-		return _instanceLocalService;
+	public LocationLocalService getWrappedLocationLocalService() {
+		return _locationLocalService;
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
-	public void setWrappedInstanceLocalService(
-		InstanceLocalService instanceLocalService) {
-		_instanceLocalService = instanceLocalService;
+	public void setWrappedLocationLocalService(
+		LocationLocalService locationLocalService) {
+		_locationLocalService = locationLocalService;
 	}
 
-	public InstanceLocalService getWrappedService() {
-		return _instanceLocalService;
+	public LocationLocalService getWrappedService() {
+		return _locationLocalService;
 	}
 
-	public void setWrappedService(InstanceLocalService instanceLocalService) {
-		_instanceLocalService = instanceLocalService;
+	public void setWrappedService(LocationLocalService locationLocalService) {
+		_locationLocalService = locationLocalService;
 	}
 
-	private InstanceLocalService _instanceLocalService;
+	private LocationLocalService _locationLocalService;
 }

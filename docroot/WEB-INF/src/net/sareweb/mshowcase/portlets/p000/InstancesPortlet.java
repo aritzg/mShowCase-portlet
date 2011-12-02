@@ -38,10 +38,10 @@ public class InstancesPortlet extends GenericMSCPortlet {
 	public void createInstance(ActionRequest actionRequest,
 			ActionResponse actionResponse) {
 		_log.debug("Creating new instance");
-		String hostname = ParamUtil.get(actionRequest, "hostname", "");
-		if (!existsCompany(hostname)) {
+		String subdomain = ParamUtil.get(actionRequest, "subdomain", "");
+		if (!existsCompany(subdomain)) {
 			try {
-				addCompany(hostname);
+				addCompany(subdomain);
 			} catch (Exception e) {
 				SessionErrors.add(actionRequest,
 						"validation-instance-already-exists");

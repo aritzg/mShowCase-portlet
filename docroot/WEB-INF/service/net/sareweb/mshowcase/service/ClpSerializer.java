@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import net.sareweb.mshowcase.model.InstanceClp;
+import net.sareweb.mshowcase.model.LocationClp;
 
 import java.lang.reflect.Method;
 
@@ -103,6 +104,10 @@ public class ClpSerializer {
 			return translateInputInstance(oldModel);
 		}
 
+		if (oldModelClassName.equals(LocationClp.class.getName())) {
+			return translateInputLocation(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -141,26 +146,146 @@ public class ClpSerializer {
 
 				method0.invoke(newModel, value0);
 
-				Method method1 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
+				Method method1 = newModelClass.getMethod("setName",
+						new Class[] { String.class });
 
-				Long value1 = new Long(oldCplModel.getUserId());
+				String value1 = oldCplModel.getName();
 
 				method1.invoke(newModel, value1);
 
-				Method method2 = newModelClass.getMethod("setCompanyId",
+				Method method2 = newModelClass.getMethod("setUserId",
 						new Class[] { Long.TYPE });
 
-				Long value2 = new Long(oldCplModel.getCompanyId());
+				Long value2 = new Long(oldCplModel.getUserId());
 
 				method2.invoke(newModel, value2);
 
-				Method method3 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
+				Method method3 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
 
-				Date value3 = oldCplModel.getCreateDate();
+				Long value3 = new Long(oldCplModel.getCompanyId());
 
 				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value4 = new Long(oldCplModel.getGroupId());
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value5 = oldCplModel.getCreateDate();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setLastModifiedDate",
+						new Class[] { Date.class });
+
+				Date value6 = oldCplModel.getLastModifiedDate();
+
+				method6.invoke(newModel, value6);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateInputLocation(BaseModel<?> oldModel) {
+		LocationClp oldCplModel = (LocationClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("net.sareweb.mshowcase.model.impl.LocationImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setLocationId",
+						new Class[] { Long.TYPE });
+
+				Long value0 = new Long(oldCplModel.getLocationId());
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setAddress",
+						new Class[] { String.class });
+
+				String value1 = oldCplModel.getAddress();
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setLat",
+						new Class[] { Float.TYPE });
+
+				Float value2 = new Float(oldCplModel.getLat());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setLng",
+						new Class[] { Float.TYPE });
+
+				Float value3 = new Float(oldCplModel.getLng());
+
+				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setImageId",
+						new Class[] { Long.TYPE });
+
+				Long value4 = new Long(oldCplModel.getImageId());
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setImageURL",
+						new Class[] { String.class });
+
+				String value5 = oldCplModel.getImageURL();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value6 = new Long(oldCplModel.getUserId());
+
+				method6.invoke(newModel, value6);
+
+				Method method7 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value7 = new Long(oldCplModel.getCompanyId());
+
+				method7.invoke(newModel, value7);
+
+				Method method8 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value8 = new Long(oldCplModel.getGroupId());
+
+				method8.invoke(newModel, value8);
+
+				Method method9 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value9 = oldCplModel.getCreateDate();
+
+				method9.invoke(newModel, value9);
 
 				return newModel;
 			}
@@ -195,6 +320,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"net.sareweb.mshowcase.model.impl.InstanceImpl")) {
 			return translateOutputInstance(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"net.sareweb.mshowcase.model.impl.LocationImpl")) {
+			return translateOutputLocation(oldModel);
 		}
 
 		return oldModel;
@@ -243,23 +373,127 @@ public class ClpSerializer {
 
 				newModel.setInstanceId(value0);
 
-				Method method1 = oldModelClass.getMethod("getUserId");
+				Method method1 = oldModelClass.getMethod("getName");
 
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+				String value1 = (String)method1.invoke(oldModel, (Object[])null);
 
-				newModel.setUserId(value1);
+				newModel.setName(value1);
 
-				Method method2 = oldModelClass.getMethod("getCompanyId");
+				Method method2 = oldModelClass.getMethod("getUserId");
 
 				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-				newModel.setCompanyId(value2);
+				newModel.setUserId(value2);
 
-				Method method3 = oldModelClass.getMethod("getCreateDate");
+				Method method3 = oldModelClass.getMethod("getCompanyId");
 
-				Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-				newModel.setCreateDate(value3);
+				newModel.setCompanyId(value3);
+
+				Method method4 = oldModelClass.getMethod("getGroupId");
+
+				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value4);
+
+				Method method5 = oldModelClass.getMethod("getCreateDate");
+
+				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value5);
+
+				Method method6 = oldModelClass.getMethod("getLastModifiedDate");
+
+				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setLastModifiedDate(value6);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateOutputLocation(BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				LocationClp newModel = new LocationClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod("getLocationId");
+
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setLocationId(value0);
+
+				Method method1 = oldModelClass.getMethod("getAddress");
+
+				String value1 = (String)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setAddress(value1);
+
+				Method method2 = oldModelClass.getMethod("getLat");
+
+				Float value2 = (Float)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setLat(value2);
+
+				Method method3 = oldModelClass.getMethod("getLng");
+
+				Float value3 = (Float)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setLng(value3);
+
+				Method method4 = oldModelClass.getMethod("getImageId");
+
+				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setImageId(value4);
+
+				Method method5 = oldModelClass.getMethod("getImageURL");
+
+				String value5 = (String)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setImageURL(value5);
+
+				Method method6 = oldModelClass.getMethod("getUserId");
+
+				Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value6);
+
+				Method method7 = oldModelClass.getMethod("getCompanyId");
+
+				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value7);
+
+				Method method8 = oldModelClass.getMethod("getGroupId");
+
+				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value8);
+
+				Method method9 = oldModelClass.getMethod("getCreateDate");
+
+				Date value9 = (Date)method9.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value9);
 
 				return newModel;
 			}

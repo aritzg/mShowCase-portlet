@@ -14,6 +14,7 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -74,6 +75,21 @@ public interface InstanceModel extends BaseModel<Instance> {
 	public void setInstanceId(long InstanceId);
 
 	/**
+	 * Returns the name of this instance.
+	 *
+	 * @return the name of this instance
+	 */
+	@AutoEscape
+	public String getName();
+
+	/**
+	 * Sets the name of this instance.
+	 *
+	 * @param name the name of this instance
+	 */
+	public void setName(String name);
+
+	/**
 	 * Returns the user ID of this instance.
 	 *
 	 * @return the user ID of this instance
@@ -117,6 +133,20 @@ public interface InstanceModel extends BaseModel<Instance> {
 	public void setCompanyId(long companyId);
 
 	/**
+	 * Returns the group ID of this instance.
+	 *
+	 * @return the group ID of this instance
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this instance.
+	 *
+	 * @param groupId the group ID of this instance
+	 */
+	public void setGroupId(long groupId);
+
+	/**
 	 * Returns the create date of this instance.
 	 *
 	 * @return the create date of this instance
@@ -129,6 +159,20 @@ public interface InstanceModel extends BaseModel<Instance> {
 	 * @param createDate the create date of this instance
 	 */
 	public void setCreateDate(Date createDate);
+
+	/**
+	 * Returns the last modified date of this instance.
+	 *
+	 * @return the last modified date of this instance
+	 */
+	public Date getLastModifiedDate();
+
+	/**
+	 * Sets the last modified date of this instance.
+	 *
+	 * @param lastModifiedDate the last modified date of this instance
+	 */
+	public void setLastModifiedDate(Date lastModifiedDate);
 
 	public boolean isNew();
 

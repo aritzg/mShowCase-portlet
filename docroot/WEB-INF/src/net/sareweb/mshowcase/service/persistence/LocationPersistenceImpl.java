@@ -40,10 +40,10 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import net.sareweb.mshowcase.NoSuchInstanceException;
-import net.sareweb.mshowcase.model.Instance;
-import net.sareweb.mshowcase.model.impl.InstanceImpl;
-import net.sareweb.mshowcase.model.impl.InstanceModelImpl;
+import net.sareweb.mshowcase.NoSuchLocationException;
+import net.sareweb.mshowcase.model.Location;
+import net.sareweb.mshowcase.model.impl.LocationImpl;
+import net.sareweb.mshowcase.model.impl.LocationModelImpl;
 
 import java.io.Serializable;
 
@@ -52,71 +52,71 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence implementation for the instance service.
+ * The persistence implementation for the location service.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Aritz Galdos
- * @see InstancePersistence
- * @see InstanceUtil
+ * @see LocationPersistence
+ * @see LocationUtil
  * @generated
  */
-public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
-	implements InstancePersistence {
+public class LocationPersistenceImpl extends BasePersistenceImpl<Location>
+	implements LocationPersistence {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link InstanceUtil} to access the instance persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 * Never modify or reference this class directly. Always use {@link LocationUtil} to access the location persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = InstanceImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_ENTITY = LocationImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceModelImpl.FINDER_CACHE_ENABLED, InstanceImpl.class,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationModelImpl.FINDER_CACHE_ENABLED, LocationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceModelImpl.FINDER_CACHE_ENABLED, InstanceImpl.class,
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationModelImpl.FINDER_CACHE_ENABLED, LocationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
 	/**
-	 * Caches the instance in the entity cache if it is enabled.
+	 * Caches the location in the entity cache if it is enabled.
 	 *
-	 * @param instance the instance
+	 * @param location the location
 	 */
-	public void cacheResult(Instance instance) {
-		EntityCacheUtil.putResult(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceImpl.class, instance.getPrimaryKey(), instance);
+	public void cacheResult(Location location) {
+		EntityCacheUtil.putResult(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationImpl.class, location.getPrimaryKey(), location);
 
-		instance.resetOriginalValues();
+		location.resetOriginalValues();
 	}
 
 	/**
-	 * Caches the instances in the entity cache if it is enabled.
+	 * Caches the locations in the entity cache if it is enabled.
 	 *
-	 * @param instances the instances
+	 * @param locations the locations
 	 */
-	public void cacheResult(List<Instance> instances) {
-		for (Instance instance : instances) {
+	public void cacheResult(List<Location> locations) {
+		for (Location location : locations) {
 			if (EntityCacheUtil.getResult(
-						InstanceModelImpl.ENTITY_CACHE_ENABLED,
-						InstanceImpl.class, instance.getPrimaryKey()) == null) {
-				cacheResult(instance);
+						LocationModelImpl.ENTITY_CACHE_ENABLED,
+						LocationImpl.class, location.getPrimaryKey()) == null) {
+				cacheResult(location);
 			}
 			else {
-				instance.resetOriginalValues();
+				location.resetOriginalValues();
 			}
 		}
 	}
 
 	/**
-	 * Clears the cache for all instances.
+	 * Clears the cache for all locations.
 	 *
 	 * <p>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
@@ -125,10 +125,10 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	@Override
 	public void clearCache() {
 		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(InstanceImpl.class.getName());
+			CacheRegistryUtil.clear(LocationImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(InstanceImpl.class.getName());
+		EntityCacheUtil.clearCache(LocationImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -136,80 +136,80 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	}
 
 	/**
-	 * Clears the cache for the instance.
+	 * Clears the cache for the location.
 	 *
 	 * <p>
 	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
-	public void clearCache(Instance instance) {
-		EntityCacheUtil.removeResult(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceImpl.class, instance.getPrimaryKey());
+	public void clearCache(Location location) {
+		EntityCacheUtil.removeResult(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationImpl.class, location.getPrimaryKey());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
-	 * Creates a new instance with the primary key. Does not add the instance to the database.
+	 * Creates a new location with the primary key. Does not add the location to the database.
 	 *
-	 * @param InstanceId the primary key for the new instance
-	 * @return the new instance
+	 * @param locationId the primary key for the new location
+	 * @return the new location
 	 */
-	public Instance create(long InstanceId) {
-		Instance instance = new InstanceImpl();
+	public Location create(long locationId) {
+		Location location = new LocationImpl();
 
-		instance.setNew(true);
-		instance.setPrimaryKey(InstanceId);
+		location.setNew(true);
+		location.setPrimaryKey(locationId);
 
-		return instance;
+		return location;
 	}
 
 	/**
-	 * Removes the instance with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the location with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the instance
-	 * @return the instance that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a instance with the primary key could not be found
+	 * @param primaryKey the primary key of the location
+	 * @return the location that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a location with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Instance remove(Serializable primaryKey)
+	public Location remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
 	/**
-	 * Removes the instance with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the location with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param InstanceId the primary key of the instance
-	 * @return the instance that was removed
-	 * @throws net.sareweb.mshowcase.NoSuchInstanceException if a instance with the primary key could not be found
+	 * @param locationId the primary key of the location
+	 * @return the location that was removed
+	 * @throws net.sareweb.mshowcase.NoSuchLocationException if a location with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Instance remove(long InstanceId)
-		throws NoSuchInstanceException, SystemException {
+	public Location remove(long locationId)
+		throws NoSuchLocationException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Instance instance = (Instance)session.get(InstanceImpl.class,
-					Long.valueOf(InstanceId));
+			Location location = (Location)session.get(LocationImpl.class,
+					Long.valueOf(locationId));
 
-			if (instance == null) {
+			if (location == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + InstanceId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + locationId);
 				}
 
-				throw new NoSuchInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					InstanceId);
+				throw new NoSuchLocationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					locationId);
 			}
 
-			return instancePersistence.remove(instance);
+			return locationPersistence.remove(location);
 		}
-		catch (NoSuchInstanceException nsee) {
+		catch (NoSuchLocationException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -221,27 +221,27 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	}
 
 	/**
-	 * Removes the instance from the database. Also notifies the appropriate model listeners.
+	 * Removes the location from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param instance the instance
-	 * @return the instance that was removed
+	 * @param location the location
+	 * @return the location that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Instance remove(Instance instance) throws SystemException {
-		return super.remove(instance);
+	public Location remove(Location location) throws SystemException {
+		return super.remove(location);
 	}
 
 	@Override
-	protected Instance removeImpl(Instance instance) throws SystemException {
-		instance = toUnwrappedModel(instance);
+	protected Location removeImpl(Location location) throws SystemException {
+		location = toUnwrappedModel(location);
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, instance);
+			BatchSessionUtil.delete(session, location);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -253,25 +253,25 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		EntityCacheUtil.removeResult(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceImpl.class, instance.getPrimaryKey());
+		EntityCacheUtil.removeResult(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationImpl.class, location.getPrimaryKey());
 
-		return instance;
+		return location;
 	}
 
 	@Override
-	public Instance updateImpl(net.sareweb.mshowcase.model.Instance instance,
+	public Location updateImpl(net.sareweb.mshowcase.model.Location location,
 		boolean merge) throws SystemException {
-		instance = toUnwrappedModel(instance);
+		location = toUnwrappedModel(location);
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, instance, merge);
+			BatchSessionUtil.update(session, location, merge);
 
-			instance.setNew(false);
+			location.setNew(false);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -282,101 +282,104 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		EntityCacheUtil.putResult(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-			InstanceImpl.class, instance.getPrimaryKey(), instance);
+		EntityCacheUtil.putResult(LocationModelImpl.ENTITY_CACHE_ENABLED,
+			LocationImpl.class, location.getPrimaryKey(), location);
 
-		return instance;
+		return location;
 	}
 
-	protected Instance toUnwrappedModel(Instance instance) {
-		if (instance instanceof InstanceImpl) {
-			return instance;
+	protected Location toUnwrappedModel(Location location) {
+		if (location instanceof LocationImpl) {
+			return location;
 		}
 
-		InstanceImpl instanceImpl = new InstanceImpl();
+		LocationImpl locationImpl = new LocationImpl();
 
-		instanceImpl.setNew(instance.isNew());
-		instanceImpl.setPrimaryKey(instance.getPrimaryKey());
+		locationImpl.setNew(location.isNew());
+		locationImpl.setPrimaryKey(location.getPrimaryKey());
 
-		instanceImpl.setInstanceId(instance.getInstanceId());
-		instanceImpl.setName(instance.getName());
-		instanceImpl.setUserId(instance.getUserId());
-		instanceImpl.setCompanyId(instance.getCompanyId());
-		instanceImpl.setGroupId(instance.getGroupId());
-		instanceImpl.setCreateDate(instance.getCreateDate());
-		instanceImpl.setLastModifiedDate(instance.getLastModifiedDate());
+		locationImpl.setLocationId(location.getLocationId());
+		locationImpl.setAddress(location.getAddress());
+		locationImpl.setLat(location.getLat());
+		locationImpl.setLng(location.getLng());
+		locationImpl.setImageId(location.getImageId());
+		locationImpl.setImageURL(location.getImageURL());
+		locationImpl.setUserId(location.getUserId());
+		locationImpl.setCompanyId(location.getCompanyId());
+		locationImpl.setGroupId(location.getGroupId());
+		locationImpl.setCreateDate(location.getCreateDate());
 
-		return instanceImpl;
+		return locationImpl;
 	}
 
 	/**
-	 * Returns the instance with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * Returns the location with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the instance
-	 * @return the instance
-	 * @throws com.liferay.portal.NoSuchModelException if a instance with the primary key could not be found
+	 * @param primaryKey the primary key of the location
+	 * @return the location
+	 * @throws com.liferay.portal.NoSuchModelException if a location with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Instance findByPrimaryKey(Serializable primaryKey)
+	public Location findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
-	 * Returns the instance with the primary key or throws a {@link net.sareweb.mshowcase.NoSuchInstanceException} if it could not be found.
+	 * Returns the location with the primary key or throws a {@link net.sareweb.mshowcase.NoSuchLocationException} if it could not be found.
 	 *
-	 * @param InstanceId the primary key of the instance
-	 * @return the instance
-	 * @throws net.sareweb.mshowcase.NoSuchInstanceException if a instance with the primary key could not be found
+	 * @param locationId the primary key of the location
+	 * @return the location
+	 * @throws net.sareweb.mshowcase.NoSuchLocationException if a location with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Instance findByPrimaryKey(long InstanceId)
-		throws NoSuchInstanceException, SystemException {
-		Instance instance = fetchByPrimaryKey(InstanceId);
+	public Location findByPrimaryKey(long locationId)
+		throws NoSuchLocationException, SystemException {
+		Location location = fetchByPrimaryKey(locationId);
 
-		if (instance == null) {
+		if (location == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + InstanceId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + locationId);
 			}
 
-			throw new NoSuchInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				InstanceId);
+			throw new NoSuchLocationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				locationId);
 		}
 
-		return instance;
+		return location;
 	}
 
 	/**
-	 * Returns the instance with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the location with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param primaryKey the primary key of the instance
-	 * @return the instance, or <code>null</code> if a instance with the primary key could not be found
+	 * @param primaryKey the primary key of the location
+	 * @return the location, or <code>null</code> if a location with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Instance fetchByPrimaryKey(Serializable primaryKey)
+	public Location fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
 	/**
-	 * Returns the instance with the primary key or returns <code>null</code> if it could not be found.
+	 * Returns the location with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param InstanceId the primary key of the instance
-	 * @return the instance, or <code>null</code> if a instance with the primary key could not be found
+	 * @param locationId the primary key of the location
+	 * @return the location, or <code>null</code> if a location with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Instance fetchByPrimaryKey(long InstanceId)
+	public Location fetchByPrimaryKey(long locationId)
 		throws SystemException {
-		Instance instance = (Instance)EntityCacheUtil.getResult(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-				InstanceImpl.class, InstanceId);
+		Location location = (Location)EntityCacheUtil.getResult(LocationModelImpl.ENTITY_CACHE_ENABLED,
+				LocationImpl.class, locationId);
 
-		if (instance == _nullInstance) {
+		if (location == _nullLocation) {
 			return null;
 		}
 
-		if (instance == null) {
+		if (location == null) {
 			Session session = null;
 
 			boolean hasException = false;
@@ -384,8 +387,8 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 			try {
 				session = openSession();
 
-				instance = (Instance)session.get(InstanceImpl.class,
-						Long.valueOf(InstanceId));
+				location = (Location)session.get(LocationImpl.class,
+						Long.valueOf(locationId));
 			}
 			catch (Exception e) {
 				hasException = true;
@@ -393,61 +396,61 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 				throw processException(e);
 			}
 			finally {
-				if (instance != null) {
-					cacheResult(instance);
+				if (location != null) {
+					cacheResult(location);
 				}
 				else if (!hasException) {
-					EntityCacheUtil.putResult(InstanceModelImpl.ENTITY_CACHE_ENABLED,
-						InstanceImpl.class, InstanceId, _nullInstance);
+					EntityCacheUtil.putResult(LocationModelImpl.ENTITY_CACHE_ENABLED,
+						LocationImpl.class, locationId, _nullLocation);
 				}
 
 				closeSession(session);
 			}
 		}
 
-		return instance;
+		return location;
 	}
 
 	/**
-	 * Returns all the instances.
+	 * Returns all the locations.
 	 *
-	 * @return the instances
+	 * @return the locations
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Instance> findAll() throws SystemException {
+	public List<Location> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the instances.
+	 * Returns a range of all the locations.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of instances
-	 * @param end the upper bound of the range of instances (not inclusive)
-	 * @return the range of instances
+	 * @param start the lower bound of the range of locations
+	 * @param end the upper bound of the range of locations (not inclusive)
+	 * @return the range of locations
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Instance> findAll(int start, int end) throws SystemException {
+	public List<Location> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the instances.
+	 * Returns an ordered range of all the locations.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of instances
-	 * @param end the upper bound of the range of instances (not inclusive)
+	 * @param start the lower bound of the range of locations
+	 * @param end the upper bound of the range of locations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of instances
+	 * @return the ordered range of locations
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Instance> findAll(int start, int end,
+	public List<Location> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = new Object[] { start, end, orderByComparator };
@@ -462,7 +465,7 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<Instance> list = (List<Instance>)FinderCacheUtil.getResult(finderPath,
+		List<Location> list = (List<Location>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if (list == null) {
@@ -473,7 +476,7 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 				query = new StringBundler(2 +
 						(orderByComparator.getOrderByFields().length * 3));
 
-				query.append(_SQL_SELECT_INSTANCE);
+				query.append(_SQL_SELECT_LOCATION);
 
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
@@ -481,7 +484,7 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 				sql = query.toString();
 			}
 			else {
-				sql = _SQL_SELECT_INSTANCE.concat(InstanceModelImpl.ORDER_BY_JPQL);
+				sql = _SQL_SELECT_LOCATION.concat(LocationModelImpl.ORDER_BY_JPQL);
 			}
 
 			Session session = null;
@@ -492,13 +495,13 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 				Query q = session.createQuery(sql);
 
 				if (orderByComparator == null) {
-					list = (List<Instance>)QueryUtil.list(q, getDialect(),
+					list = (List<Location>)QueryUtil.list(q, getDialect(),
 							start, end, false);
 
 					Collections.sort(list);
 				}
 				else {
-					list = (List<Instance>)QueryUtil.list(q, getDialect(),
+					list = (List<Location>)QueryUtil.list(q, getDialect(),
 							start, end);
 				}
 			}
@@ -523,20 +526,20 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	}
 
 	/**
-	 * Removes all the instances from the database.
+	 * Removes all the locations from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeAll() throws SystemException {
-		for (Instance instance : findAll()) {
-			instancePersistence.remove(instance);
+		for (Location location : findAll()) {
+			locationPersistence.remove(location);
 		}
 	}
 
 	/**
-	 * Returns the number of instances.
+	 * Returns the number of locations.
 	 *
-	 * @return the number of instances
+	 * @return the number of locations
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
@@ -549,7 +552,7 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(_SQL_COUNT_INSTANCE);
+				Query q = session.createQuery(_SQL_COUNT_LOCATION);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -572,19 +575,19 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	}
 
 	/**
-	 * Initializes the instance persistence.
+	 * Initializes the location persistence.
 	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.net.sareweb.mshowcase.model.Instance")));
+						"value.object.listener.net.sareweb.mshowcase.model.Location")));
 
 		if (listenerClassNames.length > 0) {
 			try {
-				List<ModelListener<Instance>> listenersList = new ArrayList<ModelListener<Instance>>();
+				List<ModelListener<Location>> listenersList = new ArrayList<ModelListener<Location>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<Instance>)InstanceFactory.newInstance(
+					listenersList.add((ModelListener<Location>)InstanceFactory.newInstance(
 							listenerClassName));
 				}
 
@@ -597,7 +600,7 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(InstanceImpl.class.getName());
+		EntityCacheUtil.removeCache(LocationImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
@@ -610,28 +613,28 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static final String _SQL_SELECT_INSTANCE = "SELECT instance FROM Instance instance";
-	private static final String _SQL_COUNT_INSTANCE = "SELECT COUNT(instance) FROM Instance instance";
-	private static final String _ORDER_BY_ENTITY_ALIAS = "instance.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Instance exists with the primary key ";
+	private static final String _SQL_SELECT_LOCATION = "SELECT location FROM Location location";
+	private static final String _SQL_COUNT_LOCATION = "SELECT COUNT(location) FROM Location location";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "location.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Location exists with the primary key ";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(InstancePersistenceImpl.class);
-	private static Instance _nullInstance = new InstanceImpl() {
+	private static Log _log = LogFactoryUtil.getLog(LocationPersistenceImpl.class);
+	private static Location _nullLocation = new LocationImpl() {
 			@Override
 			public Object clone() {
 				return this;
 			}
 
 			@Override
-			public CacheModel<Instance> toCacheModel() {
-				return _nullInstanceCacheModel;
+			public CacheModel<Location> toCacheModel() {
+				return _nullLocationCacheModel;
 			}
 		};
 
-	private static CacheModel<Instance> _nullInstanceCacheModel = new CacheModel<Instance>() {
-			public Instance toEntityModel() {
-				return _nullInstance;
+	private static CacheModel<Location> _nullLocationCacheModel = new CacheModel<Location>() {
+			public Location toEntityModel() {
+				return _nullLocation;
 			}
 		};
 }

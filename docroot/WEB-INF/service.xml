@@ -8,10 +8,40 @@
 
 		<!-- PK field -->
 		<column name="InstanceId" type="long" primary="true" />
+		
+		<column name="name" type="String" />
 
 		<!-- Audit fields -->
 		<column name="userId" type="long" />
 		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
+
+		<column name="createDate" type="Date" />
+		<column name="lastModifiedDate" type="Date" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+	</entity>
+	
+	
+	<entity name="Location" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="locationId" type="long" primary="true" />
+		
+		<column name="address" type="String" />
+		<column name="lat" type="float" />
+		<column name="lng" type="float" />
+		<column name="imageId" type="long" />
+		<column name="imageURL" type="String" />
+		
+		<!-- Audit fields -->
+		<column name="userId" type="long" />
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
 
 		<column name="createDate" type="Date" />
 

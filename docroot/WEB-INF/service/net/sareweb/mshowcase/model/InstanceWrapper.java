@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Instance}.
@@ -23,7 +25,7 @@ package net.sareweb.mshowcase.model;
  * @see       Instance
  * @generated
  */
-public class InstanceWrapper implements Instance {
+public class InstanceWrapper implements Instance, ModelWrapper<Instance> {
 	public InstanceWrapper(Instance instance) {
 		_instance = instance;
 	}
@@ -70,6 +72,24 @@ public class InstanceWrapper implements Instance {
 	*/
 	public void setInstanceId(long InstanceId) {
 		_instance.setInstanceId(InstanceId);
+	}
+
+	/**
+	* Returns the name of this instance.
+	*
+	* @return the name of this instance
+	*/
+	public java.lang.String getName() {
+		return _instance.getName();
+	}
+
+	/**
+	* Sets the name of this instance.
+	*
+	* @param name the name of this instance
+	*/
+	public void setName(java.lang.String name) {
+		_instance.setName(name);
 	}
 
 	/**
@@ -129,6 +149,24 @@ public class InstanceWrapper implements Instance {
 	}
 
 	/**
+	* Returns the group ID of this instance.
+	*
+	* @return the group ID of this instance
+	*/
+	public long getGroupId() {
+		return _instance.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this instance.
+	*
+	* @param groupId the group ID of this instance
+	*/
+	public void setGroupId(long groupId) {
+		_instance.setGroupId(groupId);
+	}
+
+	/**
 	* Returns the create date of this instance.
 	*
 	* @return the create date of this instance
@@ -144,6 +182,24 @@ public class InstanceWrapper implements Instance {
 	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_instance.setCreateDate(createDate);
+	}
+
+	/**
+	* Returns the last modified date of this instance.
+	*
+	* @return the last modified date of this instance
+	*/
+	public java.util.Date getLastModifiedDate() {
+		return _instance.getLastModifiedDate();
+	}
+
+	/**
+	* Sets the last modified date of this instance.
+	*
+	* @param lastModifiedDate the last modified date of this instance
+	*/
+	public void setLastModifiedDate(java.util.Date lastModifiedDate) {
+		_instance.setLastModifiedDate(lastModifiedDate);
 	}
 
 	public boolean isNew() {
@@ -188,7 +244,7 @@ public class InstanceWrapper implements Instance {
 		return new InstanceWrapper((Instance)_instance.clone());
 	}
 
-	public int compareTo(Instance instance) {
+	public int compareTo(net.sareweb.mshowcase.model.Instance instance) {
 		return _instance.compareTo(instance);
 	}
 
@@ -197,11 +253,11 @@ public class InstanceWrapper implements Instance {
 		return _instance.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Instance> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<net.sareweb.mshowcase.model.Instance> toCacheModel() {
 		return _instance.toCacheModel();
 	}
 
-	public Instance toEscapedModel() {
+	public net.sareweb.mshowcase.model.Instance toEscapedModel() {
 		return new InstanceWrapper(_instance.toEscapedModel());
 	}
 
@@ -219,7 +275,14 @@ public class InstanceWrapper implements Instance {
 		_instance.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Instance getWrappedInstance() {
+		return _instance;
+	}
+
+	public Instance getWrappedModel() {
 		return _instance;
 	}
 

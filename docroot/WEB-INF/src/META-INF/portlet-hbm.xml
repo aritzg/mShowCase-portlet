@@ -3,13 +3,32 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="net.sareweb.mshowcase.model.Instance" />
+	<import class="net.sareweb.mshowcase.model.Location" />
 	<class name="net.sareweb.mshowcase.model.impl.InstanceImpl" table="msc_Instance">
 		<cache usage="read-write" />
 		<id name="InstanceId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="lastModifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="net.sareweb.mshowcase.model.impl.LocationImpl" table="msc_Location">
+		<cache usage="read-write" />
+		<id name="locationId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lat" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
+		<property name="lng" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
+		<property name="imageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

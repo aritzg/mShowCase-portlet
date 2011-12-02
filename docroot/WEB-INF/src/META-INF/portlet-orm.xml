@@ -10,8 +10,32 @@
 	<mapped-superclass class="net.sareweb.mshowcase.model.impl.InstanceModelImpl">
 		<attributes>
 			<id name="InstanceId" />
+			<basic name="name" />
 			<basic name="userId" />
 			<basic name="companyId" />
+			<basic name="groupId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="lastModifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="net.sareweb.mshowcase.model.impl.LocationModelImpl">
+		<attributes>
+			<id name="locationId" />
+			<basic name="address" />
+			<basic name="lat" />
+			<basic name="lng" />
+			<basic name="imageId" />
+			<basic name="imageURL" />
+			<basic name="userId" />
+			<basic name="companyId" />
+			<basic name="groupId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -22,6 +46,10 @@
 	</mapped-superclass>
 	<entity class="net.sareweb.mshowcase.model.impl.InstanceImpl" name="Instance">
 		<table name="msc_Instance" />
+		<attributes />
+	</entity>
+	<entity class="net.sareweb.mshowcase.model.impl.LocationImpl" name="Location">
+		<table name="msc_Location" />
 		<attributes />
 	</entity>
 </entity-mappings>

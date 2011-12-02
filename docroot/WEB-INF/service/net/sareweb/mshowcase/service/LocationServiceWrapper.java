@@ -18,40 +18,40 @@ import com.liferay.portal.service.ServiceWrapper;
 
 /**
  * <p>
- * This class is a wrapper for {@link InstanceService}.
+ * This class is a wrapper for {@link LocationService}.
  * </p>
  *
  * @author    Aritz Galdos
- * @see       InstanceService
+ * @see       LocationService
  * @generated
  */
-public class InstanceServiceWrapper implements InstanceService,
-	ServiceWrapper<InstanceService> {
-	public InstanceServiceWrapper(InstanceService instanceService) {
-		_instanceService = instanceService;
+public class LocationServiceWrapper implements LocationService,
+	ServiceWrapper<LocationService> {
+	public LocationServiceWrapper(LocationService locationService) {
+		_locationService = locationService;
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
-	public InstanceService getWrappedInstanceService() {
-		return _instanceService;
+	public LocationService getWrappedLocationService() {
+		return _locationService;
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
-	public void setWrappedInstanceService(InstanceService instanceService) {
-		_instanceService = instanceService;
+	public void setWrappedLocationService(LocationService locationService) {
+		_locationService = locationService;
 	}
 
-	public InstanceService getWrappedService() {
-		return _instanceService;
+	public LocationService getWrappedService() {
+		return _locationService;
 	}
 
-	public void setWrappedService(InstanceService instanceService) {
-		_instanceService = instanceService;
+	public void setWrappedService(LocationService locationService) {
+		_locationService = locationService;
 	}
 
-	private InstanceService _instanceService;
+	private LocationService _locationService;
 }

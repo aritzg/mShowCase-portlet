@@ -32,9 +32,12 @@ public class InstanceSoap implements Serializable {
 		InstanceSoap soapModel = new InstanceSoap();
 
 		soapModel.setInstanceId(model.getInstanceId());
+		soapModel.setName(model.getName());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setLastModifiedDate(model.getLastModifiedDate());
 
 		return soapModel;
 	}
@@ -95,6 +98,14 @@ public class InstanceSoap implements Serializable {
 		_InstanceId = InstanceId;
 	}
 
+	public String getName() {
+		return _name;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -111,6 +122,14 @@ public class InstanceSoap implements Serializable {
 		_companyId = companyId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -119,8 +138,19 @@ public class InstanceSoap implements Serializable {
 		_createDate = createDate;
 	}
 
+	public Date getLastModifiedDate() {
+		return _lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		_lastModifiedDate = lastModifiedDate;
+	}
+
 	private long _InstanceId;
+	private String _name;
 	private long _userId;
 	private long _companyId;
+	private long _groupId;
 	private Date _createDate;
+	private Date _lastModifiedDate;
 }

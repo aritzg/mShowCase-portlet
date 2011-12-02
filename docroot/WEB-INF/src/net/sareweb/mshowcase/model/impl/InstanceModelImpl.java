@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
@@ -65,11 +66,14 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	public static final String TABLE_NAME = "msc_Instance";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "InstanceId", Types.BIGINT },
+			{ "name", Types.VARCHAR },
 			{ "userId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP }
+			{ "groupId", Types.BIGINT },
+			{ "createDate", Types.TIMESTAMP },
+			{ "lastModifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table msc_Instance (InstanceId LONG not null primary key,userId LONG,companyId LONG,createDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table msc_Instance (InstanceId LONG not null primary key,name VARCHAR(75) null,userId LONG,companyId LONG,groupId LONG,createDate DATE null,lastModifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table msc_Instance";
 	public static final String ORDER_BY_JPQL = " ORDER BY instance.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY msc_Instance.createDate ASC";
@@ -94,9 +98,12 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		Instance model = new InstanceImpl();
 
 		model.setInstanceId(soapModel.getInstanceId());
+		model.setName(soapModel.getName());
 		model.setUserId(soapModel.getUserId());
 		model.setCompanyId(soapModel.getCompanyId());
+		model.setGroupId(soapModel.getGroupId());
 		model.setCreateDate(soapModel.getCreateDate());
+		model.setLastModifiedDate(soapModel.getLastModifiedDate());
 
 		return model;
 	}
@@ -157,6 +164,20 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	}
 
 	@JSON
+	public String getName() {
+		if (_name == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _name;
+		}
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -183,12 +204,30 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	}
 
 	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+	}
+
+	@JSON
+	public Date getLastModifiedDate() {
+		return _lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		_lastModifiedDate = lastModifiedDate;
 	}
 
 	@Override
@@ -222,9 +261,12 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		InstanceImpl instanceImpl = new InstanceImpl();
 
 		instanceImpl.setInstanceId(getInstanceId());
+		instanceImpl.setName(getName());
 		instanceImpl.setUserId(getUserId());
 		instanceImpl.setCompanyId(getCompanyId());
+		instanceImpl.setGroupId(getGroupId());
 		instanceImpl.setCreateDate(getCreateDate());
+		instanceImpl.setLastModifiedDate(getLastModifiedDate());
 
 		instanceImpl.resetOriginalValues();
 
@@ -283,9 +325,19 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 		instanceCacheModel.InstanceId = getInstanceId();
 
+		instanceCacheModel.name = getName();
+
+		String name = instanceCacheModel.name;
+
+		if ((name != null) && (name.length() == 0)) {
+			instanceCacheModel.name = null;
+		}
+
 		instanceCacheModel.userId = getUserId();
 
 		instanceCacheModel.companyId = getCompanyId();
+
+		instanceCacheModel.groupId = getGroupId();
 
 		Date createDate = getCreateDate();
 
@@ -296,28 +348,43 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 			instanceCacheModel.createDate = Long.MIN_VALUE;
 		}
 
+		Date lastModifiedDate = getLastModifiedDate();
+
+		if (lastModifiedDate != null) {
+			instanceCacheModel.lastModifiedDate = lastModifiedDate.getTime();
+		}
+		else {
+			instanceCacheModel.lastModifiedDate = Long.MIN_VALUE;
+		}
+
 		return instanceCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{InstanceId=");
 		sb.append(getInstanceId());
+		sb.append(", name=");
+		sb.append(getName());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
+		sb.append(", lastModifiedDate=");
+		sb.append(getLastModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Instance");
@@ -328,6 +395,10 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>name</column-name><column-value><![CDATA[");
+		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
@@ -336,8 +407,16 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastModifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getLastModifiedDate());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -350,10 +429,13 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 			Instance.class
 		};
 	private long _InstanceId;
+	private String _name;
 	private long _userId;
 	private String _userUuid;
 	private long _companyId;
+	private long _groupId;
 	private Date _createDate;
+	private Date _lastModifiedDate;
 	private transient ExpandoBridge _expandoBridge;
 	private Instance _escapedModelProxy;
 }
