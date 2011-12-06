@@ -56,32 +56,29 @@ public class LocationLocalServiceClp implements LocationLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_fetchLocationMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-				"fetchLocation", long.class);
-
-		_getLocationMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLocationMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLocation", long.class);
 
-		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getLocationsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLocationsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLocations", int.class, int.class);
 
-		_getLocationsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLocationsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLocationsCount");
 
-		_updateLocationMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateLocationMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateLocation", net.sareweb.mshowcase.model.Location.class);
 
-		_updateLocationMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateLocationMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateLocation", net.sareweb.mshowcase.model.Location.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -304,39 +301,12 @@ public class LocationLocalServiceClp implements LocationLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public net.sareweb.mshowcase.model.Location fetchLocation(long locationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_fetchLocationMethodKey8,
-				locationId);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (net.sareweb.mshowcase.model.Location)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public net.sareweb.mshowcase.model.Location getLocation(long locationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLocationMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getLocationMethodKey8,
 				locationId);
 
 		try {
@@ -369,7 +339,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -401,7 +371,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLocationsMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_getLocationsMethodKey10,
 				start, end);
 
 		try {
@@ -428,7 +398,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLocationsCountMethodKey12);
+		MethodHandler methodHandler = new MethodHandler(_getLocationsCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -455,7 +425,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateLocationMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateLocationMethodKey12,
 				ClpSerializer.translateInput(location));
 
 		try {
@@ -483,7 +453,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateLocationMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_updateLocationMethodKey13,
 				ClpSerializer.translateInput(location), merge);
 
 		try {
@@ -509,7 +479,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -528,7 +498,7 @@ public class LocationLocalServiceClp implements LocationLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -558,13 +528,12 @@ public class LocationLocalServiceClp implements LocationLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _fetchLocationMethodKey8;
-	private MethodKey _getLocationMethodKey9;
-	private MethodKey _getPersistedModelMethodKey10;
-	private MethodKey _getLocationsMethodKey11;
-	private MethodKey _getLocationsCountMethodKey12;
+	private MethodKey _getLocationMethodKey8;
+	private MethodKey _getPersistedModelMethodKey9;
+	private MethodKey _getLocationsMethodKey10;
+	private MethodKey _getLocationsCountMethodKey11;
+	private MethodKey _updateLocationMethodKey12;
 	private MethodKey _updateLocationMethodKey13;
-	private MethodKey _updateLocationMethodKey14;
-	private MethodKey _getBeanIdentifierMethodKey15;
-	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
 }

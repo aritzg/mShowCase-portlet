@@ -68,6 +68,14 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		_locationId = locationId;
 	}
 
+	public long getInstanceId() {
+		return _InstanceId;
+	}
+
+	public void setInstanceId(long InstanceId) {
+		_InstanceId = InstanceId;
+	}
+
 	public String getAddress() {
 		return _address;
 	}
@@ -76,20 +84,36 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		_address = address;
 	}
 
-	public float getLat() {
+	public double getLat() {
 		return _lat;
 	}
 
-	public void setLat(float lat) {
+	public void setLat(double lat) {
 		_lat = lat;
 	}
 
-	public float getLng() {
+	public double getLng() {
 		return _lng;
 	}
 
-	public void setLng(float lng) {
+	public void setLng(double lng) {
 		_lng = lng;
+	}
+
+	public String getPhoneNumber() {
+		return _phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	public String getFaxNumber() {
+		return _faxNumber;
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
 	}
 
 	public long getImageId() {
@@ -132,14 +156,6 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		_companyId = companyId;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -163,14 +179,16 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		LocationClp clone = new LocationClp();
 
 		clone.setLocationId(getLocationId());
+		clone.setInstanceId(getInstanceId());
 		clone.setAddress(getAddress());
 		clone.setLat(getLat());
 		clone.setLng(getLng());
+		clone.setPhoneNumber(getPhoneNumber());
+		clone.setFaxNumber(getFaxNumber());
 		clone.setImageId(getImageId());
 		clone.setImageURL(getImageURL());
 		clone.setUserId(getUserId());
 		clone.setCompanyId(getCompanyId());
-		clone.setGroupId(getGroupId());
 		clone.setCreateDate(getCreateDate());
 
 		return clone;
@@ -220,16 +238,22 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{locationId=");
 		sb.append(getLocationId());
+		sb.append(", InstanceId=");
+		sb.append(getInstanceId());
 		sb.append(", address=");
 		sb.append(getAddress());
 		sb.append(", lat=");
 		sb.append(getLat());
 		sb.append(", lng=");
 		sb.append(getLng());
+		sb.append(", phoneNumber=");
+		sb.append(getPhoneNumber());
+		sb.append(", faxNumber=");
+		sb.append(getFaxNumber());
 		sb.append(", imageId=");
 		sb.append(getImageId());
 		sb.append(", imageURL=");
@@ -238,8 +262,6 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		sb.append(getUserId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append("}");
@@ -248,7 +270,7 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Location");
@@ -257,6 +279,10 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		sb.append(
 			"<column><column-name>locationId</column-name><column-value><![CDATA[");
 		sb.append(getLocationId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
+		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>address</column-name><column-value><![CDATA[");
@@ -269,6 +295,14 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		sb.append(
 			"<column><column-name>lng</column-name><column-value><![CDATA[");
 		sb.append(getLng());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>phoneNumber</column-name><column-value><![CDATA[");
+		sb.append(getPhoneNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>faxNumber</column-name><column-value><![CDATA[");
+		sb.append(getFaxNumber());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>imageId</column-name><column-value><![CDATA[");
@@ -287,10 +321,6 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
@@ -301,14 +331,16 @@ public class LocationClp extends BaseModelImpl<Location> implements Location {
 	}
 
 	private long _locationId;
+	private long _InstanceId;
 	private String _address;
-	private float _lat;
-	private float _lng;
+	private double _lat;
+	private double _lng;
+	private String _phoneNumber;
+	private String _faxNumber;
 	private long _imageId;
 	private String _imageURL;
 	private long _userId;
 	private String _userUuid;
 	private long _companyId;
-	private long _groupId;
 	private Date _createDate;
 }

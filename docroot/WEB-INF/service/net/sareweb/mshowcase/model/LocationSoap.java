@@ -32,14 +32,16 @@ public class LocationSoap implements Serializable {
 		LocationSoap soapModel = new LocationSoap();
 
 		soapModel.setLocationId(model.getLocationId());
+		soapModel.setInstanceId(model.getInstanceId());
 		soapModel.setAddress(model.getAddress());
 		soapModel.setLat(model.getLat());
 		soapModel.setLng(model.getLng());
+		soapModel.setPhoneNumber(model.getPhoneNumber());
+		soapModel.setFaxNumber(model.getFaxNumber());
 		soapModel.setImageId(model.getImageId());
 		soapModel.setImageURL(model.getImageURL());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCreateDate(model.getCreateDate());
 
 		return soapModel;
@@ -101,6 +103,14 @@ public class LocationSoap implements Serializable {
 		_locationId = locationId;
 	}
 
+	public long getInstanceId() {
+		return _InstanceId;
+	}
+
+	public void setInstanceId(long InstanceId) {
+		_InstanceId = InstanceId;
+	}
+
 	public String getAddress() {
 		return _address;
 	}
@@ -109,20 +119,36 @@ public class LocationSoap implements Serializable {
 		_address = address;
 	}
 
-	public float getLat() {
+	public double getLat() {
 		return _lat;
 	}
 
-	public void setLat(float lat) {
+	public void setLat(double lat) {
 		_lat = lat;
 	}
 
-	public float getLng() {
+	public double getLng() {
 		return _lng;
 	}
 
-	public void setLng(float lng) {
+	public void setLng(double lng) {
 		_lng = lng;
+	}
+
+	public String getPhoneNumber() {
+		return _phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	public String getFaxNumber() {
+		return _faxNumber;
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
 	}
 
 	public long getImageId() {
@@ -157,14 +183,6 @@ public class LocationSoap implements Serializable {
 		_companyId = companyId;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -174,13 +192,15 @@ public class LocationSoap implements Serializable {
 	}
 
 	private long _locationId;
+	private long _InstanceId;
 	private String _address;
-	private float _lat;
-	private float _lng;
+	private double _lat;
+	private double _lng;
+	private String _phoneNumber;
+	private String _faxNumber;
 	private long _imageId;
 	private String _imageURL;
 	private long _userId;
 	private long _companyId;
-	private long _groupId;
 	private Date _createDate;
 }

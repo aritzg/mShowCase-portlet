@@ -17,11 +17,15 @@ package net.sareweb.mshowcase.model.impl;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
@@ -41,6 +45,8 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * The base model implementation for the Instance service. Represents a row in the &quot;msc_Instance&quot; database table, with each column mapped to a property of this class.
@@ -67,13 +73,20 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "InstanceId", Types.BIGINT },
 			{ "name", Types.VARCHAR },
+			{ "description", Types.VARCHAR },
+			{ "phoneNumber", Types.VARCHAR },
+			{ "faxNumber", Types.VARCHAR },
+			{ "email", Types.VARCHAR },
+			{ "webPage", Types.VARCHAR },
+			{ "categoryLevel0", Types.BIGINT },
+			{ "categoryLevel1", Types.BIGINT },
+			{ "categoryLevel2", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "groupId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "lastModifiedDate", Types.TIMESTAMP }
+			{ "createDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table msc_Instance (InstanceId LONG not null primary key,name VARCHAR(75) null,userId LONG,companyId LONG,groupId LONG,createDate DATE null,lastModifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table msc_Instance (InstanceId LONG not null primary key,name VARCHAR(75) null,description STRING null,phoneNumber VARCHAR(75) null,faxNumber VARCHAR(75) null,email VARCHAR(75) null,webPage VARCHAR(75) null,categoryLevel0 LONG,categoryLevel1 LONG,categoryLevel2 LONG,userId LONG,companyId LONG,groupId LONG,createDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table msc_Instance";
 	public static final String ORDER_BY_JPQL = " ORDER BY instance.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY msc_Instance.createDate ASC";
@@ -86,7 +99,10 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.net.sareweb.mshowcase.model.Instance"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.net.sareweb.mshowcase.model.Instance"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -99,11 +115,18 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 		model.setInstanceId(soapModel.getInstanceId());
 		model.setName(soapModel.getName());
+		model.setDescription(soapModel.getDescription());
+		model.setPhoneNumber(soapModel.getPhoneNumber());
+		model.setFaxNumber(soapModel.getFaxNumber());
+		model.setEmail(soapModel.getEmail());
+		model.setWebPage(soapModel.getWebPage());
+		model.setCategoryLevel0(soapModel.getCategoryLevel0());
+		model.setCategoryLevel1(soapModel.getCategoryLevel1());
+		model.setCategoryLevel2(soapModel.getCategoryLevel2());
 		model.setUserId(soapModel.getUserId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCreateDate(soapModel.getCreateDate());
-		model.setLastModifiedDate(soapModel.getLastModifiedDate());
 
 		return model;
 	}
@@ -178,11 +201,195 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	}
 
 	@JSON
+	public String getDescription() {
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
+	}
+
+	public String getDescription(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId);
+	}
+
+	public String getDescription(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId, useDefault);
+	}
+
+	public String getDescription(String languageId) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId);
+	}
+
+	public String getDescription(String languageId, boolean useDefault) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId,
+			useDefault);
+	}
+
+	public String getDescriptionCurrentLanguageId() {
+		return _descriptionCurrentLanguageId;
+	}
+
+	@JSON
+	public String getDescriptionCurrentValue() {
+		Locale locale = getLocale(_descriptionCurrentLanguageId);
+
+		return getDescription(locale);
+	}
+
+	public Map<Locale, String> getDescriptionMap() {
+		return LocalizationUtil.getLocalizationMap(getDescription());
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	public void setDescription(String description, Locale locale) {
+		setDescription(description, locale, LocaleUtil.getDefault());
+	}
+
+	public void setDescription(String description, Locale locale,
+		Locale defaultLocale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
+
+		if (Validator.isNotNull(description)) {
+			setDescription(LocalizationUtil.updateLocalization(
+					getDescription(), "Description", description, languageId,
+					defaultLanguageId));
+		}
+		else {
+			setDescription(LocalizationUtil.removeLocalization(
+					getDescription(), "Description", languageId));
+		}
+	}
+
+	public void setDescriptionCurrentLanguageId(String languageId) {
+		_descriptionCurrentLanguageId = languageId;
+	}
+
+	public void setDescriptionMap(Map<Locale, String> descriptionMap) {
+		setDescriptionMap(descriptionMap, LocaleUtil.getDefault());
+	}
+
+	public void setDescriptionMap(Map<Locale, String> descriptionMap,
+		Locale defaultLocale) {
+		if (descriptionMap == null) {
+			return;
+		}
+
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		for (Locale locale : locales) {
+			String description = descriptionMap.get(locale);
+
+			setDescription(description, locale, defaultLocale);
+		}
+	}
+
+	@JSON
+	public String getPhoneNumber() {
+		if (_phoneNumber == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _phoneNumber;
+		}
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	@JSON
+	public String getFaxNumber() {
+		if (_faxNumber == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _faxNumber;
+		}
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
+	}
+
+	@JSON
+	public String getEmail() {
+		if (_email == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _email;
+		}
+	}
+
+	public void setEmail(String email) {
+		_email = email;
+	}
+
+	@JSON
+	public String getWebPage() {
+		if (_webPage == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _webPage;
+		}
+	}
+
+	public void setWebPage(String webPage) {
+		_webPage = webPage;
+	}
+
+	@JSON
+	public long getCategoryLevel0() {
+		return _categoryLevel0;
+	}
+
+	public void setCategoryLevel0(long categoryLevel0) {
+		_categoryLevel0 = categoryLevel0;
+	}
+
+	@JSON
+	public long getCategoryLevel1() {
+		return _categoryLevel1;
+	}
+
+	public void setCategoryLevel1(long categoryLevel1) {
+		_categoryLevel1 = categoryLevel1;
+	}
+
+	@JSON
+	public long getCategoryLevel2() {
+		return _categoryLevel2;
+	}
+
+	public void setCategoryLevel2(long categoryLevel2) {
+		_categoryLevel2 = categoryLevel2;
+	}
+
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -192,6 +399,10 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@JSON
@@ -221,13 +432,8 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		_createDate = createDate;
 	}
 
-	@JSON
-	public Date getLastModifiedDate() {
-		return _lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		_lastModifiedDate = lastModifiedDate;
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -262,11 +468,18 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 		instanceImpl.setInstanceId(getInstanceId());
 		instanceImpl.setName(getName());
+		instanceImpl.setDescription(getDescription());
+		instanceImpl.setPhoneNumber(getPhoneNumber());
+		instanceImpl.setFaxNumber(getFaxNumber());
+		instanceImpl.setEmail(getEmail());
+		instanceImpl.setWebPage(getWebPage());
+		instanceImpl.setCategoryLevel0(getCategoryLevel0());
+		instanceImpl.setCategoryLevel1(getCategoryLevel1());
+		instanceImpl.setCategoryLevel2(getCategoryLevel2());
 		instanceImpl.setUserId(getUserId());
 		instanceImpl.setCompanyId(getCompanyId());
 		instanceImpl.setGroupId(getGroupId());
 		instanceImpl.setCreateDate(getCreateDate());
-		instanceImpl.setLastModifiedDate(getLastModifiedDate());
 
 		instanceImpl.resetOriginalValues();
 
@@ -317,6 +530,13 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 	@Override
 	public void resetOriginalValues() {
+		InstanceModelImpl instanceModelImpl = this;
+
+		instanceModelImpl._originalUserId = instanceModelImpl._userId;
+
+		instanceModelImpl._setOriginalUserId = false;
+
+		instanceModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -333,6 +553,52 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 			instanceCacheModel.name = null;
 		}
 
+		instanceCacheModel.description = getDescription();
+
+		String description = instanceCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			instanceCacheModel.description = null;
+		}
+
+		instanceCacheModel.phoneNumber = getPhoneNumber();
+
+		String phoneNumber = instanceCacheModel.phoneNumber;
+
+		if ((phoneNumber != null) && (phoneNumber.length() == 0)) {
+			instanceCacheModel.phoneNumber = null;
+		}
+
+		instanceCacheModel.faxNumber = getFaxNumber();
+
+		String faxNumber = instanceCacheModel.faxNumber;
+
+		if ((faxNumber != null) && (faxNumber.length() == 0)) {
+			instanceCacheModel.faxNumber = null;
+		}
+
+		instanceCacheModel.email = getEmail();
+
+		String email = instanceCacheModel.email;
+
+		if ((email != null) && (email.length() == 0)) {
+			instanceCacheModel.email = null;
+		}
+
+		instanceCacheModel.webPage = getWebPage();
+
+		String webPage = instanceCacheModel.webPage;
+
+		if ((webPage != null) && (webPage.length() == 0)) {
+			instanceCacheModel.webPage = null;
+		}
+
+		instanceCacheModel.categoryLevel0 = getCategoryLevel0();
+
+		instanceCacheModel.categoryLevel1 = getCategoryLevel1();
+
+		instanceCacheModel.categoryLevel2 = getCategoryLevel2();
+
 		instanceCacheModel.userId = getUserId();
 
 		instanceCacheModel.companyId = getCompanyId();
@@ -348,26 +614,33 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 			instanceCacheModel.createDate = Long.MIN_VALUE;
 		}
 
-		Date lastModifiedDate = getLastModifiedDate();
-
-		if (lastModifiedDate != null) {
-			instanceCacheModel.lastModifiedDate = lastModifiedDate.getTime();
-		}
-		else {
-			instanceCacheModel.lastModifiedDate = Long.MIN_VALUE;
-		}
-
 		return instanceCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{InstanceId=");
 		sb.append(getInstanceId());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", description=");
+		sb.append(getDescription());
+		sb.append(", phoneNumber=");
+		sb.append(getPhoneNumber());
+		sb.append(", faxNumber=");
+		sb.append(getFaxNumber());
+		sb.append(", email=");
+		sb.append(getEmail());
+		sb.append(", webPage=");
+		sb.append(getWebPage());
+		sb.append(", categoryLevel0=");
+		sb.append(getCategoryLevel0());
+		sb.append(", categoryLevel1=");
+		sb.append(getCategoryLevel1());
+		sb.append(", categoryLevel2=");
+		sb.append(getCategoryLevel2());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", companyId=");
@@ -376,15 +649,13 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		sb.append(getGroupId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
-		sb.append(", lastModifiedDate=");
-		sb.append(getLastModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Instance");
@@ -397,6 +668,38 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
 		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>phoneNumber</column-name><column-value><![CDATA[");
+		sb.append(getPhoneNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>faxNumber</column-name><column-value><![CDATA[");
+		sb.append(getFaxNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>email</column-name><column-value><![CDATA[");
+		sb.append(getEmail());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>webPage</column-name><column-value><![CDATA[");
+		sb.append(getWebPage());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categoryLevel0</column-name><column-value><![CDATA[");
+		sb.append(getCategoryLevel0());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categoryLevel1</column-name><column-value><![CDATA[");
+		sb.append(getCategoryLevel1());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categoryLevel2</column-name><column-value><![CDATA[");
+		sb.append(getCategoryLevel2());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -414,10 +717,6 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastModifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getLastModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -430,12 +729,23 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		};
 	private long _InstanceId;
 	private String _name;
+	private String _description;
+	private String _descriptionCurrentLanguageId;
+	private String _phoneNumber;
+	private String _faxNumber;
+	private String _email;
+	private String _webPage;
+	private long _categoryLevel0;
+	private long _categoryLevel1;
+	private long _categoryLevel2;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private long _companyId;
 	private long _groupId;
 	private Date _createDate;
-	private Date _lastModifiedDate;
 	private transient ExpandoBridge _expandoBridge;
+	private long _columnBitmask;
 	private Instance _escapedModelProxy;
 }

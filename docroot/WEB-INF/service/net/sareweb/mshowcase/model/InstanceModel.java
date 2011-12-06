@@ -25,6 +25,8 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import java.io.Serializable;
 
 import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * The base model interface for the Instance service. Represents a row in the &quot;msc_Instance&quot; database table, with each column mapped to a property of this class.
@@ -88,6 +90,209 @@ public interface InstanceModel extends BaseModel<Instance> {
 	 * @param name the name of this instance
 	 */
 	public void setName(String name);
+
+	/**
+	 * Returns the description of this instance.
+	 *
+	 * @return the description of this instance
+	 */
+	public String getDescription();
+
+	/**
+	 * Returns the localized description of this instance in the language. Uses the default language if no localization exists for the requested language.
+	 *
+	 * @param locale the locale of the language
+	 * @return the localized description of this instance
+	 */
+	@AutoEscape
+	public String getDescription(Locale locale);
+
+	/**
+	 * Returns the localized description of this instance in the language, optionally using the default language if no localization exists for the requested language.
+	 *
+	 * @param locale the local of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized description of this instance. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	 */
+	@AutoEscape
+	public String getDescription(Locale locale, boolean useDefault);
+
+	/**
+	 * Returns the localized description of this instance in the language. Uses the default language if no localization exists for the requested language.
+	 *
+	 * @param languageId the ID of the language
+	 * @return the localized description of this instance
+	 */
+	@AutoEscape
+	public String getDescription(String languageId);
+
+	/**
+	 * Returns the localized description of this instance in the language, optionally using the default language if no localization exists for the requested language.
+	 *
+	 * @param languageId the ID of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized description of this instance
+	 */
+	@AutoEscape
+	public String getDescription(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getDescriptionCurrentLanguageId();
+
+	@AutoEscape
+	public String getDescriptionCurrentValue();
+
+	/**
+	 * Returns a map of the locales and localized descriptions of this instance.
+	 *
+	 * @return the locales and localized descriptions of this instance
+	 */
+	public Map<Locale, String> getDescriptionMap();
+
+	/**
+	 * Sets the description of this instance.
+	 *
+	 * @param description the description of this instance
+	 */
+	public void setDescription(String description);
+
+	/**
+	 * Sets the localized description of this instance in the language.
+	 *
+	 * @param description the localized description of this instance
+	 * @param locale the locale of the language
+	 */
+	public void setDescription(String description, Locale locale);
+
+	/**
+	 * Sets the localized description of this instance in the language, and sets the default locale.
+	 *
+	 * @param description the localized description of this instance
+	 * @param locale the locale of the language
+	 * @param defaultLocale the default locale
+	 */
+	public void setDescription(String description, Locale locale,
+		Locale defaultLocale);
+
+	public void setDescriptionCurrentLanguageId(String languageId);
+
+	/**
+	 * Sets the localized descriptions of this instance from the map of locales and localized descriptions.
+	 *
+	 * @param descriptionMap the locales and localized descriptions of this instance
+	 */
+	public void setDescriptionMap(Map<Locale, String> descriptionMap);
+
+	/**
+	 * Sets the localized descriptions of this instance from the map of locales and localized descriptions, and sets the default locale.
+	 *
+	 * @param descriptionMap the locales and localized descriptions of this instance
+	 * @param defaultLocale the default locale
+	 */
+	public void setDescriptionMap(Map<Locale, String> descriptionMap,
+		Locale defaultLocale);
+
+	/**
+	 * Returns the phone number of this instance.
+	 *
+	 * @return the phone number of this instance
+	 */
+	@AutoEscape
+	public String getPhoneNumber();
+
+	/**
+	 * Sets the phone number of this instance.
+	 *
+	 * @param phoneNumber the phone number of this instance
+	 */
+	public void setPhoneNumber(String phoneNumber);
+
+	/**
+	 * Returns the fax number of this instance.
+	 *
+	 * @return the fax number of this instance
+	 */
+	@AutoEscape
+	public String getFaxNumber();
+
+	/**
+	 * Sets the fax number of this instance.
+	 *
+	 * @param faxNumber the fax number of this instance
+	 */
+	public void setFaxNumber(String faxNumber);
+
+	/**
+	 * Returns the email of this instance.
+	 *
+	 * @return the email of this instance
+	 */
+	@AutoEscape
+	public String getEmail();
+
+	/**
+	 * Sets the email of this instance.
+	 *
+	 * @param email the email of this instance
+	 */
+	public void setEmail(String email);
+
+	/**
+	 * Returns the web page of this instance.
+	 *
+	 * @return the web page of this instance
+	 */
+	@AutoEscape
+	public String getWebPage();
+
+	/**
+	 * Sets the web page of this instance.
+	 *
+	 * @param webPage the web page of this instance
+	 */
+	public void setWebPage(String webPage);
+
+	/**
+	 * Returns the category level0 of this instance.
+	 *
+	 * @return the category level0 of this instance
+	 */
+	public long getCategoryLevel0();
+
+	/**
+	 * Sets the category level0 of this instance.
+	 *
+	 * @param categoryLevel0 the category level0 of this instance
+	 */
+	public void setCategoryLevel0(long categoryLevel0);
+
+	/**
+	 * Returns the category level1 of this instance.
+	 *
+	 * @return the category level1 of this instance
+	 */
+	public long getCategoryLevel1();
+
+	/**
+	 * Sets the category level1 of this instance.
+	 *
+	 * @param categoryLevel1 the category level1 of this instance
+	 */
+	public void setCategoryLevel1(long categoryLevel1);
+
+	/**
+	 * Returns the category level2 of this instance.
+	 *
+	 * @return the category level2 of this instance
+	 */
+	public long getCategoryLevel2();
+
+	/**
+	 * Sets the category level2 of this instance.
+	 *
+	 * @param categoryLevel2 the category level2 of this instance
+	 */
+	public void setCategoryLevel2(long categoryLevel2);
 
 	/**
 	 * Returns the user ID of this instance.
@@ -159,20 +364,6 @@ public interface InstanceModel extends BaseModel<Instance> {
 	 * @param createDate the create date of this instance
 	 */
 	public void setCreateDate(Date createDate);
-
-	/**
-	 * Returns the last modified date of this instance.
-	 *
-	 * @return the last modified date of this instance
-	 */
-	public Date getLastModifiedDate();
-
-	/**
-	 * Sets the last modified date of this instance.
-	 *
-	 * @param lastModifiedDate the last modified date of this instance
-	 */
-	public void setLastModifiedDate(Date lastModifiedDate);
 
 	public boolean isNew();
 

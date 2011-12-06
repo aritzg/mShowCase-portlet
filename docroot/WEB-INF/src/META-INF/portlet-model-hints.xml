@@ -1,25 +1,92 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="net.sareweb.mshowcase.model.Activity">
+		<field name="activityId" type="long" />
+		<field name="type" type="String" />
+		<field name="userId" type="long" />
+		<field name="user2Id" type="long" />
+		<field name="InstanceId" type="long" />
+		<field name="offerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+	</model>
+	<model name="net.sareweb.mshowcase.model.Category">
+		<field name="categoryId" type="long" />
+		<field name="parentCategoryId" type="long" />
+		<field name="name" type="String" localized="true" />
+		<field name="position" type="int" />
+		<field name="userId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="net.sareweb.mshowcase.model.Deal">
+		<field name="dealId" type="long" />
+		<field name="userId" type="long" />
+		<field name="offerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+	</model>
+	<model name="net.sareweb.mshowcase.model.Friendship">
+		<field name="friendshipId" type="long" />
+		<field name="userId" type="long" />
+		<field name="user2Id" type="long" />
+		<field name="accepted" type="boolean" />
+		<field name="rejected" type="boolean" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+	</model>
 	<model name="net.sareweb.mshowcase.model.Instance">
 		<field name="InstanceId" type="long" />
 		<field name="name" type="String" />
+		<field name="description" type="String" localized="true" />
+		<field name="phoneNumber" type="String" />
+		<field name="faxNumber" type="String" />
+		<field name="email" type="String" />
+		<field name="webPage" type="String" />
+		<field name="categoryLevel0" type="long" />
+		<field name="categoryLevel1" type="long" />
+		<field name="categoryLevel2" type="long" />
 		<field name="userId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="createDate" type="Date" />
-		<field name="lastModifiedDate" type="Date" />
 	</model>
-	<model name="net.sareweb.mshowcase.model.Location">
-		<field name="locationId" type="long" />
-		<field name="address" type="String" />
-		<field name="lat" type="float" />
-		<field name="lng" type="float" />
+	<model name="net.sareweb.mshowcase.model.InstanceImage">
+		<field name="InstanceImageId" type="long" />
+		<field name="InstanceId" type="long" />
 		<field name="imageId" type="long" />
 		<field name="imageURL" type="String" />
 		<field name="userId" type="long" />
 		<field name="companyId" type="long" />
-		<field name="groupId" type="long" />
 		<field name="createDate" type="Date" />
+	</model>
+	<model name="net.sareweb.mshowcase.model.Location">
+		<field name="locationId" type="long" />
+		<field name="InstanceId" type="long" />
+		<field name="address" type="String" />
+		<field name="lat" type="double" />
+		<field name="lng" type="double" />
+		<field name="phoneNumber" type="String" />
+		<field name="faxNumber" type="String" />
+		<field name="imageId" type="long" />
+		<field name="imageURL" type="String" />
+		<field name="userId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+	</model>
+	<model name="net.sareweb.mshowcase.model.Offer">
+		<field name="offerId" type="long" />
+		<field name="InstanceId" type="long" />
+		<field name="offerText" type="String" localized="true" />
+		<field name="beginDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="price" type="double" />
+		<field name="transactions" type="int" />
+		<field name="imageId" type="long" />
+		<field name="imageURL" type="String" />
+		<field name="userId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifyDate" type="Date" />
 	</model>
 </model-hints>

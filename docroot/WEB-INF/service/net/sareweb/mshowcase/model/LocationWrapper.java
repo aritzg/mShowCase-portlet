@@ -14,8 +14,6 @@
 
 package net.sareweb.mshowcase.model;
 
-import com.liferay.portal.model.ModelWrapper;
-
 /**
  * <p>
  * This class is a wrapper for {@link Location}.
@@ -25,7 +23,7 @@ import com.liferay.portal.model.ModelWrapper;
  * @see       Location
  * @generated
  */
-public class LocationWrapper implements Location, ModelWrapper<Location> {
+public class LocationWrapper implements Location {
 	public LocationWrapper(Location location) {
 		_location = location;
 	}
@@ -75,6 +73,24 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 	}
 
 	/**
+	* Returns the instance ID of this location.
+	*
+	* @return the instance ID of this location
+	*/
+	public long getInstanceId() {
+		return _location.getInstanceId();
+	}
+
+	/**
+	* Sets the instance ID of this location.
+	*
+	* @param InstanceId the instance ID of this location
+	*/
+	public void setInstanceId(long InstanceId) {
+		_location.setInstanceId(InstanceId);
+	}
+
+	/**
 	* Returns the address of this location.
 	*
 	* @return the address of this location
@@ -97,7 +113,7 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 	*
 	* @return the lat of this location
 	*/
-	public float getLat() {
+	public double getLat() {
 		return _location.getLat();
 	}
 
@@ -106,7 +122,7 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 	*
 	* @param lat the lat of this location
 	*/
-	public void setLat(float lat) {
+	public void setLat(double lat) {
 		_location.setLat(lat);
 	}
 
@@ -115,7 +131,7 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 	*
 	* @return the lng of this location
 	*/
-	public float getLng() {
+	public double getLng() {
 		return _location.getLng();
 	}
 
@@ -124,8 +140,44 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 	*
 	* @param lng the lng of this location
 	*/
-	public void setLng(float lng) {
+	public void setLng(double lng) {
 		_location.setLng(lng);
+	}
+
+	/**
+	* Returns the phone number of this location.
+	*
+	* @return the phone number of this location
+	*/
+	public java.lang.String getPhoneNumber() {
+		return _location.getPhoneNumber();
+	}
+
+	/**
+	* Sets the phone number of this location.
+	*
+	* @param phoneNumber the phone number of this location
+	*/
+	public void setPhoneNumber(java.lang.String phoneNumber) {
+		_location.setPhoneNumber(phoneNumber);
+	}
+
+	/**
+	* Returns the fax number of this location.
+	*
+	* @return the fax number of this location
+	*/
+	public java.lang.String getFaxNumber() {
+		return _location.getFaxNumber();
+	}
+
+	/**
+	* Sets the fax number of this location.
+	*
+	* @param faxNumber the fax number of this location
+	*/
+	public void setFaxNumber(java.lang.String faxNumber) {
+		_location.setFaxNumber(faxNumber);
 	}
 
 	/**
@@ -221,24 +273,6 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 	}
 
 	/**
-	* Returns the group ID of this location.
-	*
-	* @return the group ID of this location
-	*/
-	public long getGroupId() {
-		return _location.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this location.
-	*
-	* @param groupId the group ID of this location
-	*/
-	public void setGroupId(long groupId) {
-		_location.setGroupId(groupId);
-	}
-
-	/**
 	* Returns the create date of this location.
 	*
 	* @return the create date of this location
@@ -298,7 +332,7 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 		return new LocationWrapper((Location)_location.clone());
 	}
 
-	public int compareTo(Location location) {
+	public int compareTo(net.sareweb.mshowcase.model.Location location) {
 		return _location.compareTo(location);
 	}
 
@@ -307,11 +341,11 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 		return _location.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Location> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<net.sareweb.mshowcase.model.Location> toCacheModel() {
 		return _location.toCacheModel();
 	}
 
-	public Location toEscapedModel() {
+	public net.sareweb.mshowcase.model.Location toEscapedModel() {
 		return new LocationWrapper(_location.toEscapedModel());
 	}
 
@@ -329,14 +363,7 @@ public class LocationWrapper implements Location, ModelWrapper<Location> {
 		_location.persist();
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
-	 */
 	public Location getWrappedLocation() {
-		return _location;
-	}
-
-	public Location getWrappedModel() {
 		return _location;
 	}
 

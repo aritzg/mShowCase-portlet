@@ -2,33 +2,124 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="net.sareweb.mshowcase.model.Activity" />
+	<import class="net.sareweb.mshowcase.model.Category" />
+	<import class="net.sareweb.mshowcase.model.Deal" />
+	<import class="net.sareweb.mshowcase.model.Friendship" />
 	<import class="net.sareweb.mshowcase.model.Instance" />
+	<import class="net.sareweb.mshowcase.model.InstanceImage" />
 	<import class="net.sareweb.mshowcase.model.Location" />
+	<import class="net.sareweb.mshowcase.model.Offer" />
+	<class name="net.sareweb.mshowcase.model.impl.ActivityImpl" table="msc_Activity">
+		<cache usage="read-write" />
+		<id name="activityId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user2Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="InstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="offerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="net.sareweb.mshowcase.model.impl.CategoryImpl" table="msc_Category">
+		<cache usage="read-write" />
+		<id name="categoryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="parentCategoryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="position" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="net.sareweb.mshowcase.model.impl.DealImpl" table="msc_Deal">
+		<cache usage="read-write" />
+		<id name="dealId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="offerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="net.sareweb.mshowcase.model.impl.FriendshipImpl" table="msc_Friendship">
+		<cache usage="read-write" />
+		<id name="friendshipId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="user2Id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="accepted" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="rejected" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+	</class>
 	<class name="net.sareweb.mshowcase.model.impl.InstanceImpl" table="msc_Instance">
 		<cache usage="read-write" />
 		<id name="InstanceId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="phoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="faxNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="webPage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="categoryLevel0" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="categoryLevel1" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="categoryLevel2" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="lastModifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="net.sareweb.mshowcase.model.impl.InstanceImageImpl" table="msc_InstanceImage">
+		<cache usage="read-write" />
+		<id name="InstanceImageId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="InstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="net.sareweb.mshowcase.model.impl.LocationImpl" table="msc_Location">
 		<cache usage="read-write" />
 		<id name="locationId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="InstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="lat" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
-		<property name="lng" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
+		<property name="lat" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="lng" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="phoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="faxNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="imageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="imageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="net.sareweb.mshowcase.model.impl.OfferImpl" table="msc_Offer">
+		<cache usage="read-write" />
+		<id name="offerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="InstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="offerText" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="beginDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" type="org.hibernate.type.TimestampType" />
+		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="transactions" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="imageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifyDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

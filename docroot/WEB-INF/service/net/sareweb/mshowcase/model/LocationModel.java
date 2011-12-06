@@ -75,6 +75,20 @@ public interface LocationModel extends BaseModel<Location> {
 	public void setLocationId(long locationId);
 
 	/**
+	 * Returns the instance ID of this location.
+	 *
+	 * @return the instance ID of this location
+	 */
+	public long getInstanceId();
+
+	/**
+	 * Sets the instance ID of this location.
+	 *
+	 * @param InstanceId the instance ID of this location
+	 */
+	public void setInstanceId(long InstanceId);
+
+	/**
 	 * Returns the address of this location.
 	 *
 	 * @return the address of this location
@@ -94,28 +108,58 @@ public interface LocationModel extends BaseModel<Location> {
 	 *
 	 * @return the lat of this location
 	 */
-	public float getLat();
+	public double getLat();
 
 	/**
 	 * Sets the lat of this location.
 	 *
 	 * @param lat the lat of this location
 	 */
-	public void setLat(float lat);
+	public void setLat(double lat);
 
 	/**
 	 * Returns the lng of this location.
 	 *
 	 * @return the lng of this location
 	 */
-	public float getLng();
+	public double getLng();
 
 	/**
 	 * Sets the lng of this location.
 	 *
 	 * @param lng the lng of this location
 	 */
-	public void setLng(float lng);
+	public void setLng(double lng);
+
+	/**
+	 * Returns the phone number of this location.
+	 *
+	 * @return the phone number of this location
+	 */
+	@AutoEscape
+	public String getPhoneNumber();
+
+	/**
+	 * Sets the phone number of this location.
+	 *
+	 * @param phoneNumber the phone number of this location
+	 */
+	public void setPhoneNumber(String phoneNumber);
+
+	/**
+	 * Returns the fax number of this location.
+	 *
+	 * @return the fax number of this location
+	 */
+	@AutoEscape
+	public String getFaxNumber();
+
+	/**
+	 * Sets the fax number of this location.
+	 *
+	 * @param faxNumber the fax number of this location
+	 */
+	public void setFaxNumber(String faxNumber);
 
 	/**
 	 * Returns the image ID of this location.
@@ -188,20 +232,6 @@ public interface LocationModel extends BaseModel<Location> {
 	 * @param companyId the company ID of this location
 	 */
 	public void setCompanyId(long companyId);
-
-	/**
-	 * Returns the group ID of this location.
-	 *
-	 * @return the group ID of this location
-	 */
-	public long getGroupId();
-
-	/**
-	 * Sets the group ID of this location.
-	 *
-	 * @param groupId the group ID of this location
-	 */
-	public void setGroupId(long groupId);
 
 	/**
 	 * Returns the create date of this location.

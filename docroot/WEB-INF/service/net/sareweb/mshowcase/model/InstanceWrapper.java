@@ -14,8 +14,6 @@
 
 package net.sareweb.mshowcase.model;
 
-import com.liferay.portal.model.ModelWrapper;
-
 /**
  * <p>
  * This class is a wrapper for {@link Instance}.
@@ -25,7 +23,7 @@ import com.liferay.portal.model.ModelWrapper;
  * @see       Instance
  * @generated
  */
-public class InstanceWrapper implements Instance, ModelWrapper<Instance> {
+public class InstanceWrapper implements Instance {
 	public InstanceWrapper(Instance instance) {
 		_instance = instance;
 	}
@@ -90,6 +88,260 @@ public class InstanceWrapper implements Instance, ModelWrapper<Instance> {
 	*/
 	public void setName(java.lang.String name) {
 		_instance.setName(name);
+	}
+
+	/**
+	* Returns the description of this instance.
+	*
+	* @return the description of this instance
+	*/
+	public java.lang.String getDescription() {
+		return _instance.getDescription();
+	}
+
+	/**
+	* Returns the localized description of this instance in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param locale the locale of the language
+	* @return the localized description of this instance
+	*/
+	public java.lang.String getDescription(java.util.Locale locale) {
+		return _instance.getDescription(locale);
+	}
+
+	/**
+	* Returns the localized description of this instance in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized description of this instance. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	public java.lang.String getDescription(java.util.Locale locale,
+		boolean useDefault) {
+		return _instance.getDescription(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized description of this instance in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @return the localized description of this instance
+	*/
+	public java.lang.String getDescription(java.lang.String languageId) {
+		return _instance.getDescription(languageId);
+	}
+
+	/**
+	* Returns the localized description of this instance in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized description of this instance
+	*/
+	public java.lang.String getDescription(java.lang.String languageId,
+		boolean useDefault) {
+		return _instance.getDescription(languageId, useDefault);
+	}
+
+	public java.lang.String getDescriptionCurrentLanguageId() {
+		return _instance.getDescriptionCurrentLanguageId();
+	}
+
+	public java.lang.String getDescriptionCurrentValue() {
+		return _instance.getDescriptionCurrentValue();
+	}
+
+	/**
+	* Returns a map of the locales and localized descriptions of this instance.
+	*
+	* @return the locales and localized descriptions of this instance
+	*/
+	public java.util.Map<java.util.Locale, java.lang.String> getDescriptionMap() {
+		return _instance.getDescriptionMap();
+	}
+
+	/**
+	* Sets the description of this instance.
+	*
+	* @param description the description of this instance
+	*/
+	public void setDescription(java.lang.String description) {
+		_instance.setDescription(description);
+	}
+
+	/**
+	* Sets the localized description of this instance in the language.
+	*
+	* @param description the localized description of this instance
+	* @param locale the locale of the language
+	*/
+	public void setDescription(java.lang.String description,
+		java.util.Locale locale) {
+		_instance.setDescription(description, locale);
+	}
+
+	/**
+	* Sets the localized description of this instance in the language, and sets the default locale.
+	*
+	* @param description the localized description of this instance
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
+	public void setDescription(java.lang.String description,
+		java.util.Locale locale, java.util.Locale defaultLocale) {
+		_instance.setDescription(description, locale, defaultLocale);
+	}
+
+	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+		_instance.setDescriptionCurrentLanguageId(languageId);
+	}
+
+	/**
+	* Sets the localized descriptions of this instance from the map of locales and localized descriptions.
+	*
+	* @param descriptionMap the locales and localized descriptions of this instance
+	*/
+	public void setDescriptionMap(
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap) {
+		_instance.setDescriptionMap(descriptionMap);
+	}
+
+	/**
+	* Sets the localized descriptions of this instance from the map of locales and localized descriptions, and sets the default locale.
+	*
+	* @param descriptionMap the locales and localized descriptions of this instance
+	* @param defaultLocale the default locale
+	*/
+	public void setDescriptionMap(
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.util.Locale defaultLocale) {
+		_instance.setDescriptionMap(descriptionMap, defaultLocale);
+	}
+
+	/**
+	* Returns the phone number of this instance.
+	*
+	* @return the phone number of this instance
+	*/
+	public java.lang.String getPhoneNumber() {
+		return _instance.getPhoneNumber();
+	}
+
+	/**
+	* Sets the phone number of this instance.
+	*
+	* @param phoneNumber the phone number of this instance
+	*/
+	public void setPhoneNumber(java.lang.String phoneNumber) {
+		_instance.setPhoneNumber(phoneNumber);
+	}
+
+	/**
+	* Returns the fax number of this instance.
+	*
+	* @return the fax number of this instance
+	*/
+	public java.lang.String getFaxNumber() {
+		return _instance.getFaxNumber();
+	}
+
+	/**
+	* Sets the fax number of this instance.
+	*
+	* @param faxNumber the fax number of this instance
+	*/
+	public void setFaxNumber(java.lang.String faxNumber) {
+		_instance.setFaxNumber(faxNumber);
+	}
+
+	/**
+	* Returns the email of this instance.
+	*
+	* @return the email of this instance
+	*/
+	public java.lang.String getEmail() {
+		return _instance.getEmail();
+	}
+
+	/**
+	* Sets the email of this instance.
+	*
+	* @param email the email of this instance
+	*/
+	public void setEmail(java.lang.String email) {
+		_instance.setEmail(email);
+	}
+
+	/**
+	* Returns the web page of this instance.
+	*
+	* @return the web page of this instance
+	*/
+	public java.lang.String getWebPage() {
+		return _instance.getWebPage();
+	}
+
+	/**
+	* Sets the web page of this instance.
+	*
+	* @param webPage the web page of this instance
+	*/
+	public void setWebPage(java.lang.String webPage) {
+		_instance.setWebPage(webPage);
+	}
+
+	/**
+	* Returns the category level0 of this instance.
+	*
+	* @return the category level0 of this instance
+	*/
+	public long getCategoryLevel0() {
+		return _instance.getCategoryLevel0();
+	}
+
+	/**
+	* Sets the category level0 of this instance.
+	*
+	* @param categoryLevel0 the category level0 of this instance
+	*/
+	public void setCategoryLevel0(long categoryLevel0) {
+		_instance.setCategoryLevel0(categoryLevel0);
+	}
+
+	/**
+	* Returns the category level1 of this instance.
+	*
+	* @return the category level1 of this instance
+	*/
+	public long getCategoryLevel1() {
+		return _instance.getCategoryLevel1();
+	}
+
+	/**
+	* Sets the category level1 of this instance.
+	*
+	* @param categoryLevel1 the category level1 of this instance
+	*/
+	public void setCategoryLevel1(long categoryLevel1) {
+		_instance.setCategoryLevel1(categoryLevel1);
+	}
+
+	/**
+	* Returns the category level2 of this instance.
+	*
+	* @return the category level2 of this instance
+	*/
+	public long getCategoryLevel2() {
+		return _instance.getCategoryLevel2();
+	}
+
+	/**
+	* Sets the category level2 of this instance.
+	*
+	* @param categoryLevel2 the category level2 of this instance
+	*/
+	public void setCategoryLevel2(long categoryLevel2) {
+		_instance.setCategoryLevel2(categoryLevel2);
 	}
 
 	/**
@@ -184,24 +436,6 @@ public class InstanceWrapper implements Instance, ModelWrapper<Instance> {
 		_instance.setCreateDate(createDate);
 	}
 
-	/**
-	* Returns the last modified date of this instance.
-	*
-	* @return the last modified date of this instance
-	*/
-	public java.util.Date getLastModifiedDate() {
-		return _instance.getLastModifiedDate();
-	}
-
-	/**
-	* Sets the last modified date of this instance.
-	*
-	* @param lastModifiedDate the last modified date of this instance
-	*/
-	public void setLastModifiedDate(java.util.Date lastModifiedDate) {
-		_instance.setLastModifiedDate(lastModifiedDate);
-	}
-
 	public boolean isNew() {
 		return _instance.isNew();
 	}
@@ -275,14 +509,7 @@ public class InstanceWrapper implements Instance, ModelWrapper<Instance> {
 		_instance.persist();
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
-	 */
 	public Instance getWrappedInstance() {
-		return _instance;
-	}
-
-	public Instance getWrappedModel() {
 		return _instance;
 	}
 

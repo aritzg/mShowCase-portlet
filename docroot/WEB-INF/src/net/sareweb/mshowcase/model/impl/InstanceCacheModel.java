@@ -20,8 +20,6 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Instance;
 
-import java.io.Serializable;
-
 import java.util.Date;
 
 /**
@@ -31,15 +29,31 @@ import java.util.Date;
  * @see Instance
  * @generated
  */
-public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
+public class InstanceCacheModel implements CacheModel<Instance> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{InstanceId=");
 		sb.append(InstanceId);
 		sb.append(", name=");
 		sb.append(name);
+		sb.append(", description=");
+		sb.append(description);
+		sb.append(", phoneNumber=");
+		sb.append(phoneNumber);
+		sb.append(", faxNumber=");
+		sb.append(faxNumber);
+		sb.append(", email=");
+		sb.append(email);
+		sb.append(", webPage=");
+		sb.append(webPage);
+		sb.append(", categoryLevel0=");
+		sb.append(categoryLevel0);
+		sb.append(", categoryLevel1=");
+		sb.append(categoryLevel1);
+		sb.append(", categoryLevel2=");
+		sb.append(categoryLevel2);
 		sb.append(", userId=");
 		sb.append(userId);
 		sb.append(", companyId=");
@@ -48,8 +62,6 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 		sb.append(groupId);
 		sb.append(", createDate=");
 		sb.append(createDate);
-		sb.append(", lastModifiedDate=");
-		sb.append(lastModifiedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -67,6 +79,44 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 			instanceImpl.setName(name);
 		}
 
+		if (description == null) {
+			instanceImpl.setDescription(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setDescription(description);
+		}
+
+		if (phoneNumber == null) {
+			instanceImpl.setPhoneNumber(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setPhoneNumber(phoneNumber);
+		}
+
+		if (faxNumber == null) {
+			instanceImpl.setFaxNumber(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setFaxNumber(faxNumber);
+		}
+
+		if (email == null) {
+			instanceImpl.setEmail(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setEmail(email);
+		}
+
+		if (webPage == null) {
+			instanceImpl.setWebPage(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setWebPage(webPage);
+		}
+
+		instanceImpl.setCategoryLevel0(categoryLevel0);
+		instanceImpl.setCategoryLevel1(categoryLevel1);
+		instanceImpl.setCategoryLevel2(categoryLevel2);
 		instanceImpl.setUserId(userId);
 		instanceImpl.setCompanyId(companyId);
 		instanceImpl.setGroupId(groupId);
@@ -78,13 +128,6 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 			instanceImpl.setCreateDate(new Date(createDate));
 		}
 
-		if (lastModifiedDate == Long.MIN_VALUE) {
-			instanceImpl.setLastModifiedDate(null);
-		}
-		else {
-			instanceImpl.setLastModifiedDate(new Date(lastModifiedDate));
-		}
-
 		instanceImpl.resetOriginalValues();
 
 		return instanceImpl;
@@ -92,9 +135,16 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 
 	public long InstanceId;
 	public String name;
+	public String description;
+	public String phoneNumber;
+	public String faxNumber;
+	public String email;
+	public String webPage;
+	public long categoryLevel0;
+	public long categoryLevel1;
+	public long categoryLevel2;
 	public long userId;
 	public long companyId;
 	public long groupId;
 	public long createDate;
-	public long lastModifiedDate;
 }

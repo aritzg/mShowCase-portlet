@@ -14,8 +14,6 @@
 
 package net.sareweb.mshowcase.service;
 
-import com.liferay.portal.service.ServiceWrapper;
-
 /**
  * <p>
  * This class is a wrapper for {@link InstanceService}.
@@ -25,31 +23,16 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see       InstanceService
  * @generated
  */
-public class InstanceServiceWrapper implements InstanceService,
-	ServiceWrapper<InstanceService> {
+public class InstanceServiceWrapper implements InstanceService {
 	public InstanceServiceWrapper(InstanceService instanceService) {
 		_instanceService = instanceService;
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
-	 */
 	public InstanceService getWrappedInstanceService() {
 		return _instanceService;
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
-	 */
 	public void setWrappedInstanceService(InstanceService instanceService) {
-		_instanceService = instanceService;
-	}
-
-	public InstanceService getWrappedService() {
-		return _instanceService;
-	}
-
-	public void setWrappedService(InstanceService instanceService) {
 		_instanceService = instanceService;
 	}
 

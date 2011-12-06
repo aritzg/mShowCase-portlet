@@ -159,12 +159,6 @@ public class LocationLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static net.sareweb.mshowcase.model.Location fetchLocation(
-		long locationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchLocation(locationId);
-	}
-
 	/**
 	* Returns the location with the primary key.
 	*

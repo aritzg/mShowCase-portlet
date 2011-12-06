@@ -66,17 +66,19 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 	public static final String TABLE_NAME = "msc_Location";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "locationId", Types.BIGINT },
+			{ "InstanceId", Types.BIGINT },
 			{ "address", Types.VARCHAR },
-			{ "lat", Types.FLOAT },
-			{ "lng", Types.FLOAT },
+			{ "lat", Types.DOUBLE },
+			{ "lng", Types.DOUBLE },
+			{ "phoneNumber", Types.VARCHAR },
+			{ "faxNumber", Types.VARCHAR },
 			{ "imageId", Types.BIGINT },
 			{ "imageURL", Types.VARCHAR },
 			{ "userId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table msc_Location (locationId LONG not null primary key,address VARCHAR(75) null,lat DOUBLE,lng DOUBLE,imageId LONG,imageURL VARCHAR(75) null,userId LONG,companyId LONG,groupId LONG,createDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table msc_Location (locationId LONG not null primary key,InstanceId LONG,address VARCHAR(75) null,lat DOUBLE,lng DOUBLE,phoneNumber VARCHAR(75) null,faxNumber VARCHAR(75) null,imageId LONG,imageURL VARCHAR(75) null,userId LONG,companyId LONG,createDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table msc_Location";
 	public static final String ORDER_BY_JPQL = " ORDER BY location.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY msc_Location.createDate ASC";
@@ -101,14 +103,16 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		Location model = new LocationImpl();
 
 		model.setLocationId(soapModel.getLocationId());
+		model.setInstanceId(soapModel.getInstanceId());
 		model.setAddress(soapModel.getAddress());
 		model.setLat(soapModel.getLat());
 		model.setLng(soapModel.getLng());
+		model.setPhoneNumber(soapModel.getPhoneNumber());
+		model.setFaxNumber(soapModel.getFaxNumber());
 		model.setImageId(soapModel.getImageId());
 		model.setImageURL(soapModel.getImageURL());
 		model.setUserId(soapModel.getUserId());
 		model.setCompanyId(soapModel.getCompanyId());
-		model.setGroupId(soapModel.getGroupId());
 		model.setCreateDate(soapModel.getCreateDate());
 
 		return model;
@@ -170,6 +174,15 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 	}
 
 	@JSON
+	public long getInstanceId() {
+		return _InstanceId;
+	}
+
+	public void setInstanceId(long InstanceId) {
+		_InstanceId = InstanceId;
+	}
+
+	@JSON
 	public String getAddress() {
 		if (_address == null) {
 			return StringPool.BLANK;
@@ -184,21 +197,49 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 	}
 
 	@JSON
-	public float getLat() {
+	public double getLat() {
 		return _lat;
 	}
 
-	public void setLat(float lat) {
+	public void setLat(double lat) {
 		_lat = lat;
 	}
 
 	@JSON
-	public float getLng() {
+	public double getLng() {
 		return _lng;
 	}
 
-	public void setLng(float lng) {
+	public void setLng(double lng) {
 		_lng = lng;
+	}
+
+	@JSON
+	public String getPhoneNumber() {
+		if (_phoneNumber == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _phoneNumber;
+		}
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	@JSON
+	public String getFaxNumber() {
+		if (_faxNumber == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _faxNumber;
+		}
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
 	}
 
 	@JSON
@@ -251,15 +292,6 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 	}
 
 	@JSON
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
-	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -299,14 +331,16 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		LocationImpl locationImpl = new LocationImpl();
 
 		locationImpl.setLocationId(getLocationId());
+		locationImpl.setInstanceId(getInstanceId());
 		locationImpl.setAddress(getAddress());
 		locationImpl.setLat(getLat());
 		locationImpl.setLng(getLng());
+		locationImpl.setPhoneNumber(getPhoneNumber());
+		locationImpl.setFaxNumber(getFaxNumber());
 		locationImpl.setImageId(getImageId());
 		locationImpl.setImageURL(getImageURL());
 		locationImpl.setUserId(getUserId());
 		locationImpl.setCompanyId(getCompanyId());
-		locationImpl.setGroupId(getGroupId());
 		locationImpl.setCreateDate(getCreateDate());
 
 		locationImpl.resetOriginalValues();
@@ -366,6 +400,8 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 
 		locationCacheModel.locationId = getLocationId();
 
+		locationCacheModel.InstanceId = getInstanceId();
+
 		locationCacheModel.address = getAddress();
 
 		String address = locationCacheModel.address;
@@ -377,6 +413,22 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		locationCacheModel.lat = getLat();
 
 		locationCacheModel.lng = getLng();
+
+		locationCacheModel.phoneNumber = getPhoneNumber();
+
+		String phoneNumber = locationCacheModel.phoneNumber;
+
+		if ((phoneNumber != null) && (phoneNumber.length() == 0)) {
+			locationCacheModel.phoneNumber = null;
+		}
+
+		locationCacheModel.faxNumber = getFaxNumber();
+
+		String faxNumber = locationCacheModel.faxNumber;
+
+		if ((faxNumber != null) && (faxNumber.length() == 0)) {
+			locationCacheModel.faxNumber = null;
+		}
 
 		locationCacheModel.imageId = getImageId();
 
@@ -392,8 +444,6 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 
 		locationCacheModel.companyId = getCompanyId();
 
-		locationCacheModel.groupId = getGroupId();
-
 		Date createDate = getCreateDate();
 
 		if (createDate != null) {
@@ -408,16 +458,22 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{locationId=");
 		sb.append(getLocationId());
+		sb.append(", InstanceId=");
+		sb.append(getInstanceId());
 		sb.append(", address=");
 		sb.append(getAddress());
 		sb.append(", lat=");
 		sb.append(getLat());
 		sb.append(", lng=");
 		sb.append(getLng());
+		sb.append(", phoneNumber=");
+		sb.append(getPhoneNumber());
+		sb.append(", faxNumber=");
+		sb.append(getFaxNumber());
 		sb.append(", imageId=");
 		sb.append(getImageId());
 		sb.append(", imageURL=");
@@ -426,8 +482,6 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		sb.append(getUserId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append("}");
@@ -436,7 +490,7 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Location");
@@ -445,6 +499,10 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		sb.append(
 			"<column><column-name>locationId</column-name><column-value><![CDATA[");
 		sb.append(getLocationId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
+		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>address</column-name><column-value><![CDATA[");
@@ -457,6 +515,14 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		sb.append(
 			"<column><column-name>lng</column-name><column-value><![CDATA[");
 		sb.append(getLng());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>phoneNumber</column-name><column-value><![CDATA[");
+		sb.append(getPhoneNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>faxNumber</column-name><column-value><![CDATA[");
+		sb.append(getFaxNumber());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>imageId</column-name><column-value><![CDATA[");
@@ -475,10 +541,6 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
@@ -493,15 +555,17 @@ public class LocationModelImpl extends BaseModelImpl<Location>
 			Location.class
 		};
 	private long _locationId;
+	private long _InstanceId;
 	private String _address;
-	private float _lat;
-	private float _lng;
+	private double _lat;
+	private double _lng;
+	private String _phoneNumber;
+	private String _faxNumber;
 	private long _imageId;
 	private String _imageURL;
 	private long _userId;
 	private String _userUuid;
 	private long _companyId;
-	private long _groupId;
 	private Date _createDate;
 	private transient ExpandoBridge _expandoBridge;
 	private Location _escapedModelProxy;

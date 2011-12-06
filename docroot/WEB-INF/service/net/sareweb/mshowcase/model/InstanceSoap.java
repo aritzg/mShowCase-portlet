@@ -33,11 +33,18 @@ public class InstanceSoap implements Serializable {
 
 		soapModel.setInstanceId(model.getInstanceId());
 		soapModel.setName(model.getName());
+		soapModel.setDescription(model.getDescription());
+		soapModel.setPhoneNumber(model.getPhoneNumber());
+		soapModel.setFaxNumber(model.getFaxNumber());
+		soapModel.setEmail(model.getEmail());
+		soapModel.setWebPage(model.getWebPage());
+		soapModel.setCategoryLevel0(model.getCategoryLevel0());
+		soapModel.setCategoryLevel1(model.getCategoryLevel1());
+		soapModel.setCategoryLevel2(model.getCategoryLevel2());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setLastModifiedDate(model.getLastModifiedDate());
 
 		return soapModel;
 	}
@@ -106,6 +113,70 @@ public class InstanceSoap implements Serializable {
 		_name = name;
 	}
 
+	public String getDescription() {
+		return _description;
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	public String getPhoneNumber() {
+		return _phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	public String getFaxNumber() {
+		return _faxNumber;
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
+	}
+
+	public String getEmail() {
+		return _email;
+	}
+
+	public void setEmail(String email) {
+		_email = email;
+	}
+
+	public String getWebPage() {
+		return _webPage;
+	}
+
+	public void setWebPage(String webPage) {
+		_webPage = webPage;
+	}
+
+	public long getCategoryLevel0() {
+		return _categoryLevel0;
+	}
+
+	public void setCategoryLevel0(long categoryLevel0) {
+		_categoryLevel0 = categoryLevel0;
+	}
+
+	public long getCategoryLevel1() {
+		return _categoryLevel1;
+	}
+
+	public void setCategoryLevel1(long categoryLevel1) {
+		_categoryLevel1 = categoryLevel1;
+	}
+
+	public long getCategoryLevel2() {
+		return _categoryLevel2;
+	}
+
+	public void setCategoryLevel2(long categoryLevel2) {
+		_categoryLevel2 = categoryLevel2;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -138,19 +209,18 @@ public class InstanceSoap implements Serializable {
 		_createDate = createDate;
 	}
 
-	public Date getLastModifiedDate() {
-		return _lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		_lastModifiedDate = lastModifiedDate;
-	}
-
 	private long _InstanceId;
 	private String _name;
+	private String _description;
+	private String _phoneNumber;
+	private String _faxNumber;
+	private String _email;
+	private String _webPage;
+	private long _categoryLevel0;
+	private long _categoryLevel1;
+	private long _categoryLevel2;
 	private long _userId;
 	private long _companyId;
 	private long _groupId;
 	private Date _createDate;
-	private Date _lastModifiedDate;
 }

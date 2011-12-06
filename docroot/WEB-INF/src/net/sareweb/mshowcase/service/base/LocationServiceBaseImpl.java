@@ -30,12 +30,30 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import net.sareweb.mshowcase.model.Location;
+import net.sareweb.mshowcase.service.ActivityLocalService;
+import net.sareweb.mshowcase.service.ActivityService;
+import net.sareweb.mshowcase.service.CategoryLocalService;
+import net.sareweb.mshowcase.service.CategoryService;
+import net.sareweb.mshowcase.service.DealLocalService;
+import net.sareweb.mshowcase.service.DealService;
+import net.sareweb.mshowcase.service.FriendshipLocalService;
+import net.sareweb.mshowcase.service.FriendshipService;
+import net.sareweb.mshowcase.service.InstanceImageLocalService;
+import net.sareweb.mshowcase.service.InstanceImageService;
 import net.sareweb.mshowcase.service.InstanceLocalService;
 import net.sareweb.mshowcase.service.InstanceService;
 import net.sareweb.mshowcase.service.LocationLocalService;
 import net.sareweb.mshowcase.service.LocationService;
+import net.sareweb.mshowcase.service.OfferLocalService;
+import net.sareweb.mshowcase.service.OfferService;
+import net.sareweb.mshowcase.service.persistence.ActivityPersistence;
+import net.sareweb.mshowcase.service.persistence.CategoryPersistence;
+import net.sareweb.mshowcase.service.persistence.DealPersistence;
+import net.sareweb.mshowcase.service.persistence.FriendshipPersistence;
+import net.sareweb.mshowcase.service.persistence.InstanceImagePersistence;
 import net.sareweb.mshowcase.service.persistence.InstancePersistence;
 import net.sareweb.mshowcase.service.persistence.LocationPersistence;
+import net.sareweb.mshowcase.service.persistence.OfferPersistence;
 
 import javax.sql.DataSource;
 
@@ -58,6 +76,226 @@ public abstract class LocationServiceBaseImpl extends PrincipalBean
 	 *
 	 * Never modify or reference this class directly. Always use {@link net.sareweb.mshowcase.service.LocationServiceUtil} to access the location remote service.
 	 */
+
+	/**
+	 * Returns the activity local service.
+	 *
+	 * @return the activity local service
+	 */
+	public ActivityLocalService getActivityLocalService() {
+		return activityLocalService;
+	}
+
+	/**
+	 * Sets the activity local service.
+	 *
+	 * @param activityLocalService the activity local service
+	 */
+	public void setActivityLocalService(
+		ActivityLocalService activityLocalService) {
+		this.activityLocalService = activityLocalService;
+	}
+
+	/**
+	 * Returns the activity remote service.
+	 *
+	 * @return the activity remote service
+	 */
+	public ActivityService getActivityService() {
+		return activityService;
+	}
+
+	/**
+	 * Sets the activity remote service.
+	 *
+	 * @param activityService the activity remote service
+	 */
+	public void setActivityService(ActivityService activityService) {
+		this.activityService = activityService;
+	}
+
+	/**
+	 * Returns the activity persistence.
+	 *
+	 * @return the activity persistence
+	 */
+	public ActivityPersistence getActivityPersistence() {
+		return activityPersistence;
+	}
+
+	/**
+	 * Sets the activity persistence.
+	 *
+	 * @param activityPersistence the activity persistence
+	 */
+	public void setActivityPersistence(ActivityPersistence activityPersistence) {
+		this.activityPersistence = activityPersistence;
+	}
+
+	/**
+	 * Returns the category local service.
+	 *
+	 * @return the category local service
+	 */
+	public CategoryLocalService getCategoryLocalService() {
+		return categoryLocalService;
+	}
+
+	/**
+	 * Sets the category local service.
+	 *
+	 * @param categoryLocalService the category local service
+	 */
+	public void setCategoryLocalService(
+		CategoryLocalService categoryLocalService) {
+		this.categoryLocalService = categoryLocalService;
+	}
+
+	/**
+	 * Returns the category remote service.
+	 *
+	 * @return the category remote service
+	 */
+	public CategoryService getCategoryService() {
+		return categoryService;
+	}
+
+	/**
+	 * Sets the category remote service.
+	 *
+	 * @param categoryService the category remote service
+	 */
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
+
+	/**
+	 * Returns the category persistence.
+	 *
+	 * @return the category persistence
+	 */
+	public CategoryPersistence getCategoryPersistence() {
+		return categoryPersistence;
+	}
+
+	/**
+	 * Sets the category persistence.
+	 *
+	 * @param categoryPersistence the category persistence
+	 */
+	public void setCategoryPersistence(CategoryPersistence categoryPersistence) {
+		this.categoryPersistence = categoryPersistence;
+	}
+
+	/**
+	 * Returns the deal local service.
+	 *
+	 * @return the deal local service
+	 */
+	public DealLocalService getDealLocalService() {
+		return dealLocalService;
+	}
+
+	/**
+	 * Sets the deal local service.
+	 *
+	 * @param dealLocalService the deal local service
+	 */
+	public void setDealLocalService(DealLocalService dealLocalService) {
+		this.dealLocalService = dealLocalService;
+	}
+
+	/**
+	 * Returns the deal remote service.
+	 *
+	 * @return the deal remote service
+	 */
+	public DealService getDealService() {
+		return dealService;
+	}
+
+	/**
+	 * Sets the deal remote service.
+	 *
+	 * @param dealService the deal remote service
+	 */
+	public void setDealService(DealService dealService) {
+		this.dealService = dealService;
+	}
+
+	/**
+	 * Returns the deal persistence.
+	 *
+	 * @return the deal persistence
+	 */
+	public DealPersistence getDealPersistence() {
+		return dealPersistence;
+	}
+
+	/**
+	 * Sets the deal persistence.
+	 *
+	 * @param dealPersistence the deal persistence
+	 */
+	public void setDealPersistence(DealPersistence dealPersistence) {
+		this.dealPersistence = dealPersistence;
+	}
+
+	/**
+	 * Returns the friendship local service.
+	 *
+	 * @return the friendship local service
+	 */
+	public FriendshipLocalService getFriendshipLocalService() {
+		return friendshipLocalService;
+	}
+
+	/**
+	 * Sets the friendship local service.
+	 *
+	 * @param friendshipLocalService the friendship local service
+	 */
+	public void setFriendshipLocalService(
+		FriendshipLocalService friendshipLocalService) {
+		this.friendshipLocalService = friendshipLocalService;
+	}
+
+	/**
+	 * Returns the friendship remote service.
+	 *
+	 * @return the friendship remote service
+	 */
+	public FriendshipService getFriendshipService() {
+		return friendshipService;
+	}
+
+	/**
+	 * Sets the friendship remote service.
+	 *
+	 * @param friendshipService the friendship remote service
+	 */
+	public void setFriendshipService(FriendshipService friendshipService) {
+		this.friendshipService = friendshipService;
+	}
+
+	/**
+	 * Returns the friendship persistence.
+	 *
+	 * @return the friendship persistence
+	 */
+	public FriendshipPersistence getFriendshipPersistence() {
+		return friendshipPersistence;
+	}
+
+	/**
+	 * Sets the friendship persistence.
+	 *
+	 * @param friendshipPersistence the friendship persistence
+	 */
+	public void setFriendshipPersistence(
+		FriendshipPersistence friendshipPersistence) {
+		this.friendshipPersistence = friendshipPersistence;
+	}
 
 	/**
 	 * Returns the instance local service.
@@ -115,6 +353,63 @@ public abstract class LocationServiceBaseImpl extends PrincipalBean
 	}
 
 	/**
+	 * Returns the instance image local service.
+	 *
+	 * @return the instance image local service
+	 */
+	public InstanceImageLocalService getInstanceImageLocalService() {
+		return instanceImageLocalService;
+	}
+
+	/**
+	 * Sets the instance image local service.
+	 *
+	 * @param instanceImageLocalService the instance image local service
+	 */
+	public void setInstanceImageLocalService(
+		InstanceImageLocalService instanceImageLocalService) {
+		this.instanceImageLocalService = instanceImageLocalService;
+	}
+
+	/**
+	 * Returns the instance image remote service.
+	 *
+	 * @return the instance image remote service
+	 */
+	public InstanceImageService getInstanceImageService() {
+		return instanceImageService;
+	}
+
+	/**
+	 * Sets the instance image remote service.
+	 *
+	 * @param instanceImageService the instance image remote service
+	 */
+	public void setInstanceImageService(
+		InstanceImageService instanceImageService) {
+		this.instanceImageService = instanceImageService;
+	}
+
+	/**
+	 * Returns the instance image persistence.
+	 *
+	 * @return the instance image persistence
+	 */
+	public InstanceImagePersistence getInstanceImagePersistence() {
+		return instanceImagePersistence;
+	}
+
+	/**
+	 * Sets the instance image persistence.
+	 *
+	 * @param instanceImagePersistence the instance image persistence
+	 */
+	public void setInstanceImagePersistence(
+		InstanceImagePersistence instanceImagePersistence) {
+		this.instanceImagePersistence = instanceImagePersistence;
+	}
+
+	/**
 	 * Returns the location local service.
 	 *
 	 * @return the location local service
@@ -167,6 +462,60 @@ public abstract class LocationServiceBaseImpl extends PrincipalBean
 	 */
 	public void setLocationPersistence(LocationPersistence locationPersistence) {
 		this.locationPersistence = locationPersistence;
+	}
+
+	/**
+	 * Returns the offer local service.
+	 *
+	 * @return the offer local service
+	 */
+	public OfferLocalService getOfferLocalService() {
+		return offerLocalService;
+	}
+
+	/**
+	 * Sets the offer local service.
+	 *
+	 * @param offerLocalService the offer local service
+	 */
+	public void setOfferLocalService(OfferLocalService offerLocalService) {
+		this.offerLocalService = offerLocalService;
+	}
+
+	/**
+	 * Returns the offer remote service.
+	 *
+	 * @return the offer remote service
+	 */
+	public OfferService getOfferService() {
+		return offerService;
+	}
+
+	/**
+	 * Sets the offer remote service.
+	 *
+	 * @param offerService the offer remote service
+	 */
+	public void setOfferService(OfferService offerService) {
+		this.offerService = offerService;
+	}
+
+	/**
+	 * Returns the offer persistence.
+	 *
+	 * @return the offer persistence
+	 */
+	public OfferPersistence getOfferPersistence() {
+		return offerPersistence;
+	}
+
+	/**
+	 * Sets the offer persistence.
+	 *
+	 * @param offerPersistence the offer persistence
+	 */
+	public void setOfferPersistence(OfferPersistence offerPersistence) {
+		this.offerPersistence = offerPersistence;
 	}
 
 	/**
@@ -347,18 +696,54 @@ public abstract class LocationServiceBaseImpl extends PrincipalBean
 		}
 	}
 
+	@BeanReference(type = ActivityLocalService.class)
+	protected ActivityLocalService activityLocalService;
+	@BeanReference(type = ActivityService.class)
+	protected ActivityService activityService;
+	@BeanReference(type = ActivityPersistence.class)
+	protected ActivityPersistence activityPersistence;
+	@BeanReference(type = CategoryLocalService.class)
+	protected CategoryLocalService categoryLocalService;
+	@BeanReference(type = CategoryService.class)
+	protected CategoryService categoryService;
+	@BeanReference(type = CategoryPersistence.class)
+	protected CategoryPersistence categoryPersistence;
+	@BeanReference(type = DealLocalService.class)
+	protected DealLocalService dealLocalService;
+	@BeanReference(type = DealService.class)
+	protected DealService dealService;
+	@BeanReference(type = DealPersistence.class)
+	protected DealPersistence dealPersistence;
+	@BeanReference(type = FriendshipLocalService.class)
+	protected FriendshipLocalService friendshipLocalService;
+	@BeanReference(type = FriendshipService.class)
+	protected FriendshipService friendshipService;
+	@BeanReference(type = FriendshipPersistence.class)
+	protected FriendshipPersistence friendshipPersistence;
 	@BeanReference(type = InstanceLocalService.class)
 	protected InstanceLocalService instanceLocalService;
 	@BeanReference(type = InstanceService.class)
 	protected InstanceService instanceService;
 	@BeanReference(type = InstancePersistence.class)
 	protected InstancePersistence instancePersistence;
+	@BeanReference(type = InstanceImageLocalService.class)
+	protected InstanceImageLocalService instanceImageLocalService;
+	@BeanReference(type = InstanceImageService.class)
+	protected InstanceImageService instanceImageService;
+	@BeanReference(type = InstanceImagePersistence.class)
+	protected InstanceImagePersistence instanceImagePersistence;
 	@BeanReference(type = LocationLocalService.class)
 	protected LocationLocalService locationLocalService;
 	@BeanReference(type = LocationService.class)
 	protected LocationService locationService;
 	@BeanReference(type = LocationPersistence.class)
 	protected LocationPersistence locationPersistence;
+	@BeanReference(type = OfferLocalService.class)
+	protected OfferLocalService offerLocalService;
+	@BeanReference(type = OfferService.class)
+	protected OfferService offerService;
+	@BeanReference(type = OfferPersistence.class)
+	protected OfferPersistence offerPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

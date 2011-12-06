@@ -14,8 +14,6 @@
 
 package net.sareweb.mshowcase.service;
 
-import com.liferay.portal.service.ServiceWrapper;
-
 /**
  * <p>
  * This class is a wrapper for {@link InstanceLocalService}.
@@ -25,8 +23,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see       InstanceLocalService
  * @generated
  */
-public class InstanceLocalServiceWrapper implements InstanceLocalService,
-	ServiceWrapper<InstanceLocalService> {
+public class InstanceLocalServiceWrapper implements InstanceLocalService {
 	public InstanceLocalServiceWrapper(
 		InstanceLocalService instanceLocalService) {
 		_instanceLocalService = instanceLocalService;
@@ -150,11 +147,6 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 		return _instanceLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public net.sareweb.mshowcase.model.Instance fetchInstance(long InstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _instanceLocalService.fetchInstance(InstanceId);
-	}
-
 	/**
 	* Returns the instance with the primary key.
 	*
@@ -250,26 +242,16 @@ public class InstanceLocalServiceWrapper implements InstanceLocalService,
 		_instanceLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
-	 */
+	public net.sareweb.mshowcase.model.Instance getInstanceByUserId(long userId) {
+		return _instanceLocalService.getInstanceByUserId(userId);
+	}
+
 	public InstanceLocalService getWrappedInstanceLocalService() {
 		return _instanceLocalService;
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
-	 */
 	public void setWrappedInstanceLocalService(
 		InstanceLocalService instanceLocalService) {
-		_instanceLocalService = instanceLocalService;
-	}
-
-	public InstanceLocalService getWrappedService() {
-		return _instanceLocalService;
-	}
-
-	public void setWrappedService(InstanceLocalService instanceLocalService) {
 		_instanceLocalService = instanceLocalService;
 	}
 

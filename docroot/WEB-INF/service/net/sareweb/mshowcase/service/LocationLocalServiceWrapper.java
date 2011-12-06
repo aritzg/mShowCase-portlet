@@ -14,8 +14,6 @@
 
 package net.sareweb.mshowcase.service;
 
-import com.liferay.portal.service.ServiceWrapper;
-
 /**
  * <p>
  * This class is a wrapper for {@link LocationLocalService}.
@@ -25,8 +23,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see       LocationLocalService
  * @generated
  */
-public class LocationLocalServiceWrapper implements LocationLocalService,
-	ServiceWrapper<LocationLocalService> {
+public class LocationLocalServiceWrapper implements LocationLocalService {
 	public LocationLocalServiceWrapper(
 		LocationLocalService locationLocalService) {
 		_locationLocalService = locationLocalService;
@@ -150,11 +147,6 @@ public class LocationLocalServiceWrapper implements LocationLocalService,
 		return _locationLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public net.sareweb.mshowcase.model.Location fetchLocation(long locationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _locationLocalService.fetchLocation(locationId);
-	}
-
 	/**
 	* Returns the location with the primary key.
 	*
@@ -250,26 +242,12 @@ public class LocationLocalServiceWrapper implements LocationLocalService,
 		_locationLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
-	 */
 	public LocationLocalService getWrappedLocationLocalService() {
 		return _locationLocalService;
 	}
 
-	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
-	 */
 	public void setWrappedLocationLocalService(
 		LocationLocalService locationLocalService) {
-		_locationLocalService = locationLocalService;
-	}
-
-	public LocationLocalService getWrappedService() {
-		return _locationLocalService;
-	}
-
-	public void setWrappedService(LocationLocalService locationLocalService) {
 		_locationLocalService = locationLocalService;
 	}
 

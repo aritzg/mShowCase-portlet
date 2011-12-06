@@ -299,14 +299,16 @@ public class LocationPersistenceImpl extends BasePersistenceImpl<Location>
 		locationImpl.setPrimaryKey(location.getPrimaryKey());
 
 		locationImpl.setLocationId(location.getLocationId());
+		locationImpl.setInstanceId(location.getInstanceId());
 		locationImpl.setAddress(location.getAddress());
 		locationImpl.setLat(location.getLat());
 		locationImpl.setLng(location.getLng());
+		locationImpl.setPhoneNumber(location.getPhoneNumber());
+		locationImpl.setFaxNumber(location.getFaxNumber());
 		locationImpl.setImageId(location.getImageId());
 		locationImpl.setImageURL(location.getImageURL());
 		locationImpl.setUserId(location.getUserId());
 		locationImpl.setCompanyId(location.getCompanyId());
-		locationImpl.setGroupId(location.getGroupId());
 		locationImpl.setCreateDate(location.getCreateDate());
 
 		return locationImpl;
@@ -605,10 +607,22 @@ public class LocationPersistenceImpl extends BasePersistenceImpl<Location>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@BeanReference(type = ActivityPersistence.class)
+	protected ActivityPersistence activityPersistence;
+	@BeanReference(type = CategoryPersistence.class)
+	protected CategoryPersistence categoryPersistence;
+	@BeanReference(type = DealPersistence.class)
+	protected DealPersistence dealPersistence;
+	@BeanReference(type = FriendshipPersistence.class)
+	protected FriendshipPersistence friendshipPersistence;
 	@BeanReference(type = InstancePersistence.class)
 	protected InstancePersistence instancePersistence;
+	@BeanReference(type = InstanceImagePersistence.class)
+	protected InstanceImagePersistence instanceImagePersistence;
 	@BeanReference(type = LocationPersistence.class)
 	protected LocationPersistence locationPersistence;
+	@BeanReference(type = OfferPersistence.class)
+	protected OfferPersistence offerPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

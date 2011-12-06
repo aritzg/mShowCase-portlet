@@ -159,12 +159,6 @@ public class InstanceLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static net.sareweb.mshowcase.model.Instance fetchInstance(
-		long InstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchInstance(InstanceId);
-	}
-
 	/**
 	* Returns the instance with the primary key.
 	*
@@ -259,6 +253,11 @@ public class InstanceLocalServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static net.sareweb.mshowcase.model.Instance getInstanceByUserId(
+		long userId) {
+		return getService().getInstanceByUserId(userId);
 	}
 
 	public static void clearService() {

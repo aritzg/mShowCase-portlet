@@ -17,11 +17,23 @@ package net.sareweb.mshowcase.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import net.sareweb.mshowcase.service.ActivityLocalServiceUtil;
+import net.sareweb.mshowcase.service.ActivityServiceUtil;
+import net.sareweb.mshowcase.service.CategoryLocalServiceUtil;
+import net.sareweb.mshowcase.service.CategoryServiceUtil;
 import net.sareweb.mshowcase.service.ClpSerializer;
+import net.sareweb.mshowcase.service.DealLocalServiceUtil;
+import net.sareweb.mshowcase.service.DealServiceUtil;
+import net.sareweb.mshowcase.service.FriendshipLocalServiceUtil;
+import net.sareweb.mshowcase.service.FriendshipServiceUtil;
+import net.sareweb.mshowcase.service.InstanceImageLocalServiceUtil;
+import net.sareweb.mshowcase.service.InstanceImageServiceUtil;
 import net.sareweb.mshowcase.service.InstanceLocalServiceUtil;
 import net.sareweb.mshowcase.service.InstanceServiceUtil;
 import net.sareweb.mshowcase.service.LocationLocalServiceUtil;
 import net.sareweb.mshowcase.service.LocationServiceUtil;
+import net.sareweb.mshowcase.service.OfferLocalServiceUtil;
+import net.sareweb.mshowcase.service.OfferServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -38,12 +50,30 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			ActivityLocalServiceUtil.clearService();
+
+			ActivityServiceUtil.clearService();
+			CategoryLocalServiceUtil.clearService();
+
+			CategoryServiceUtil.clearService();
+			DealLocalServiceUtil.clearService();
+
+			DealServiceUtil.clearService();
+			FriendshipLocalServiceUtil.clearService();
+
+			FriendshipServiceUtil.clearService();
 			InstanceLocalServiceUtil.clearService();
 
 			InstanceServiceUtil.clearService();
+			InstanceImageLocalServiceUtil.clearService();
+
+			InstanceImageServiceUtil.clearService();
 			LocationLocalServiceUtil.clearService();
 
 			LocationServiceUtil.clearService();
+			OfferLocalServiceUtil.clearService();
+
+			OfferServiceUtil.clearService();
 		}
 	}
 }

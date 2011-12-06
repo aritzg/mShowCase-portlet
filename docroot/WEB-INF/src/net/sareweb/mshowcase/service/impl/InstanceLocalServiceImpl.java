@@ -14,6 +14,9 @@
 
 package net.sareweb.mshowcase.service.impl;
 
+import com.liferay.portal.kernel.exception.SystemException;
+
+import net.sareweb.mshowcase.model.Instance;
 import net.sareweb.mshowcase.service.base.InstanceLocalServiceBaseImpl;
 
 /**
@@ -31,9 +34,12 @@ import net.sareweb.mshowcase.service.base.InstanceLocalServiceBaseImpl;
  * @see net.sareweb.mshowcase.service.InstanceLocalServiceUtil
  */
 public class InstanceLocalServiceImpl extends InstanceLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link net.sareweb.mshowcase.service.InstanceLocalServiceUtil} to access the instance local service.
-	 */
+	
+	public Instance getInstanceByUserId(long userId){
+		try {
+			return getInstancePersistence().fetchByUserId(userId);
+		} catch (SystemException e) {
+			return null;
+		}
+	}
 }

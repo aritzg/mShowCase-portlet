@@ -16,8 +16,13 @@ package net.sareweb.mshowcase.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +33,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Aritz Galdos
@@ -76,6 +83,165 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		_name = name;
 	}
 
+	public String getDescription() {
+		return _description;
+	}
+
+	public String getDescription(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId);
+	}
+
+	public String getDescription(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId, useDefault);
+	}
+
+	public String getDescription(String languageId) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId);
+	}
+
+	public String getDescription(String languageId, boolean useDefault) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId,
+			useDefault);
+	}
+
+	public String getDescriptionCurrentLanguageId() {
+		return _descriptionCurrentLanguageId;
+	}
+
+	public String getDescriptionCurrentValue() {
+		Locale locale = getLocale(_descriptionCurrentLanguageId);
+
+		return getDescription(locale);
+	}
+
+	public Map<Locale, String> getDescriptionMap() {
+		return LocalizationUtil.getLocalizationMap(getDescription());
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	public void setDescription(String description, Locale locale) {
+		setDescription(description, locale, LocaleUtil.getDefault());
+	}
+
+	public void setDescription(String description, Locale locale,
+		Locale defaultLocale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
+
+		if (Validator.isNotNull(description)) {
+			setDescription(LocalizationUtil.updateLocalization(
+					getDescription(), "Description", description, languageId,
+					defaultLanguageId));
+		}
+		else {
+			setDescription(LocalizationUtil.removeLocalization(
+					getDescription(), "Description", languageId));
+		}
+	}
+
+	public void setDescriptionCurrentLanguageId(String languageId) {
+		_descriptionCurrentLanguageId = languageId;
+	}
+
+	public void setDescriptionMap(Map<Locale, String> descriptionMap) {
+		setDescriptionMap(descriptionMap, LocaleUtil.getDefault());
+	}
+
+	public void setDescriptionMap(Map<Locale, String> descriptionMap,
+		Locale defaultLocale) {
+		if (descriptionMap == null) {
+			return;
+		}
+
+		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			if (contextClassLoader != portalClassLoader) {
+				currentThread.setContextClassLoader(portalClassLoader);
+			}
+
+			Locale[] locales = LanguageUtil.getAvailableLocales();
+
+			for (Locale locale : locales) {
+				String description = descriptionMap.get(locale);
+
+				setDescription(description, locale, defaultLocale);
+			}
+		}
+		finally {
+			if (contextClassLoader != portalClassLoader) {
+				currentThread.setContextClassLoader(contextClassLoader);
+			}
+		}
+	}
+
+	public String getPhoneNumber() {
+		return _phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	public String getFaxNumber() {
+		return _faxNumber;
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
+	}
+
+	public String getEmail() {
+		return _email;
+	}
+
+	public void setEmail(String email) {
+		_email = email;
+	}
+
+	public String getWebPage() {
+		return _webPage;
+	}
+
+	public void setWebPage(String webPage) {
+		_webPage = webPage;
+	}
+
+	public long getCategoryLevel0() {
+		return _categoryLevel0;
+	}
+
+	public void setCategoryLevel0(long categoryLevel0) {
+		_categoryLevel0 = categoryLevel0;
+	}
+
+	public long getCategoryLevel1() {
+		return _categoryLevel1;
+	}
+
+	public void setCategoryLevel1(long categoryLevel1) {
+		_categoryLevel1 = categoryLevel1;
+	}
+
+	public long getCategoryLevel2() {
+		return _categoryLevel2;
+	}
+
+	public void setCategoryLevel2(long categoryLevel2) {
+		_categoryLevel2 = categoryLevel2;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -116,14 +282,6 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		_createDate = createDate;
 	}
 
-	public Date getLastModifiedDate() {
-		return _lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Date lastModifiedDate) {
-		_lastModifiedDate = lastModifiedDate;
-	}
-
 	public void persist() throws SystemException {
 		InstanceLocalServiceUtil.updateInstance(this);
 	}
@@ -140,11 +298,18 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 
 		clone.setInstanceId(getInstanceId());
 		clone.setName(getName());
+		clone.setDescription(getDescription());
+		clone.setPhoneNumber(getPhoneNumber());
+		clone.setFaxNumber(getFaxNumber());
+		clone.setEmail(getEmail());
+		clone.setWebPage(getWebPage());
+		clone.setCategoryLevel0(getCategoryLevel0());
+		clone.setCategoryLevel1(getCategoryLevel1());
+		clone.setCategoryLevel2(getCategoryLevel2());
 		clone.setUserId(getUserId());
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
 		clone.setCreateDate(getCreateDate());
-		clone.setLastModifiedDate(getLastModifiedDate());
 
 		return clone;
 	}
@@ -193,12 +358,28 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{InstanceId=");
 		sb.append(getInstanceId());
 		sb.append(", name=");
 		sb.append(getName());
+		sb.append(", description=");
+		sb.append(getDescription());
+		sb.append(", phoneNumber=");
+		sb.append(getPhoneNumber());
+		sb.append(", faxNumber=");
+		sb.append(getFaxNumber());
+		sb.append(", email=");
+		sb.append(getEmail());
+		sb.append(", webPage=");
+		sb.append(getWebPage());
+		sb.append(", categoryLevel0=");
+		sb.append(getCategoryLevel0());
+		sb.append(", categoryLevel1=");
+		sb.append(getCategoryLevel1());
+		sb.append(", categoryLevel2=");
+		sb.append(getCategoryLevel2());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", companyId=");
@@ -207,15 +388,13 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		sb.append(getGroupId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
-		sb.append(", lastModifiedDate=");
-		sb.append(getLastModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Instance");
@@ -228,6 +407,38 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
 		sb.append(getName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>phoneNumber</column-name><column-value><![CDATA[");
+		sb.append(getPhoneNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>faxNumber</column-name><column-value><![CDATA[");
+		sb.append(getFaxNumber());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>email</column-name><column-value><![CDATA[");
+		sb.append(getEmail());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>webPage</column-name><column-value><![CDATA[");
+		sb.append(getWebPage());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categoryLevel0</column-name><column-value><![CDATA[");
+		sb.append(getCategoryLevel0());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categoryLevel1</column-name><column-value><![CDATA[");
+		sb.append(getCategoryLevel1());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categoryLevel2</column-name><column-value><![CDATA[");
+		sb.append(getCategoryLevel2());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
@@ -245,10 +456,6 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastModifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getLastModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -257,10 +464,18 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 
 	private long _InstanceId;
 	private String _name;
+	private String _description;
+	private String _descriptionCurrentLanguageId;
+	private String _phoneNumber;
+	private String _faxNumber;
+	private String _email;
+	private String _webPage;
+	private long _categoryLevel0;
+	private long _categoryLevel1;
+	private long _categoryLevel2;
 	private long _userId;
 	private String _userUuid;
 	private long _companyId;
 	private long _groupId;
 	private Date _createDate;
-	private Date _lastModifiedDate;
 }

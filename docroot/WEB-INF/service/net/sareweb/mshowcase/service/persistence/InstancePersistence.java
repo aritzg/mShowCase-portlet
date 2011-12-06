@@ -102,6 +102,40 @@ public interface InstancePersistence extends BasePersistence<Instance> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the instance where userId = &#63; or throws a {@link net.sareweb.mshowcase.NoSuchInstanceException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @return the matching instance
+	* @throws net.sareweb.mshowcase.NoSuchInstanceException if a matching instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public net.sareweb.mshowcase.model.Instance findByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.sareweb.mshowcase.NoSuchInstanceException;
+
+	/**
+	* Returns the instance where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @return the matching instance, or <code>null</code> if a matching instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public net.sareweb.mshowcase.model.Instance fetchByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the instance where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching instance, or <code>null</code> if a matching instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public net.sareweb.mshowcase.model.Instance fetchByUserId(long userId,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the instances.
 	*
 	* @return the instances
@@ -145,11 +179,31 @@ public interface InstancePersistence extends BasePersistence<Instance> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the instance where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			net.sareweb.mshowcase.NoSuchInstanceException;
+
+	/**
 	* Removes all the instances from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of instances where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

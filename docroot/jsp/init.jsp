@@ -7,10 +7,14 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util"%>
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui"%>
 
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 
-
+<%@page import="net.sareweb.mshowcase.model.Category"%>
+<%@page import="net.sareweb.mshowcase.model.Instance"%>
 
 
 <liferay-theme:defineObjects />
