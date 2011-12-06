@@ -8,8 +8,17 @@
 
 		<!-- PK field -->
 		<column name="InstanceId" type="long" primary="true" />
-		
+
 		<column name="name" type="String" />
+		<column name="description" type="String" localized="true"/>
+		<column name="phoneNumber" type="String" />
+		<column name="faxNumber" type="String" />
+		<column name="email" type="String" />
+		<column name="webPage" type="String" />
+
+		<column name="categoryLevel0" type="long" />
+		<column name="categoryLevel1" type="long" />
+		<column name="categoryLevel2" type="long" />
 
 		<!-- Audit fields -->
 		<column name="userId" type="long" />
@@ -17,31 +26,115 @@
 		<column name="groupId" type="long" />
 
 		<column name="createDate" type="Date" />
-		<column name="lastModifiedDate" type="Date" />
 
 		<!-- Order -->
 		<order by="asc">
 			<order-column name="createDate" />
 		</order>
-
+		
+		<finder return-type="net.sareweb.mshowcase.model.Instance" name="UserId">
+			<finder-column name="userId"/>
+		</finder>
+		
 	</entity>
 	
-	
-	<entity name="Location" local-service="true" remote-service="true">
+
+	<entity name="InstanceImage" local-service="true"
+		remote-service="true">
 
 		<!-- PK field -->
-		<column name="locationId" type="long" primary="true" />
-		
-		<column name="address" type="String" />
-		<column name="lat" type="float" />
-		<column name="lng" type="float" />
+		<column name="InstanceImageId" type="long" primary="true" />
+		<!-- FK fields -->
+		<column name="InstanceId" type="long"/>
+
 		<column name="imageId" type="long" />
 		<column name="imageURL" type="String" />
 		
 		<!-- Audit fields -->
 		<column name="userId" type="long" />
 		<column name="companyId" type="long" />
-		<column name="groupId" type="long" />
+
+		<column name="createDate" type="Date" />
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+	</entity>
+
+
+	<entity name="Location" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="locationId" type="long" primary="true" />
+		<!-- FK fields -->
+		<column name="InstanceId" type="long" />
+
+		<column name="address" type="String" />
+		<column name="lat" type="double" />
+		<column name="lng" type="double" />
+		<column name="phoneNumber" type="String" />
+		<column name="faxNumber" type="String" />
+		<column name="imageId" type="long" />
+		<column name="imageURL" type="String" />
+
+		<!-- Audit fields -->
+		<column name="userId" type="long" />
+		<column name="companyId" type="long" />
+
+		<column name="createDate" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+	</entity>
+
+
+	<entity name="Offer" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="offerId" type="long" primary="true" />
+		<!-- FK fields -->
+		<column name="InstanceId" type="long"/>
+
+		<column name="offerText" type="String" localized="true" />
+		<column name="beginDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="price" type="double" />
+		<column name="transactions" type="int" />
+		<column name="imageId" type="long" />
+		<column name="imageURL" type="String" />
+
+		<!-- Audit fields -->
+		<column name="userId" type="long" />
+		<column name="companyId" type="long" />
+
+		<column name="createDate" type="Date" />
+		<column name="modifyDate" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+	</entity>
+	
+	
+	<entity name="Deal" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="dealId" type="long" primary="true" />
+		
+		<column name="userId" type="long" />
+		<column name="offerId" type="long" />
+		
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
 
 		<column name="createDate" type="Date" />
 
@@ -51,4 +144,80 @@
 		</order>
 
 	</entity>
+
+
+	<entity name="Category" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="categoryId" type="long" primary="true" />
+		<column name="parentCategoryId" type="long" />
+
+		<column name="name" type="String" localized="true" />
+		<column name="position" type="int" />
+		
+		<!-- Audit fields -->
+		<column name="userId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="parentCategoryId" />
+			<order-column name="position" />
+		</order>
+		
+		<finder return-type="Collection" name="ParentCategoryId">
+			<finder-column name="parentCategoryId"/>
+		</finder>
+
+	</entity>
+
+
+	<entity name="Activity" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="activityId" type="long" primary="true" />
+
+		<column name="type" type="String" />
+		<column name="userId" type="long" />
+		<column name="user2Id" type="long" />
+		<column name="InstanceId" type="long" />
+		<column name="offerId" type="long" />
+		
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+
+		<column name="createDate" type="Date" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+	</entity>
+
+
+	<entity name="Friendship" local-service="true" remote-service="true">
+
+		<!-- PK field -->
+		<column name="friendshipId" type="long" primary="true" />
+
+		<column name="userId" type="long" />
+		<column name="user2Id" type="long" />
+
+		<column name="accepted" type="boolean" />
+		<column name="rejected" type="boolean" />
+		
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+
+		<column name="createDate" type="Date" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+	</entity>
+
+
 </service-builder>

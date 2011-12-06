@@ -1,18 +1,14 @@
 <?xml version="1.0"?>
 
-<portlet-app
-	version="2.0"
+<portlet-app version="2.0"
 	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
->
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 
 	<portlet>
 		<portlet-name>instancesportlet</portlet-name>
 		<display-name>InstancesPortlet</display-name>
-		<portlet-class>
-			net.sareweb.mshowcase.portlets.p000.InstancesPortlet
-		</portlet-class>
+		<portlet-class>net.sareweb.mshowcase.portlets.p000.InstancesPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/jsp/p000/view.jsp</value>
@@ -73,4 +69,117 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<portlet>
+		<portlet-name>categorynavigatiorportlet</portlet-name>
+		<display-name>CategoryNavigatiorPortlet</display-name>
+		<portlet-class>
+			net.sareweb.mshowcase.portlets.p002.CategoryNavigatiorPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/jsp/p002/view.jsp</value>
+		</init-param>
+		<init-param>
+            <name>add-process-action-success-action</name>
+            <value>false</value>
+        </init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>CategoryNavigatiorPortlet</title>
+			<short-title>CategoryNavigatiorPortlet</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+		<supported-processing-event xmlns:x='http://mshowcase.com'>
+			<qname>x:categoryId</qname>
+		</supported-processing-event>
+	</portlet>
+	<portlet>
+		<portlet-name>instancelistportlet</portlet-name>
+		<display-name>InstanceListPortlet</display-name>
+		<portlet-class>
+			net.sareweb.mshowcase.portlets.p003.InstanceListPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/jsp/p003/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>InstanceListPortlet</title>
+			<short-title>InstanceListPortlet</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+		<supported-processing-event xmlns:x='http://mshowcase.com'>
+			<qname>x:categoryId</qname>
+		</supported-processing-event>
+	</portlet>
+	<portlet>
+		<portlet-name>offerlistportlet</portlet-name>
+		<display-name>OfferListPortlet</display-name>
+		<portlet-class>net.sareweb.mshowcase.portlets.p004.OfferListPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/jsp/p004/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>OfferListPortlet</title>
+			<short-title>OfferListPortlet</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+
+	<event-definition xmlns:x='http://mshowcase.com'>
+		<qname>x:categoryId</qname>
+		<value-type>java.lang.String</value-type>
+	</event-definition>
+
 </portlet-app>

@@ -8,6 +8,11 @@ List<Category> categories0 = (List<Category>)request.getAttribute(CategoryNaviga
 	for(int i =0; i<categories0.size(); i++){
 		Category cat0 = categories0.get(i);
 	%>
-		<li><%=cat0.getName(locale) %></li>	
+		<liferay-portlet:actionURL name="selectCategory" var="selectCategoryURL">
+			<liferay-portlet:param name="<%=CategoryNavigatiorPortlet.PARAM_CATEGORY_ID %>" value="<%=String.valueOf(cat0.getCategoryId())%>"/>
+		</liferay-portlet:actionURL>
+		<li>
+			<a href="<%=selectCategoryURL%>"><%=cat0.getName(locale) %></a>
+		</li>	
 	<%}%>
 </ul>
