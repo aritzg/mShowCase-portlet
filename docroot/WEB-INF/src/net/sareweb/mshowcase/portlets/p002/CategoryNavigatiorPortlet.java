@@ -9,14 +9,11 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.xml.namespace.QName;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.ParamUtil;
-
 import net.sareweb.mshowcase.model.Category;
 import net.sareweb.mshowcase.portlets.GenericMSCPortlet;
 import net.sareweb.mshowcase.service.CategoryLocalServiceUtil;
+
+import com.liferay.portal.kernel.util.ParamUtil;
 
 public class CategoryNavigatiorPortlet extends GenericMSCPortlet {
 

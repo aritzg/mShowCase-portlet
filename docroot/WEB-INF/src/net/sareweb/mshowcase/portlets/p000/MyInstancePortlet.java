@@ -14,7 +14,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
-
 import net.sareweb.mshowcase.model.Category;
 import net.sareweb.mshowcase.model.Instance;
 import net.sareweb.mshowcase.portlets.GenericMSCPortlet;
@@ -27,7 +26,9 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.service.persistence.PortletUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.PortletURLUtil;
 
 /**
  * Portlet implementation class InstancesPortlet
@@ -39,29 +40,33 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 			RenderResponse renderResponse) throws IOException, PortletException {
 
 		String param_render = ParamUtil.get(renderRequest, PARAM_RENDER, "");
-		if (!getThemeDisplay(renderRequest).isSignedIn()) {
-			SessionErrors.add(renderRequest, "msc-error-user-not-signed-in");
-			viewJSP = PATH_ERROR;
-		} else if (!hasCurrentUserAnInstance(getThemeDisplay(renderRequest))
-				|| PARAM_RENDER_EDIT.equals(param_render)) {
-			try {
+
+		try {
+			if (!getThemeDisplay(renderRequest).isSignedIn()) {
+				SessionErrors
+						.add(renderRequest, "msc-error-user-not-signed-in");
+				viewJSP = PATH_ERROR;
+			} else if (!hasCurrentUserAnInstance(getThemeDisplay(renderRequest))
+					|| PARAM_RENDER_EDIT.equals(param_render)) {
+
 				prepareDataForEditPage(renderRequest);
 				viewJSP = PATH_EDIT;
-			} catch (Exception e) {
-				_log.error("Error peparing data for edit page", e);
-				SessionErrors.add(renderRequest,
-						"msc-error-geting-instance-data");
-				viewJSP = PATH_ERROR;
+			} else {
+				prepareDataForViewPage(renderRequest);
+				viewJSP = PATH_VIEW;
 			}
-		} else {
-			viewJSP = PATH_VIEW;
+
+		} catch (Exception e) {
+			_log.error("Error peparing data for page", e);
+			SessionErrors.add(renderRequest, "msc-error-geting-instance-data");
+			viewJSP = PATH_ERROR;
 		}
 
 		super.doView(renderRequest, renderResponse);
 	}
 
 	public void createInstance(ActionRequest actionRequest,
-			ActionResponse actionResponse) {
+			ActionResponse actionResponse) throws IOException {
 		_log.debug("Creating new instance");
 		if (hasCurrentUserAnInstance(getThemeDisplay(actionRequest))) {
 			SessionErrors.add(actionRequest,
@@ -77,38 +82,49 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 				_log.error("Error creating instance.", e);
 			}
 		}
+		sendRedirect(actionRequest, actionResponse);
 	}
 
 	@Override
-	public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-			throws IOException, PortletException {
+	public void serveResource(ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException,
+			PortletException {
 		String resType = ParamUtil.get(resourceRequest, PARAM_RES_TYPE, "");
-		if(resType.equals(PARAM_RES_TYPE_SUB_CATEGORIES)){
+		if (resType.equals(PARAM_RES_TYPE_SUB_CATEGORIES)) {
 			getSubCategories(resourceRequest, resourceResponse);
 		}
 	}
-	
-	private void getSubCategories(ResourceRequest resourceRequest,ResourceResponse resourceResponse) throws IOException{
-		long categoryId = ParamUtil.getLong(resourceRequest, PARAM_CATEGORY_ID, 0);
-		List<Category> subCategories = CategoryLocalServiceUtil.findCategoryByParentCategoryId(categoryId);
-		System.out.println("id" + categoryId);
-		List subCategoryDescriptions= new Vector();
-		for (Category cat: subCategories) {
-			System.out.println("bbb");
-			String[] element = {String.valueOf(cat.getCategoryId()), cat.getName(resourceRequest.getLocale())};
+
+	private void getSubCategories(ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException {
+		long categoryId = ParamUtil.getLong(resourceRequest, PARAM_CATEGORY_ID,
+				0);
+
+		List<Category> subCategories = CategoryLocalServiceUtil
+				.findCategoryByParentCategoryId(categoryId);
+		List subCategoryDescriptions = new Vector();
+
+		for (Category cat : subCategories) {
+			String[] element = { String.valueOf(cat.getCategoryId()),
+					cat.getName(resourceRequest.getLocale()) };
 			subCategoryDescriptions.add(element);
 		}
-		resourceResponse.getWriter().write(JSONFactoryUtil.serialize(subCategories));	
+		resourceResponse.getWriter().write(
+				JSONFactoryUtil.serialize(subCategoryDescriptions));
+		resourceResponse.getWriter().close();
 	}
 
 	private void prepareDataForEditPage(RenderRequest renderRequest)
 			throws PortalException, SystemException {
-		long instanceId = ParamUtil.get(renderRequest, PARAM_INSTANCE_ID, 0);
-		Instance instance = null;
-		if (instanceId != 0) {
-			instance = InstanceLocalServiceUtil.getInstance(instanceId);
+
+		Instance instance = getCurrentUsersInstance(getThemeDisplay(renderRequest));
+
+		if (instance != null) {
+			instance = InstanceLocalServiceUtil.getInstance(instance
+					.getInstanceId());
 			renderRequest.setAttribute(ATTR_INSTANCE, instance);
 		}
+
 		renderRequest.setAttribute(ATTR_CATEGORIES_0,
 				CategoryLocalServiceUtil.findCategoryByParentCategoryId(0));
 		if (instance != null && instance.getCategoryLevel0() != 0) {
@@ -125,12 +141,28 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 		}
 	}
 
+	private void prepareDataForViewPage(RenderRequest renderRequest)
+			throws PortalException, SystemException {
+		Instance instance = getCurrentUsersInstance(getThemeDisplay(renderRequest));
+
+		if (instance != null) {
+			instance = InstanceLocalServiceUtil.getInstance(instance
+					.getInstanceId());
+			renderRequest.setAttribute(ATTR_INSTANCE, instance);
+		}
+	}
+
 	private boolean hasCurrentUserAnInstance(ThemeDisplay themeDisplay) {
 		if (InstanceLocalServiceUtil.getInstanceByUserId(themeDisplay
 				.getUserId()) == null)
 			return false;
 		else
 			return true;
+	}
+
+	private Instance getCurrentUsersInstance(ThemeDisplay themeDisplay) {
+		return InstanceLocalServiceUtil.getInstanceByUserId(themeDisplay
+				.getUserId());
 	}
 
 	private void updateFullInstanceFromRequest(Instance instance,
