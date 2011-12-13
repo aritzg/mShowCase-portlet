@@ -3,12 +3,13 @@
 
 <display>
 	<category name="mShowCase">
-		<portlet id="instancesportlet"></portlet>
+		<portlet id="myinstanceportlet"></portlet>
 		<portlet id="instanceadminportlet"></portlet>
 		<portlet id="categorynavigatiorportlet"></portlet>
 		<portlet id="instancelistportlet"></portlet>
-	</category>
-	<category name="category.sample">
 		<portlet id="offerlistportlet"></portlet>
+		<portlet id="mydealsportlet"></portlet>
+		<portlet id="instancemapportlet"></portlet>
+		<portlet id="activityportlet"></portlet>
 	</category>
 </display>

@@ -3,14 +3,14 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>instancesportlet</portlet-name>
+		<portlet-name>myinstanceportlet</portlet-name>
 		<icon>/icon.png</icon>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>
 			/js/main.js
 		</footer-portlet-javascript>
-		<css-class-wrapper>instancesportlet-portlet</css-class-wrapper>
+		<css-class-wrapper>myinstanceportlet-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>instanceadminportlet</portlet-name>
@@ -57,6 +57,38 @@
 			/js/main.js
 		</footer-portlet-javascript>
 		<css-class-wrapper>offerlistportlet-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>mydealsportlet</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>false</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/main.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>mydealsportlet-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>instancemapportlet</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>false</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/main.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>
+			instancemapportlet-portlet
+		</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>activityportlet</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>false</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/main.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>activityportlet-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
