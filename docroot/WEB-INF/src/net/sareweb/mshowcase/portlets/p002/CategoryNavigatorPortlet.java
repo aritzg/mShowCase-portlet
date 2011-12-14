@@ -15,7 +15,7 @@ import net.sareweb.mshowcase.service.CategoryLocalServiceUtil;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 
-public class CategoryNavigatiorPortlet extends GenericMSCPortlet {
+public class CategoryNavigatorPortlet extends GenericMSCPortlet {
 
 	@Override
 	public void doView(RenderRequest renderRequest,

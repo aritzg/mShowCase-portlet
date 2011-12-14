@@ -5,11 +5,12 @@
 	<category name="mShowCase">
 		<portlet id="myinstanceportlet"></portlet>
 		<portlet id="instanceadminportlet"></portlet>
-		<portlet id="categorynavigatiorportlet"></portlet>
+		<portlet id="categorynavigatorportlet"></portlet>
 		<portlet id="instancelistportlet"></portlet>
 		<portlet id="offerlistportlet"></portlet>
 		<portlet id="mydealsportlet"></portlet>
 		<portlet id="instancemapportlet"></portlet>
 		<portlet id="activityportlet"></portlet>
+		<portlet id="myprofileportlet"></portlet>
 	</category>
 </display>
