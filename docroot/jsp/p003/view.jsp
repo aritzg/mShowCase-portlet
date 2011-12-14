@@ -1,21 +1,24 @@
-<%--
-/**
-* Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
---%>
+<%@page import="net.sareweb.mshowcase.portlets.p003.InstanceListPortlet"%>
+<%@include file="/jsp/init.jsp"%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%
+Category category0 = (Category) request.getAttribute(InstanceListPortlet.ATTR_CATEGORY_0);
+Category category1 = (Category) request.getAttribute(InstanceListPortlet.ATTR_CATEGORY_1);
+%>
 
-<portlet:defineObjects />
+<ul>
+        <li>
+                <liferay-ui:message key="msc-p003-categories"/>
+        </li>
+        <c:if test="<%=category0!=null %>">
+        <li>
+                <%=category0.getName(locale) %>
+        </li>
+        <c:if test="<%=category1!=null %>">
+        <li>
+                <%=category1.getName(locale) %>
+        </li>
+        </c:if>
+        </c:if>
 
-This is the <b>InstanceDetailPortlet</b> portlet in View mode.
+</ul>

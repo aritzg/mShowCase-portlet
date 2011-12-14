@@ -26,9 +26,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.service.persistence.PortletUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.PortletURLUtil;
 
 /**
  * Portlet implementation class InstancesPortlet
@@ -79,6 +77,27 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 				updateFullInstanceFromRequest(instance, actionRequest);
 				InstanceLocalServiceUtil.updateInstance(instance);
 			} catch (SystemException e) {
+				_log.error("Error creating instance.", e);
+			}
+		}
+		sendRedirect(actionRequest, actionResponse);
+	}
+
+	public void updateInstance(ActionRequest actionRequest,
+			ActionResponse actionResponse) throws IOException {
+		_log.debug("Updating new instance");
+		long instanceId = ParamUtil
+				.getLong(actionRequest, PARAM_INSTANCE_ID, 0);
+		if (instanceId == 0) {
+			SessionErrors.add(actionRequest, "msc-error-obtaining-instance");
+		} else {
+			try {
+				Instance instance = InstanceLocalServiceUtil
+						.getInstance(instanceId);
+				updateFullInstanceFromRequest(instance, actionRequest);
+				InstanceLocalServiceUtil.updateInstance(instance);
+			} catch (Exception e) {
+				SessionErrors.add(actionRequest, "msc-error-updating-instance");
 				_log.error("Error creating instance.", e);
 			}
 		}

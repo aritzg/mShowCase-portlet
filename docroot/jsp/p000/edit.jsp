@@ -14,38 +14,57 @@ List<Category> categories0 = (List<Category>)request.getAttribute(MyInstancePort
 		<liferay-portlet:param name="redirect" value="<%=PortletURLUtil.getCurrent(renderRequest, renderResponse).toString()%>"></liferay-portlet:param>
 	</liferay-portlet:actionURL>
 	<aui:form action="<%=actionURL.toString()%>" method="post" name="fm">
-	
-		<aui:fieldset>
-			<aui:input name="<%=MyInstancePortlet.PARAM_NAME%>" label="msc-p000-name" value='<%=instance!=null ? instance.getName() : ""  %>'/>
-			<aui:input name="<%=MyInstancePortlet.PARAM_DESCRIPTION%>" label="msc-p000-description" type="textarea" value='<%=instance!=null ? instance.getDescription() : ""  %>'/>
-		</aui:fieldset>
-	
-		<aui:fieldset>
-			<aui:input name="<%=MyInstancePortlet.PARAM_PHONE%>" label="msc-p000-phone" value='<%=instance!=null ? instance.getPhoneNumber() : ""  %>'/>
-			<aui:input name="<%=MyInstancePortlet.PARAM_FAX%>" label="msc-p000-fax" value='<%=instance!=null ? instance.getFaxNumber() : ""  %>'/>
-			<aui:input name="<%=MyInstancePortlet.PARAM_EMAIL%>" label="msc-p000-email" value='<%=instance!=null ? instance.getEmail() : ""  %>'/>
-			<aui:input name="<%=MyInstancePortlet.PARAM_WEB%>" label="msc-p000-web" value='<%=instance!=null ? instance.getWebPage() : ""  %>'/>
-		</aui:fieldset>
+		<aui:input name="<%=MyInstancePortlet.PARAM_INSTANCE_ID%>" type="hidden" value='<%=instance!=null ? instance.getInstanceId() : ""  %>'/>
 		
-		<aui:fieldset>
-			<aui:select name="<%=MyInstancePortlet.PARAM_CAT_0%>" onChange="updateSubCategory(this.value)">
-				<aui:option value="0"></aui:option>
-				<c:forEach items="${categories0}" var="cat0">
-					<aui:option value="${cat0.categoryId}">${cat0.name}</aui:option>
-				</c:forEach>
-			</aui:select>
+		<div id="instance-data">
+			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
+				<aui:input name="<%=MyInstancePortlet.PARAM_NAME%>" label="msc-p000-name" value='<%=instance!=null ? instance.getName() : ""  %>'/>
+				<aui:input name="<%=MyInstancePortlet.PARAM_DESCRIPTION%>" label="msc-p000-description" type="textarea" value='<%=instance!=null ? instance.getDescription() : ""  %>'/>
+			</aui:fieldset>
+		
+			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
+				<aui:input name="<%=MyInstancePortlet.PARAM_PHONE%>" label="msc-p000-phone" value='<%=instance!=null ? instance.getPhoneNumber() : ""  %>'/>
+				<aui:input name="<%=MyInstancePortlet.PARAM_FAX%>" label="msc-p000-fax" value='<%=instance!=null ? instance.getFaxNumber() : ""  %>'/>
+				<aui:input name="<%=MyInstancePortlet.PARAM_EMAIL%>" label="msc-p000-email" value='<%=instance!=null ? instance.getEmail() : ""  %>'/>
+				<aui:input name="<%=MyInstancePortlet.PARAM_WEB%>" label="msc-p000-web" value='<%=instance!=null ? instance.getWebPage() : ""  %>'/>
+			</aui:fieldset>
 			
-			<aui:select name="<%=MyInstancePortlet.PARAM_CAT_1%>" disabled="<%=(instance==null || instance.getCategoryLevel0()==0)? true : false %>">
-				<aui:option value=""></aui:option>
-				<c:forEach items="${categories1}" var="cat1">
-					<aui:option value="${cat1.categoryId}">${cat1.name}</aui:option>
-				</c:forEach>
-			</aui:select>
+			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
+				<aui:select name="<%=MyInstancePortlet.PARAM_CAT_0%>" onChange="updateSubCategory(this.value)">
+					<aui:option value="0"></aui:option>
+					<c:forEach items="${categories0}" var="cat0">
+						<aui:option value="${cat0.categoryId}">${cat0.name}</aui:option>
+					</c:forEach>
+				</aui:select>
+				
+				<aui:select name="<%=MyInstancePortlet.PARAM_CAT_1%>" disabled="<%=(instance==null || instance.getCategoryLevel0()==0)? true : false %>">
+					<aui:option value=""></aui:option>
+					<c:forEach items="${categories1}" var="cat1">
+						<aui:option value="${cat1.categoryId}">${cat1.name}</aui:option>
+					</c:forEach>
+				</aui:select>
+			</aui:fieldset>
+		</div>
+		<div style="clear: both"></div>
+		
+		<div id="instance-images">
+			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
+			1
+			</aui:fieldset>
+			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
+			2
+			</aui:fieldset>
+			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
+			3
+			</aui:fieldset>
+		</div>
 			
-		</aui:fieldset>
-	
 		<aui:button-row>
-			<aui:button type="submit"/>
+			<aui:button type="submit" value="msc-p000-edit"/>
+			<liferay-portlet:renderURL var="viewURL">
+				<liferay-portlet:param name="<%=MyInstancePortlet.PARAM_RENDER%>" value="<%=MyInstancePortlet.PARAM_RENDER_VIEW%>"></liferay-portlet:param>
+			</liferay-portlet:renderURL>
+			<aui:button value="msc-p000-back" onClick="<%=viewURL%>"/>
 		</aui:button-row>
 	</aui:form>
 </div>

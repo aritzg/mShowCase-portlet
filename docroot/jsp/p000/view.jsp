@@ -12,5 +12,11 @@ Instance instance = (Instance)request.getAttribute(MyInstancePortlet.ATTR_INSTAN
 	</div>
 	<div id="instance-images">
 	
-	</div>		
+	</div>	
+	<aui:button-row>
+		<liferay-portlet:renderURL var="editURL">
+			<liferay-portlet:param name="<%=MyInstancePortlet.PARAM_RENDER%>" value="<%=MyInstancePortlet.PARAM_RENDER_EDIT%>"></liferay-portlet:param>
+		</liferay-portlet:renderURL>
+		<aui:button value="msc-p000-edit" onClick="<%=editURL%>"/>
+	</aui:button-row>
 </div>
