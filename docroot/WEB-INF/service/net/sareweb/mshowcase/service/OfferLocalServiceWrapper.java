@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link OfferLocalService}.
@@ -23,7 +25,8 @@ package net.sareweb.mshowcase.service;
  * @see       OfferLocalService
  * @generated
  */
-public class OfferLocalServiceWrapper implements OfferLocalService {
+public class OfferLocalServiceWrapper implements OfferLocalService,
+	ServiceWrapper<OfferLocalService> {
 	public OfferLocalServiceWrapper(OfferLocalService offerLocalService) {
 		_offerLocalService = offerLocalService;
 	}
@@ -146,6 +149,11 @@ public class OfferLocalServiceWrapper implements OfferLocalService {
 		return _offerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public net.sareweb.mshowcase.model.Offer fetchOffer(long offerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _offerLocalService.fetchOffer(offerId);
+	}
+
 	/**
 	* Returns the offer with the primary key.
 	*
@@ -241,11 +249,25 @@ public class OfferLocalServiceWrapper implements OfferLocalService {
 		_offerLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public OfferLocalService getWrappedOfferLocalService() {
 		return _offerLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedOfferLocalService(OfferLocalService offerLocalService) {
+		_offerLocalService = offerLocalService;
+	}
+
+	public OfferLocalService getWrappedService() {
+		return _offerLocalService;
+	}
+
+	public void setWrappedService(OfferLocalService offerLocalService) {
 		_offerLocalService = offerLocalService;
 	}
 

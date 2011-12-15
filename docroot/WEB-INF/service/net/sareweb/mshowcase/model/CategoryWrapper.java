@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Category}.
@@ -23,7 +25,7 @@ package net.sareweb.mshowcase.model;
  * @see       Category
  * @generated
  */
-public class CategoryWrapper implements Category {
+public class CategoryWrapper implements Category, ModelWrapper<Category> {
 	public CategoryWrapper(Category category) {
 		_category = category;
 	}
@@ -363,7 +365,14 @@ public class CategoryWrapper implements Category {
 		_category.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Category getWrappedCategory() {
+		return _category;
+	}
+
+	public Category getWrappedModel() {
 		return _category;
 	}
 

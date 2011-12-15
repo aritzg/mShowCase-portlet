@@ -56,29 +56,32 @@ public class OfferLocalServiceClp implements OfferLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getOfferMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchOfferMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchOffer", long.class);
+
+		_getOfferMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getOffer", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getOffersMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getOffersMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getOffers", int.class, int.class);
 
-		_getOffersCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getOffersCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getOffersCount");
 
-		_updateOfferMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateOfferMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateOffer", net.sareweb.mshowcase.model.Offer.class);
 
-		_updateOfferMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateOfferMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateOffer", net.sareweb.mshowcase.model.Offer.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -301,12 +304,39 @@ public class OfferLocalServiceClp implements OfferLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public net.sareweb.mshowcase.model.Offer fetchOffer(long offerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchOfferMethodKey8,
+				offerId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.sareweb.mshowcase.model.Offer)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public net.sareweb.mshowcase.model.Offer getOffer(long offerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getOfferMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getOfferMethodKey9,
 				offerId);
 
 		try {
@@ -339,7 +369,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -371,7 +401,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getOffersMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getOffersMethodKey11,
 				start, end);
 
 		try {
@@ -398,7 +428,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getOffersCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getOffersCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +455,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateOfferMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateOfferMethodKey13,
 				ClpSerializer.translateInput(offer));
 
 		try {
@@ -453,7 +483,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateOfferMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateOfferMethodKey14,
 				ClpSerializer.translateInput(offer), merge);
 
 		try {
@@ -479,7 +509,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -498,7 +528,7 @@ public class OfferLocalServiceClp implements OfferLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -528,12 +558,13 @@ public class OfferLocalServiceClp implements OfferLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getOfferMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getOffersMethodKey10;
-	private MethodKey _getOffersCountMethodKey11;
-	private MethodKey _updateOfferMethodKey12;
+	private MethodKey _fetchOfferMethodKey8;
+	private MethodKey _getOfferMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getOffersMethodKey11;
+	private MethodKey _getOffersCountMethodKey12;
 	private MethodKey _updateOfferMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateOfferMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 }

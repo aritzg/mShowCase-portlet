@@ -244,6 +244,11 @@ public abstract class InstanceImageLocalServiceBaseImpl
 		return instanceImagePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public InstanceImage fetchInstanceImage(long InstanceImageId)
+		throws SystemException {
+		return instanceImagePersistence.fetchByPrimaryKey(InstanceImageId);
+	}
+
 	/**
 	 * Returns the instance image with the primary key.
 	 *

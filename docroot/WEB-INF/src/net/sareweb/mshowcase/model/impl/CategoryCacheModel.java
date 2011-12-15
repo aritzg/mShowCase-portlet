@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Category;
 
+import java.io.Serializable;
+
 /**
  * The cache model class for representing Category in entity cache.
  *
@@ -27,7 +29,7 @@ import net.sareweb.mshowcase.model.Category;
  * @see Category
  * @generated
  */
-public class CategoryCacheModel implements CacheModel<Category> {
+public class CategoryCacheModel implements CacheModel<Category>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(13);

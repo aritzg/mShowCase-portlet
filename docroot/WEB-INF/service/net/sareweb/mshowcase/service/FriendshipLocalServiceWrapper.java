@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link FriendshipLocalService}.
@@ -23,7 +25,8 @@ package net.sareweb.mshowcase.service;
  * @see       FriendshipLocalService
  * @generated
  */
-public class FriendshipLocalServiceWrapper implements FriendshipLocalService {
+public class FriendshipLocalServiceWrapper implements FriendshipLocalService,
+	ServiceWrapper<FriendshipLocalService> {
 	public FriendshipLocalServiceWrapper(
 		FriendshipLocalService friendshipLocalService) {
 		_friendshipLocalService = friendshipLocalService;
@@ -149,6 +152,12 @@ public class FriendshipLocalServiceWrapper implements FriendshipLocalService {
 		return _friendshipLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public net.sareweb.mshowcase.model.Friendship fetchFriendship(
+		long friendshipId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _friendshipLocalService.fetchFriendship(friendshipId);
+	}
+
 	/**
 	* Returns the friendship with the primary key.
 	*
@@ -245,12 +254,26 @@ public class FriendshipLocalServiceWrapper implements FriendshipLocalService {
 		_friendshipLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public FriendshipLocalService getWrappedFriendshipLocalService() {
 		return _friendshipLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedFriendshipLocalService(
 		FriendshipLocalService friendshipLocalService) {
+		_friendshipLocalService = friendshipLocalService;
+	}
+
+	public FriendshipLocalService getWrappedService() {
+		return _friendshipLocalService;
+	}
+
+	public void setWrappedService(FriendshipLocalService friendshipLocalService) {
 		_friendshipLocalService = friendshipLocalService;
 	}
 

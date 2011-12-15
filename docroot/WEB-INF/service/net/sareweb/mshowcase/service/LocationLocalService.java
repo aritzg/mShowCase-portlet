@@ -144,6 +144,10 @@ public interface LocationLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.Location fetchLocation(long locationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the location with the primary key.
 	*

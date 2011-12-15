@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Activity}.
@@ -23,7 +25,7 @@ package net.sareweb.mshowcase.model;
  * @see       Activity
  * @generated
  */
-public class ActivityWrapper implements Activity {
+public class ActivityWrapper implements Activity, ModelWrapper<Activity> {
 	public ActivityWrapper(Activity activity) {
 		_activity = activity;
 	}
@@ -291,7 +293,14 @@ public class ActivityWrapper implements Activity {
 		_activity.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Activity getWrappedActivity() {
+		return _activity;
+	}
+
+	public Activity getWrappedModel() {
 		return _activity;
 	}
 

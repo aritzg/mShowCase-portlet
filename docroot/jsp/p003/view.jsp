@@ -4,6 +4,7 @@
 <%
 Category category0 = (Category) request.getAttribute(InstanceListPortlet.ATTR_CATEGORY_0);
 Category category1 = (Category) request.getAttribute(InstanceListPortlet.ATTR_CATEGORY_1);
+List<Instance> instances = (List<Instance>) request.getAttribute(InstanceListPortlet.ATTR_INSTANCES);
 %>
 
 <ul>
@@ -22,3 +23,17 @@ Category category1 = (Category) request.getAttribute(InstanceListPortlet.ATTR_CA
         </c:if>
 
 </ul>
+
+<div class="msc-container">
+	<%if(instances==null || instances.size()==0){ %>
+	
+	<%}else{%>
+		<%for(Instance instance: instances){ %>
+			<div class="msc-instance-summary">
+				<div class="msc-instance-name">
+					<%=instance.getName()%>
+				</div>
+			</div>
+		<%}%>
+	<%}%>
+</div>

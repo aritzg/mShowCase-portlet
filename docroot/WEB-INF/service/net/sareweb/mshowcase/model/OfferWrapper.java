@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Offer}.
@@ -23,7 +25,7 @@ package net.sareweb.mshowcase.model;
  * @see       Offer
  * @generated
  */
-public class OfferWrapper implements Offer {
+public class OfferWrapper implements Offer, ModelWrapper<Offer> {
 	public OfferWrapper(Offer offer) {
 		_offer = offer;
 	}
@@ -490,7 +492,14 @@ public class OfferWrapper implements Offer {
 		_offer.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Offer getWrappedOffer() {
+		return _offer;
+	}
+
+	public Offer getWrappedModel() {
 		return _offer;
 	}
 

@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link InstanceImage}.
@@ -23,7 +25,8 @@ package net.sareweb.mshowcase.model;
  * @see       InstanceImage
  * @generated
  */
-public class InstanceImageWrapper implements InstanceImage {
+public class InstanceImageWrapper implements InstanceImage,
+	ModelWrapper<InstanceImage> {
 	public InstanceImageWrapper(InstanceImage instanceImage) {
 		_instanceImage = instanceImage;
 	}
@@ -274,7 +277,14 @@ public class InstanceImageWrapper implements InstanceImage {
 		_instanceImage.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public InstanceImage getWrappedInstanceImage() {
+		return _instanceImage;
+	}
+
+	public InstanceImage getWrappedModel() {
 		return _instanceImage;
 	}
 

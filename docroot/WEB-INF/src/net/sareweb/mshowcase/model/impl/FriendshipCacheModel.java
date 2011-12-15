@@ -19,6 +19,8 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Friendship;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -28,7 +30,8 @@ import java.util.Date;
  * @see Friendship
  * @generated
  */
-public class FriendshipCacheModel implements CacheModel<Friendship> {
+public class FriendshipCacheModel implements CacheModel<Friendship>,
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(15);

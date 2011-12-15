@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link FriendshipService}.
@@ -23,16 +25,31 @@ package net.sareweb.mshowcase.service;
  * @see       FriendshipService
  * @generated
  */
-public class FriendshipServiceWrapper implements FriendshipService {
+public class FriendshipServiceWrapper implements FriendshipService,
+	ServiceWrapper<FriendshipService> {
 	public FriendshipServiceWrapper(FriendshipService friendshipService) {
 		_friendshipService = friendshipService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public FriendshipService getWrappedFriendshipService() {
 		return _friendshipService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedFriendshipService(FriendshipService friendshipService) {
+		_friendshipService = friendshipService;
+	}
+
+	public FriendshipService getWrappedService() {
+		return _friendshipService;
+	}
+
+	public void setWrappedService(FriendshipService friendshipService) {
 		_friendshipService = friendshipService;
 	}
 

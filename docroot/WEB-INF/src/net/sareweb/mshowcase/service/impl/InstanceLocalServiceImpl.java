@@ -14,10 +14,19 @@
 
 package net.sareweb.mshowcase.service.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
+import java.util.List;
+import java.util.Vector;
 
 import net.sareweb.mshowcase.model.Instance;
 import net.sareweb.mshowcase.service.base.InstanceLocalServiceBaseImpl;
+
+import com.liferay.portal.kernel.dao.orm.Criterion;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the instance local service.
@@ -41,5 +50,28 @@ public class InstanceLocalServiceImpl extends InstanceLocalServiceBaseImpl {
 		} catch (SystemException e) {
 			return null;
 		}
+	}
+	
+	public List<Instance> getInstancesInCategory(long categoryId){
+		DynamicQuery dq = DynamicQueryFactoryUtil.forClass(Instance.class);
+		if(categoryId!=0){
+			
+			Criterion catLevel0Crt = PropertyFactoryUtil.forName("categoryLevel0").eq(categoryId);
+			Criterion catLevel1Crt = PropertyFactoryUtil.forName("categoryLevel1").eq(categoryId);
+			Criterion catLevel2Crt = PropertyFactoryUtil.forName("categoryLevel2").eq(categoryId);
+			
+			Criterion or1 =RestrictionsFactoryUtil.or(catLevel0Crt, catLevel1Crt);
+			Criterion or2 =RestrictionsFactoryUtil.or(or1, catLevel2Crt);
+			
+			dq.add(or2);
+		}
+		
+		try {
+			return getInstancePersistence().findWithDynamicQuery(dq);
+		} catch (SystemException e) {
+			e.printStackTrace();
+			return new Vector<Instance>();
+		}
+		
 	}
 }

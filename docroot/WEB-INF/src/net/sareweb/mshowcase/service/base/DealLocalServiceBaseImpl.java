@@ -240,6 +240,10 @@ public abstract class DealLocalServiceBaseImpl implements DealLocalService,
 		return dealPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Deal fetchDeal(long dealId) throws SystemException {
+		return dealPersistence.fetchByPrimaryKey(dealId);
+	}
+
 	/**
 	 * Returns the deal with the primary key.
 	 *

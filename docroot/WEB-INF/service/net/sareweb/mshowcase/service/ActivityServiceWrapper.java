@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link ActivityService}.
@@ -23,16 +25,31 @@ package net.sareweb.mshowcase.service;
  * @see       ActivityService
  * @generated
  */
-public class ActivityServiceWrapper implements ActivityService {
+public class ActivityServiceWrapper implements ActivityService,
+	ServiceWrapper<ActivityService> {
 	public ActivityServiceWrapper(ActivityService activityService) {
 		_activityService = activityService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public ActivityService getWrappedActivityService() {
 		return _activityService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedActivityService(ActivityService activityService) {
+		_activityService = activityService;
+	}
+
+	public ActivityService getWrappedService() {
+		return _activityService;
+	}
+
+	public void setWrappedService(ActivityService activityService) {
 		_activityService = activityService;
 	}
 

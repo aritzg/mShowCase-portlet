@@ -144,6 +144,10 @@ public interface DealLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.Deal fetchDeal(long dealId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the deal with the primary key.
 	*

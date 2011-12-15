@@ -56,29 +56,32 @@ public class DealLocalServiceClp implements DealLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getDealMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchDealMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchDeal", long.class);
+
+		_getDealMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDeal", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getDealsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getDealsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDeals", int.class, int.class);
 
-		_getDealsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getDealsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDealsCount");
 
-		_updateDealMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateDealMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDeal", net.sareweb.mshowcase.model.Deal.class);
 
-		_updateDealMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateDealMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDeal", net.sareweb.mshowcase.model.Deal.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -301,12 +304,39 @@ public class DealLocalServiceClp implements DealLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public net.sareweb.mshowcase.model.Deal fetchDeal(long dealId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchDealMethodKey8,
+				dealId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.sareweb.mshowcase.model.Deal)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public net.sareweb.mshowcase.model.Deal getDeal(long dealId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDealMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getDealMethodKey9,
 				dealId);
 
 		try {
@@ -339,7 +369,7 @@ public class DealLocalServiceClp implements DealLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -371,7 +401,7 @@ public class DealLocalServiceClp implements DealLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDealsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getDealsMethodKey11,
 				start, end);
 
 		try {
@@ -398,7 +428,7 @@ public class DealLocalServiceClp implements DealLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDealsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getDealsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +455,7 @@ public class DealLocalServiceClp implements DealLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateDealMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateDealMethodKey13,
 				ClpSerializer.translateInput(deal));
 
 		try {
@@ -453,7 +483,7 @@ public class DealLocalServiceClp implements DealLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateDealMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateDealMethodKey14,
 				ClpSerializer.translateInput(deal), merge);
 
 		try {
@@ -479,7 +509,7 @@ public class DealLocalServiceClp implements DealLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -498,7 +528,7 @@ public class DealLocalServiceClp implements DealLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -528,12 +558,13 @@ public class DealLocalServiceClp implements DealLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getDealMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getDealsMethodKey10;
-	private MethodKey _getDealsCountMethodKey11;
-	private MethodKey _updateDealMethodKey12;
+	private MethodKey _fetchDealMethodKey8;
+	private MethodKey _getDealMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getDealsMethodKey11;
+	private MethodKey _getDealsCountMethodKey12;
 	private MethodKey _updateDealMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateDealMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 }

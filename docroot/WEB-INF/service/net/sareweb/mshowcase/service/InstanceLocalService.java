@@ -144,6 +144,10 @@ public interface InstanceLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.Instance fetchInstance(long InstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the instance with the primary key.
 	*
@@ -229,4 +233,8 @@ public interface InstanceLocalService extends PersistedModelLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public net.sareweb.mshowcase.model.Instance getInstanceByUserId(long userId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.sareweb.mshowcase.model.Instance> getInstancesInCategory(
+		long categoryId);
 }

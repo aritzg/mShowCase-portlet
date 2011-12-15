@@ -241,6 +241,10 @@ public abstract class LocationLocalServiceBaseImpl
 		return locationPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Location fetchLocation(long locationId) throws SystemException {
+		return locationPersistence.fetchByPrimaryKey(locationId);
+	}
+
 	/**
 	 * Returns the location with the primary key.
 	 *

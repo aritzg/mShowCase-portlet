@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link DealService}.
@@ -23,16 +25,31 @@ package net.sareweb.mshowcase.service;
  * @see       DealService
  * @generated
  */
-public class DealServiceWrapper implements DealService {
+public class DealServiceWrapper implements DealService,
+	ServiceWrapper<DealService> {
 	public DealServiceWrapper(DealService dealService) {
 		_dealService = dealService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public DealService getWrappedDealService() {
 		return _dealService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedDealService(DealService dealService) {
+		_dealService = dealService;
+	}
+
+	public DealService getWrappedService() {
+		return _dealService;
+	}
+
+	public void setWrappedService(DealService dealService) {
 		_dealService = dealService;
 	}
 

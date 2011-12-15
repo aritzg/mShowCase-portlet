@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link DealLocalService}.
@@ -23,7 +25,8 @@ package net.sareweb.mshowcase.service;
  * @see       DealLocalService
  * @generated
  */
-public class DealLocalServiceWrapper implements DealLocalService {
+public class DealLocalServiceWrapper implements DealLocalService,
+	ServiceWrapper<DealLocalService> {
 	public DealLocalServiceWrapper(DealLocalService dealLocalService) {
 		_dealLocalService = dealLocalService;
 	}
@@ -146,6 +149,11 @@ public class DealLocalServiceWrapper implements DealLocalService {
 		return _dealLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public net.sareweb.mshowcase.model.Deal fetchDeal(long dealId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _dealLocalService.fetchDeal(dealId);
+	}
+
 	/**
 	* Returns the deal with the primary key.
 	*
@@ -241,11 +249,25 @@ public class DealLocalServiceWrapper implements DealLocalService {
 		_dealLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public DealLocalService getWrappedDealLocalService() {
 		return _dealLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedDealLocalService(DealLocalService dealLocalService) {
+		_dealLocalService = dealLocalService;
+	}
+
+	public DealLocalService getWrappedService() {
+		return _dealLocalService;
+	}
+
+	public void setWrappedService(DealLocalService dealLocalService) {
 		_dealLocalService = dealLocalService;
 	}
 

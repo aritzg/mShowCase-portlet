@@ -159,6 +159,12 @@ public class ActivityLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static net.sareweb.mshowcase.model.Activity fetchActivity(
+		long activityId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchActivity(activityId);
+	}
+
 	/**
 	* Returns the activity with the primary key.
 	*

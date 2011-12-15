@@ -241,6 +241,10 @@ public abstract class CategoryLocalServiceBaseImpl
 		return categoryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Category fetchCategory(long categoryId) throws SystemException {
+		return categoryPersistence.fetchByPrimaryKey(categoryId);
+	}
+
 	/**
 	 * Returns the category with the primary key.
 	 *

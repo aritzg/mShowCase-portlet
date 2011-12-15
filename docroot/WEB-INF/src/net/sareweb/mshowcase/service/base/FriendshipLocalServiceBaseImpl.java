@@ -244,6 +244,11 @@ public abstract class FriendshipLocalServiceBaseImpl
 		return friendshipPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Friendship fetchFriendship(long friendshipId)
+		throws SystemException {
+		return friendshipPersistence.fetchByPrimaryKey(friendshipId);
+	}
+
 	/**
 	 * Returns the friendship with the primary key.
 	 *

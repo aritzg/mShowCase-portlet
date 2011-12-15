@@ -56,32 +56,35 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getCategoryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchCategoryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchCategory", long.class);
+
+		_getCategoryMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCategory", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getCategoriesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCategoriesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCategories", int.class, int.class);
 
-		_getCategoriesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCategoriesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCategoriesCount");
 
-		_updateCategoryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCategoryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCategory", net.sareweb.mshowcase.model.Category.class);
 
-		_updateCategoryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCategoryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCategory", net.sareweb.mshowcase.model.Category.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_findCategoryByParentCategoryIdMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_findCategoryByParentCategoryIdMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"findCategoryByParentCategoryId", long.class);
 	}
 
@@ -304,12 +307,39 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public net.sareweb.mshowcase.model.Category fetchCategory(long categoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchCategoryMethodKey8,
+				categoryId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.sareweb.mshowcase.model.Category)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public net.sareweb.mshowcase.model.Category getCategory(long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCategoryMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getCategoryMethodKey9,
 				categoryId);
 
 		try {
@@ -342,7 +372,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -374,7 +404,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCategoriesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getCategoriesMethodKey11,
 				start, end);
 
 		try {
@@ -401,7 +431,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCategoriesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getCategoriesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -428,7 +458,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCategoryMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateCategoryMethodKey13,
 				ClpSerializer.translateInput(category));
 
 		try {
@@ -456,7 +486,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCategoryMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateCategoryMethodKey14,
 				ClpSerializer.translateInput(category), merge);
 
 		try {
@@ -482,7 +512,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -501,7 +531,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -522,7 +552,7 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 		long parentCategoryId) {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_findCategoryByParentCategoryIdMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_findCategoryByParentCategoryIdMethodKey17,
 				parentCategoryId);
 
 		try {
@@ -554,13 +584,14 @@ public class CategoryLocalServiceClp implements CategoryLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getCategoryMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getCategoriesMethodKey10;
-	private MethodKey _getCategoriesCountMethodKey11;
-	private MethodKey _updateCategoryMethodKey12;
+	private MethodKey _fetchCategoryMethodKey8;
+	private MethodKey _getCategoryMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getCategoriesMethodKey11;
+	private MethodKey _getCategoriesCountMethodKey12;
 	private MethodKey _updateCategoryMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _findCategoryByParentCategoryIdMethodKey16;
+	private MethodKey _updateCategoryMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _findCategoryByParentCategoryIdMethodKey17;
 }

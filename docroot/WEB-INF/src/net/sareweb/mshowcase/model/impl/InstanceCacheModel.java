@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Instance;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,7 @@ import java.util.Date;
  * @see Instance
  * @generated
  */
-public class InstanceCacheModel implements CacheModel<Instance> {
+public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);

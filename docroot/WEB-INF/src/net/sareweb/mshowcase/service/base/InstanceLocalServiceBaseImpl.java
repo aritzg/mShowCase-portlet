@@ -241,6 +241,10 @@ public abstract class InstanceLocalServiceBaseImpl
 		return instancePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Instance fetchInstance(long InstanceId) throws SystemException {
+		return instancePersistence.fetchByPrimaryKey(InstanceId);
+	}
+
 	/**
 	 * Returns the instance with the primary key.
 	 *

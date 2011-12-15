@@ -159,6 +159,12 @@ public class InstanceImageLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static net.sareweb.mshowcase.model.InstanceImage fetchInstanceImage(
+		long InstanceImageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchInstanceImage(InstanceImageId);
+	}
+
 	/**
 	* Returns the instance image with the primary key.
 	*

@@ -144,6 +144,10 @@ public interface CategoryLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.Category fetchCategory(long categoryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the category with the primary key.
 	*

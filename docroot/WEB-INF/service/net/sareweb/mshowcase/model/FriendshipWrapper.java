@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Friendship}.
@@ -23,7 +25,7 @@ package net.sareweb.mshowcase.model;
  * @see       Friendship
  * @generated
  */
-public class FriendshipWrapper implements Friendship {
+public class FriendshipWrapper implements Friendship, ModelWrapper<Friendship> {
 	public FriendshipWrapper(Friendship friendship) {
 		_friendship = friendship;
 	}
@@ -291,7 +293,14 @@ public class FriendshipWrapper implements Friendship {
 		_friendship.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Friendship getWrappedFriendship() {
+		return _friendship;
+	}
+
+	public Friendship getWrappedModel() {
 		return _friendship;
 	}
 

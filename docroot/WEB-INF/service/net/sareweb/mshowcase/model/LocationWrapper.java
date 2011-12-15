@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.model;
 
+import com.liferay.portal.model.ModelWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link Location}.
@@ -23,7 +25,7 @@ package net.sareweb.mshowcase.model;
  * @see       Location
  * @generated
  */
-public class LocationWrapper implements Location {
+public class LocationWrapper implements Location, ModelWrapper<Location> {
 	public LocationWrapper(Location location) {
 		_location = location;
 	}
@@ -363,7 +365,14 @@ public class LocationWrapper implements Location {
 		_location.persist();
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
 	public Location getWrappedLocation() {
+		return _location;
+	}
+
+	public Location getWrappedModel() {
 		return _location;
 	}
 

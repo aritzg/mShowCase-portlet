@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link LocationService}.
@@ -23,16 +25,31 @@ package net.sareweb.mshowcase.service;
  * @see       LocationService
  * @generated
  */
-public class LocationServiceWrapper implements LocationService {
+public class LocationServiceWrapper implements LocationService,
+	ServiceWrapper<LocationService> {
 	public LocationServiceWrapper(LocationService locationService) {
 		_locationService = locationService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public LocationService getWrappedLocationService() {
 		return _locationService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedLocationService(LocationService locationService) {
+		_locationService = locationService;
+	}
+
+	public LocationService getWrappedService() {
+		return _locationService;
+	}
+
+	public void setWrappedService(LocationService locationService) {
 		_locationService = locationService;
 	}
 

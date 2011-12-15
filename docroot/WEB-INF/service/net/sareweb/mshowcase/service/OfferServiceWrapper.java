@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link OfferService}.
@@ -23,16 +25,31 @@ package net.sareweb.mshowcase.service;
  * @see       OfferService
  * @generated
  */
-public class OfferServiceWrapper implements OfferService {
+public class OfferServiceWrapper implements OfferService,
+	ServiceWrapper<OfferService> {
 	public OfferServiceWrapper(OfferService offerService) {
 		_offerService = offerService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public OfferService getWrappedOfferService() {
 		return _offerService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedOfferService(OfferService offerService) {
+		_offerService = offerService;
+	}
+
+	public OfferService getWrappedService() {
+		return _offerService;
+	}
+
+	public void setWrappedService(OfferService offerService) {
 		_offerService = offerService;
 	}
 

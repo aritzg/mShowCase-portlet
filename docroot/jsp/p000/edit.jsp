@@ -6,6 +6,7 @@
 <%
 Instance instance = (Instance)request.getAttribute(MyInstancePortlet.ATTR_INSTANCE);
 List<Category> categories0 = (List<Category>)request.getAttribute(MyInstancePortlet.ATTR_CATEGORIES_0);
+List<Category> categories1 = (List<Category>)request.getAttribute(MyInstancePortlet.ATTR_CATEGORIES_1);
 %>
 
 <div class="content-box">
@@ -32,19 +33,25 @@ List<Category> categories0 = (List<Category>)request.getAttribute(MyInstancePort
 			<aui:fieldset column="<%= true %>" cssClass="aui-w33">
 				<aui:select name="<%=MyInstancePortlet.PARAM_CAT_0%>" onChange="updateSubCategory(this.value)">
 					<aui:option value="0"></aui:option>
-					<c:forEach items="${categories0}" var="cat0">
-						<aui:option value="${cat0.categoryId}">${cat0.name}</aui:option>
-					</c:forEach>
+					<%for(Category cat0 : categories0){ %>
+						<aui:option value="<%=cat0.getCategoryId()%>" selected="<%=cat0.getCategoryId() == instance.getCategoryLevel0() %>"><%=cat0.getName(locale)%></aui:option>
+					<%} %>
 				</aui:select>
 				
 				<aui:select name="<%=MyInstancePortlet.PARAM_CAT_1%>" disabled="<%=(instance==null || instance.getCategoryLevel0()==0)? true : false %>">
 					<aui:option value=""></aui:option>
-					<c:forEach items="${categories1}" var="cat1">
-						<aui:option value="${cat1.categoryId}">${cat1.name}</aui:option>
-					</c:forEach>
+					<%
+					if(categories1!=null){
+						for(Category cat1 : categories1){ %>
+							<aui:option value="<%=cat1.getCategoryId()%>" selected="<%=cat1.getCategoryId() == instance.getCategoryLevel1() %>"><%=cat1.getName(locale)%></aui:option>
+						<%
+						} 
+					}
+					%>
 				</aui:select>
 			</aui:fieldset>
 		</div>
+		
 		<div style="clear: both"></div>
 		
 		<div id="instance-images">
@@ -60,7 +67,7 @@ List<Category> categories0 = (List<Category>)request.getAttribute(MyInstancePort
 		</div>
 			
 		<aui:button-row>
-			<aui:button type="submit" value="msc-p000-edit"/>
+			<aui:button type="submit" value="msc-p000-save"/>
 			<liferay-portlet:renderURL var="viewURL">
 				<liferay-portlet:param name="<%=MyInstancePortlet.PARAM_RENDER%>" value="<%=MyInstancePortlet.PARAM_RENDER_VIEW%>"></liferay-portlet:param>
 			</liferay-portlet:renderURL>

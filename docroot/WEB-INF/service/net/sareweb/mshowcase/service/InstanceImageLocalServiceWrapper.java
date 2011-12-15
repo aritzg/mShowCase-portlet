@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link InstanceImageLocalService}.
@@ -24,7 +26,8 @@ package net.sareweb.mshowcase.service;
  * @generated
  */
 public class InstanceImageLocalServiceWrapper
-	implements InstanceImageLocalService {
+	implements InstanceImageLocalService,
+		ServiceWrapper<InstanceImageLocalService> {
 	public InstanceImageLocalServiceWrapper(
 		InstanceImageLocalService instanceImageLocalService) {
 		_instanceImageLocalService = instanceImageLocalService;
@@ -150,6 +153,12 @@ public class InstanceImageLocalServiceWrapper
 		return _instanceImageLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public net.sareweb.mshowcase.model.InstanceImage fetchInstanceImage(
+		long InstanceImageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _instanceImageLocalService.fetchInstanceImage(InstanceImageId);
+	}
+
 	/**
 	* Returns the instance image with the primary key.
 	*
@@ -247,11 +256,26 @@ public class InstanceImageLocalServiceWrapper
 		_instanceImageLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public InstanceImageLocalService getWrappedInstanceImageLocalService() {
 		return _instanceImageLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedInstanceImageLocalService(
+		InstanceImageLocalService instanceImageLocalService) {
+		_instanceImageLocalService = instanceImageLocalService;
+	}
+
+	public InstanceImageLocalService getWrappedService() {
+		return _instanceImageLocalService;
+	}
+
+	public void setWrappedService(
 		InstanceImageLocalService instanceImageLocalService) {
 		_instanceImageLocalService = instanceImageLocalService;
 	}

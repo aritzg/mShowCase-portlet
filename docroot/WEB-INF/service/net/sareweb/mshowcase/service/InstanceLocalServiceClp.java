@@ -56,33 +56,39 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getInstanceMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchInstanceMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchInstance", long.class);
+
+		_getInstanceMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getInstance", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getInstancesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getInstancesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getInstances", int.class, int.class);
 
-		_getInstancesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getInstancesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getInstancesCount");
 
-		_updateInstanceMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateInstanceMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateInstance", net.sareweb.mshowcase.model.Instance.class);
 
-		_updateInstanceMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateInstanceMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateInstance", net.sareweb.mshowcase.model.Instance.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getInstanceByUserIdMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getInstanceByUserIdMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getInstanceByUserId", long.class);
+
+		_getInstancesInCategoryMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getInstancesInCategory", long.class);
 	}
 
 	public net.sareweb.mshowcase.model.Instance addInstance(
@@ -304,12 +310,39 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public net.sareweb.mshowcase.model.Instance fetchInstance(long InstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchInstanceMethodKey8,
+				InstanceId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public net.sareweb.mshowcase.model.Instance getInstance(long InstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstanceMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getInstanceMethodKey9,
 				InstanceId);
 
 		try {
@@ -342,7 +375,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -374,7 +407,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstancesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getInstancesMethodKey11,
 				start, end);
 
 		try {
@@ -401,7 +434,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstancesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getInstancesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -428,7 +461,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateInstanceMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateInstanceMethodKey13,
 				ClpSerializer.translateInput(instance));
 
 		try {
@@ -456,7 +489,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateInstanceMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateInstanceMethodKey14,
 				ClpSerializer.translateInput(instance), merge);
 
 		try {
@@ -482,7 +515,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -501,7 +534,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -521,7 +554,7 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 	public net.sareweb.mshowcase.model.Instance getInstanceByUserId(long userId) {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getInstanceByUserIdMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getInstanceByUserIdMethodKey17,
 				userId);
 
 		try {
@@ -540,6 +573,29 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 		return (net.sareweb.mshowcase.model.Instance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<net.sareweb.mshowcase.model.Instance> getInstancesInCategory(
+		long categoryId) {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getInstancesInCategoryMethodKey18,
+				categoryId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.sareweb.mshowcase.model.Instance>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -553,13 +609,15 @@ public class InstanceLocalServiceClp implements InstanceLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getInstanceMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getInstancesMethodKey10;
-	private MethodKey _getInstancesCountMethodKey11;
-	private MethodKey _updateInstanceMethodKey12;
+	private MethodKey _fetchInstanceMethodKey8;
+	private MethodKey _getInstanceMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getInstancesMethodKey11;
+	private MethodKey _getInstancesCountMethodKey12;
 	private MethodKey _updateInstanceMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _getInstanceByUserIdMethodKey16;
+	private MethodKey _updateInstanceMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _getInstanceByUserIdMethodKey17;
+	private MethodKey _getInstancesInCategoryMethodKey18;
 }

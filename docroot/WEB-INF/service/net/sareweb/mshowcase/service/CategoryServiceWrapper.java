@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CategoryService}.
@@ -23,16 +25,31 @@ package net.sareweb.mshowcase.service;
  * @see       CategoryService
  * @generated
  */
-public class CategoryServiceWrapper implements CategoryService {
+public class CategoryServiceWrapper implements CategoryService,
+	ServiceWrapper<CategoryService> {
 	public CategoryServiceWrapper(CategoryService categoryService) {
 		_categoryService = categoryService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public CategoryService getWrappedCategoryService() {
 		return _categoryService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedCategoryService(CategoryService categoryService) {
+		_categoryService = categoryService;
+	}
+
+	public CategoryService getWrappedService() {
+		return _categoryService;
+	}
+
+	public void setWrappedService(CategoryService categoryService) {
 		_categoryService = categoryService;
 	}
 

@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link ActivityLocalService}.
@@ -23,7 +25,8 @@ package net.sareweb.mshowcase.service;
  * @see       ActivityLocalService
  * @generated
  */
-public class ActivityLocalServiceWrapper implements ActivityLocalService {
+public class ActivityLocalServiceWrapper implements ActivityLocalService,
+	ServiceWrapper<ActivityLocalService> {
 	public ActivityLocalServiceWrapper(
 		ActivityLocalService activityLocalService) {
 		_activityLocalService = activityLocalService;
@@ -147,6 +150,11 @@ public class ActivityLocalServiceWrapper implements ActivityLocalService {
 		return _activityLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public net.sareweb.mshowcase.model.Activity fetchActivity(long activityId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _activityLocalService.fetchActivity(activityId);
+	}
+
 	/**
 	* Returns the activity with the primary key.
 	*
@@ -242,12 +250,26 @@ public class ActivityLocalServiceWrapper implements ActivityLocalService {
 		_activityLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public ActivityLocalService getWrappedActivityLocalService() {
 		return _activityLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedActivityLocalService(
 		ActivityLocalService activityLocalService) {
+		_activityLocalService = activityLocalService;
+	}
+
+	public ActivityLocalService getWrappedService() {
+		return _activityLocalService;
+	}
+
+	public void setWrappedService(ActivityLocalService activityLocalService) {
 		_activityLocalService = activityLocalService;
 	}
 

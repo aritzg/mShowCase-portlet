@@ -56,29 +56,32 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getFriendshipMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchFriendshipMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchFriendship", long.class);
+
+		_getFriendshipMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFriendship", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getFriendshipsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFriendshipsMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFriendships", int.class, int.class);
 
-		_getFriendshipsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFriendshipsCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFriendshipsCount");
 
-		_updateFriendshipMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFriendshipMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFriendship", net.sareweb.mshowcase.model.Friendship.class);
 
-		_updateFriendshipMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFriendshipMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFriendship",
 				net.sareweb.mshowcase.model.Friendship.class, boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -303,13 +306,41 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public net.sareweb.mshowcase.model.Friendship fetchFriendship(
+		long friendshipId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchFriendshipMethodKey8,
+				friendshipId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.sareweb.mshowcase.model.Friendship)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public net.sareweb.mshowcase.model.Friendship getFriendship(
 		long friendshipId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFriendshipMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getFriendshipMethodKey9,
 				friendshipId);
 
 		try {
@@ -342,7 +373,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -374,7 +405,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFriendshipsMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getFriendshipsMethodKey11,
 				start, end);
 
 		try {
@@ -401,7 +432,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFriendshipsCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getFriendshipsCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -428,7 +459,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFriendshipMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateFriendshipMethodKey13,
 				ClpSerializer.translateInput(friendship));
 
 		try {
@@ -456,7 +487,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFriendshipMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateFriendshipMethodKey14,
 				ClpSerializer.translateInput(friendship), merge);
 
 		try {
@@ -482,7 +513,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -501,7 +532,7 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -531,12 +562,13 @@ public class FriendshipLocalServiceClp implements FriendshipLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getFriendshipMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getFriendshipsMethodKey10;
-	private MethodKey _getFriendshipsCountMethodKey11;
-	private MethodKey _updateFriendshipMethodKey12;
+	private MethodKey _fetchFriendshipMethodKey8;
+	private MethodKey _getFriendshipMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getFriendshipsMethodKey11;
+	private MethodKey _getFriendshipsCountMethodKey12;
 	private MethodKey _updateFriendshipMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateFriendshipMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 }

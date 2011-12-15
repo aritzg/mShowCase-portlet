@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link InstanceImageService}.
@@ -23,18 +25,33 @@ package net.sareweb.mshowcase.service;
  * @see       InstanceImageService
  * @generated
  */
-public class InstanceImageServiceWrapper implements InstanceImageService {
+public class InstanceImageServiceWrapper implements InstanceImageService,
+	ServiceWrapper<InstanceImageService> {
 	public InstanceImageServiceWrapper(
 		InstanceImageService instanceImageService) {
 		_instanceImageService = instanceImageService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public InstanceImageService getWrappedInstanceImageService() {
 		return _instanceImageService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedInstanceImageService(
 		InstanceImageService instanceImageService) {
+		_instanceImageService = instanceImageService;
+	}
+
+	public InstanceImageService getWrappedService() {
+		return _instanceImageService;
+	}
+
+	public void setWrappedService(InstanceImageService instanceImageService) {
 		_instanceImageService = instanceImageService;
 	}
 

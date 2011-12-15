@@ -144,6 +144,10 @@ public interface ActivityLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.Activity fetchActivity(long activityId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the activity with the primary key.
 	*

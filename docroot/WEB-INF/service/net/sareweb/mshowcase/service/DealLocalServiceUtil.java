@@ -157,6 +157,11 @@ public class DealLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static net.sareweb.mshowcase.model.Deal fetchDeal(long dealId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchDeal(dealId);
+	}
+
 	/**
 	* Returns the deal with the primary key.
 	*

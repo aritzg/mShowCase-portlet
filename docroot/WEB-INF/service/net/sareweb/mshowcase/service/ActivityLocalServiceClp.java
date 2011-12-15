@@ -56,29 +56,32 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 				"dynamicQueryCount",
 				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
 
-		_getActivityMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+		_fetchActivityMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"fetchActivity", long.class);
+
+		_getActivityMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getActivity", long.class);
 
-		_getPersistedModelMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPersistedModel", java.io.Serializable.class);
 
-		_getActivitiesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getActivitiesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getActivities", int.class, int.class);
 
-		_getActivitiesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getActivitiesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getActivitiesCount");
 
-		_updateActivityMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateActivityMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateActivity", net.sareweb.mshowcase.model.Activity.class);
 
-		_updateActivityMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateActivityMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateActivity", net.sareweb.mshowcase.model.Activity.class,
 				boolean.class);
 
-		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getBeanIdentifier");
 
-		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 	}
 
@@ -301,12 +304,39 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	public net.sareweb.mshowcase.model.Activity fetchActivity(long activityId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_fetchActivityMethodKey8,
+				activityId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (net.sareweb.mshowcase.model.Activity)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public net.sareweb.mshowcase.model.Activity getActivity(long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getActivityMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getActivityMethodKey9,
 				activityId);
 
 		try {
@@ -339,7 +369,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
 				ClpSerializer.translateInput(primaryKeyObj));
 
 		try {
@@ -371,7 +401,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getActivitiesMethodKey10,
+		MethodHandler methodHandler = new MethodHandler(_getActivitiesMethodKey11,
 				start, end);
 
 		try {
@@ -398,7 +428,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getActivitiesCountMethodKey11);
+		MethodHandler methodHandler = new MethodHandler(_getActivitiesCountMethodKey12);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +455,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateActivityMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateActivityMethodKey13,
 				ClpSerializer.translateInput(activity));
 
 		try {
@@ -453,7 +483,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateActivityMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateActivityMethodKey14,
 				ClpSerializer.translateInput(activity), merge);
 
 		try {
@@ -479,7 +509,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -498,7 +528,7 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
 				ClpSerializer.translateInput(beanIdentifier));
 
 		try {
@@ -528,12 +558,13 @@ public class ActivityLocalServiceClp implements ActivityLocalService {
 	private MethodKey _dynamicQueryMethodKey5;
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _getActivityMethodKey8;
-	private MethodKey _getPersistedModelMethodKey9;
-	private MethodKey _getActivitiesMethodKey10;
-	private MethodKey _getActivitiesCountMethodKey11;
-	private MethodKey _updateActivityMethodKey12;
+	private MethodKey _fetchActivityMethodKey8;
+	private MethodKey _getActivityMethodKey9;
+	private MethodKey _getPersistedModelMethodKey10;
+	private MethodKey _getActivitiesMethodKey11;
+	private MethodKey _getActivitiesCountMethodKey12;
 	private MethodKey _updateActivityMethodKey13;
-	private MethodKey _getBeanIdentifierMethodKey14;
-	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _updateActivityMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey15;
+	private MethodKey _setBeanIdentifierMethodKey16;
 }

@@ -241,6 +241,10 @@ public abstract class OfferLocalServiceBaseImpl implements OfferLocalService,
 		return offerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Offer fetchOffer(long offerId) throws SystemException {
+		return offerPersistence.fetchByPrimaryKey(offerId);
+	}
+
 	/**
 	 * Returns the offer with the primary key.
 	 *

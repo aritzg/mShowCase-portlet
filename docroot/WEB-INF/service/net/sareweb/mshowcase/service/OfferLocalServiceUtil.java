@@ -157,6 +157,11 @@ public class OfferLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static net.sareweb.mshowcase.model.Offer fetchOffer(long offerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchOffer(offerId);
+	}
+
 	/**
 	* Returns the offer with the primary key.
 	*

@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Location;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,7 @@ import java.util.Date;
  * @see Location
  * @generated
  */
-public class LocationCacheModel implements CacheModel<Location> {
+public class LocationCacheModel implements CacheModel<Location>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);

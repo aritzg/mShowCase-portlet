@@ -241,6 +241,10 @@ public abstract class ActivityLocalServiceBaseImpl
 		return activityPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	public Activity fetchActivity(long activityId) throws SystemException {
+		return activityPersistence.fetchByPrimaryKey(activityId);
+	}
+
 	/**
 	 * Returns the activity with the primary key.
 	 *

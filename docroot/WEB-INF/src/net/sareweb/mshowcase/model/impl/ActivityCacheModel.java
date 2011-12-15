@@ -20,6 +20,8 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Activity;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -29,7 +31,7 @@ import java.util.Date;
  * @see Activity
  * @generated
  */
-public class ActivityCacheModel implements CacheModel<Activity> {
+public class ActivityCacheModel implements CacheModel<Activity>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);

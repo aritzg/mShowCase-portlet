@@ -19,6 +19,8 @@ import com.liferay.portal.model.CacheModel;
 
 import net.sareweb.mshowcase.model.Deal;
 
+import java.io.Serializable;
+
 import java.util.Date;
 
 /**
@@ -28,7 +30,7 @@ import java.util.Date;
  * @see Deal
  * @generated
  */
-public class DealCacheModel implements CacheModel<Deal> {
+public class DealCacheModel implements CacheModel<Deal>, Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(11);

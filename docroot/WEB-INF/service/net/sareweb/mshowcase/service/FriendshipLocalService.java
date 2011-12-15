@@ -146,6 +146,11 @@ public interface FriendshipLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.Friendship fetchFriendship(
+		long friendshipId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the friendship with the primary key.
 	*

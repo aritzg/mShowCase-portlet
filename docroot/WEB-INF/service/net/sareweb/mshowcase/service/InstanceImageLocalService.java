@@ -146,6 +146,11 @@ public interface InstanceImageLocalService extends PersistedModelLocalService {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public net.sareweb.mshowcase.model.InstanceImage fetchInstanceImage(
+		long InstanceImageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the instance image with the primary key.
 	*

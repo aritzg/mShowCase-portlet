@@ -159,6 +159,12 @@ public class CategoryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static net.sareweb.mshowcase.model.Category fetchCategory(
+		long categoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchCategory(categoryId);
+	}
+
 	/**
 	* Returns the category with the primary key.
 	*

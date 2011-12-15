@@ -14,6 +14,8 @@
 
 package net.sareweb.mshowcase.service;
 
+import com.liferay.portal.service.ServiceWrapper;
+
 /**
  * <p>
  * This class is a wrapper for {@link CategoryLocalService}.
@@ -23,7 +25,8 @@ package net.sareweb.mshowcase.service;
  * @see       CategoryLocalService
  * @generated
  */
-public class CategoryLocalServiceWrapper implements CategoryLocalService {
+public class CategoryLocalServiceWrapper implements CategoryLocalService,
+	ServiceWrapper<CategoryLocalService> {
 	public CategoryLocalServiceWrapper(
 		CategoryLocalService categoryLocalService) {
 		_categoryLocalService = categoryLocalService;
@@ -147,6 +150,11 @@ public class CategoryLocalServiceWrapper implements CategoryLocalService {
 		return _categoryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	public net.sareweb.mshowcase.model.Category fetchCategory(long categoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _categoryLocalService.fetchCategory(categoryId);
+	}
+
 	/**
 	* Returns the category with the primary key.
 	*
@@ -247,12 +255,26 @@ public class CategoryLocalServiceWrapper implements CategoryLocalService {
 		return _categoryLocalService.findCategoryByParentCategoryId(parentCategoryId);
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
 	public CategoryLocalService getWrappedCategoryLocalService() {
 		return _categoryLocalService;
 	}
 
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
 	public void setWrappedCategoryLocalService(
 		CategoryLocalService categoryLocalService) {
+		_categoryLocalService = categoryLocalService;
+	}
+
+	public CategoryLocalService getWrappedService() {
+		return _categoryLocalService;
+	}
+
+	public void setWrappedService(CategoryLocalService categoryLocalService) {
 		_categoryLocalService = categoryLocalService;
 	}
 

@@ -159,6 +159,12 @@ public class FriendshipLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	public static net.sareweb.mshowcase.model.Friendship fetchFriendship(
+		long friendshipId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchFriendship(friendshipId);
+	}
+
 	/**
 	* Returns the friendship with the primary key.
 	*
