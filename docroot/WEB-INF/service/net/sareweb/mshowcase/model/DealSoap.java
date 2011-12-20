@@ -34,6 +34,7 @@ public class DealSoap implements Serializable {
 		soapModel.setDealId(model.getDealId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setOfferId(model.getOfferId());
+		soapModel.setInstanceId(model.getInstanceId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateDate(model.getCreateDate());
 
@@ -112,6 +113,14 @@ public class DealSoap implements Serializable {
 		_offerId = offerId;
 	}
 
+	public long getInstanceId() {
+		return _InstanceId;
+	}
+
+	public void setInstanceId(long InstanceId) {
+		_InstanceId = InstanceId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -131,6 +140,7 @@ public class DealSoap implements Serializable {
 	private long _dealId;
 	private long _userId;
 	private long _offerId;
+	private long _InstanceId;
 	private long _companyId;
 	private Date _createDate;
 }

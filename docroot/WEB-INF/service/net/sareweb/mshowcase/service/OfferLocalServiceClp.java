@@ -83,6 +83,12 @@ public class OfferLocalServiceClp implements OfferLocalService {
 
 		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
+
+		_getOffersByInstanceIdMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getOffersByInstanceId", long.class);
+
+		_countOffersByInstanceIdMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"countOffersByInstanceId", long.class);
 	}
 
 	public net.sareweb.mshowcase.model.Offer addOffer(
@@ -545,6 +551,51 @@ public class OfferLocalServiceClp implements OfferLocalService {
 		}
 	}
 
+	public java.util.List<net.sareweb.mshowcase.model.Offer> getOffersByInstanceId(
+		long instanceId) {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getOffersByInstanceIdMethodKey17,
+				instanceId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.sareweb.mshowcase.model.Offer>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public long countOffersByInstanceId(long instanceId) {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_countOffersByInstanceIdMethodKey18,
+				instanceId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -567,4 +618,6 @@ public class OfferLocalServiceClp implements OfferLocalService {
 	private MethodKey _updateOfferMethodKey14;
 	private MethodKey _getBeanIdentifierMethodKey15;
 	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _getOffersByInstanceIdMethodKey17;
+	private MethodKey _countOffersByInstanceIdMethodKey18;
 }

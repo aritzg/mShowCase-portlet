@@ -295,6 +295,35 @@ public interface InstanceModel extends BaseModel<Instance> {
 	public void setCategoryLevel2(long categoryLevel2);
 
 	/**
+	 * Returns the logo image ID of this instance.
+	 *
+	 * @return the logo image ID of this instance
+	 */
+	public long getLogoImageId();
+
+	/**
+	 * Sets the logo image ID of this instance.
+	 *
+	 * @param logoImageId the logo image ID of this instance
+	 */
+	public void setLogoImageId(long logoImageId);
+
+	/**
+	 * Returns the logo image u r l of this instance.
+	 *
+	 * @return the logo image u r l of this instance
+	 */
+	@AutoEscape
+	public String getLogoImageURL();
+
+	/**
+	 * Sets the logo image u r l of this instance.
+	 *
+	 * @param logoImageURL the logo image u r l of this instance
+	 */
+	public void setLogoImageURL(String logoImageURL);
+
+	/**
 	 * Returns the user ID of this instance.
 	 *
 	 * @return the user ID of this instance

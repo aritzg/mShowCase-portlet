@@ -1,3 +1,5 @@
+<%@page import="com.liferay.portal.service.persistence.PortletUtil"%>
+<%@page import="net.sareweb.mshowcase.service.DealLocalServiceUtil"%>
 <%@page import="net.sareweb.mshowcase.portlets.p003.InstanceListPortlet"%>
 <%@include file="/jsp/init.jsp"%>
 
@@ -30,10 +32,36 @@ List<Instance> instances = (List<Instance>) request.getAttribute(InstanceListPor
 	<%}else{%>
 		<%for(Instance instance: instances){ %>
 			<div class="msc-instance-summary">
-				<div class="msc-instance-name">
-					<%=instance.getName()%>
+				<div class="msc-instance-head">
+					<div class="msc-instance-title">
+						<%=instance.getName()%>
+					</div>
+					<div class="msc-instance-offers">
+						<%=OfferLocalServiceUtil.countOffersByInstanceId(instance.getInstanceId()) %>
+					</div>
+					<div class="msc-instance-deals">
+						<%=DealLocalServiceUtil.countDealsByInstanceId(instance.getInstanceId()) %>
+					</div>
+				</div>
+				<div class="msc-instance-body">
+					<div class="msc-instance-body">
+						<div class="msc-instance-logo">
+							<%if(instance.getLogoImageId()!=0){ %>
+								<img src='<%=request.getContextPath()%>/images/defaultLogo.png'/>	
+							<%}else{%>
+								<img src='<%=instance.getLogoImageURL()%>'/>	
+							<%} %>
+						</div>
+						<div class="msc-instance-data">
+						
+						</div>
+						<div class="msc-instance-minimap">
+						
+						</div>
+					</div>
 				</div>
 			</div>
+			
 		<%}%>
 	<%}%>
 </div>

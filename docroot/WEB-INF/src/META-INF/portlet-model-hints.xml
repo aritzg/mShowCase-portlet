@@ -23,6 +23,7 @@
 		<field name="dealId" type="long" />
 		<field name="userId" type="long" />
 		<field name="offerId" type="long" />
+		<field name="InstanceId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="createDate" type="Date" />
 	</model>
@@ -46,6 +47,8 @@
 		<field name="categoryLevel0" type="long" />
 		<field name="categoryLevel1" type="long" />
 		<field name="categoryLevel2" type="long" />
+		<field name="logoImageId" type="long" />
+		<field name="logoImageURL" type="String" />
 		<field name="userId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />

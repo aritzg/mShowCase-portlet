@@ -257,6 +257,15 @@ public class OfferLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.util.List<net.sareweb.mshowcase.model.Offer> getOffersByInstanceId(
+		long instanceId) {
+		return getService().getOffersByInstanceId(instanceId);
+	}
+
+	public static long countOffersByInstanceId(long instanceId) {
+		return getService().countOffersByInstanceId(instanceId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

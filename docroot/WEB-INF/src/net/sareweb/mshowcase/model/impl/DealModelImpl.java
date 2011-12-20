@@ -66,10 +66,11 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 			{ "dealId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "offerId", Types.BIGINT },
+			{ "InstanceId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table msc_Deal (dealId LONG not null primary key,userId LONG,offerId LONG,companyId LONG,createDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table msc_Deal (dealId LONG not null primary key,userId LONG,offerId LONG,InstanceId LONG,companyId LONG,createDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table msc_Deal";
 	public static final String ORDER_BY_JPQL = " ORDER BY deal.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY msc_Deal.createDate ASC";
@@ -96,6 +97,7 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 		model.setDealId(soapModel.getDealId());
 		model.setUserId(soapModel.getUserId());
 		model.setOfferId(soapModel.getOfferId());
+		model.setInstanceId(soapModel.getInstanceId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setCreateDate(soapModel.getCreateDate());
 
@@ -184,6 +186,15 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 	}
 
 	@JSON
+	public long getInstanceId() {
+		return _InstanceId;
+	}
+
+	public void setInstanceId(long InstanceId) {
+		_InstanceId = InstanceId;
+	}
+
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -234,6 +245,7 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 		dealImpl.setDealId(getDealId());
 		dealImpl.setUserId(getUserId());
 		dealImpl.setOfferId(getOfferId());
+		dealImpl.setInstanceId(getInstanceId());
 		dealImpl.setCompanyId(getCompanyId());
 		dealImpl.setCreateDate(getCreateDate());
 
@@ -298,6 +310,8 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 
 		dealCacheModel.offerId = getOfferId();
 
+		dealCacheModel.InstanceId = getInstanceId();
+
 		dealCacheModel.companyId = getCompanyId();
 
 		Date createDate = getCreateDate();
@@ -314,7 +328,7 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{dealId=");
 		sb.append(getDealId());
@@ -322,6 +336,8 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 		sb.append(getUserId());
 		sb.append(", offerId=");
 		sb.append(getOfferId());
+		sb.append(", InstanceId=");
+		sb.append(getInstanceId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createDate=");
@@ -332,7 +348,7 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Deal");
@@ -349,6 +365,10 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 		sb.append(
 			"<column><column-name>offerId</column-name><column-value><![CDATA[");
 		sb.append(getOfferId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
+		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -372,6 +392,7 @@ public class DealModelImpl extends BaseModelImpl<Deal> implements DealModel {
 	private long _userId;
 	private String _userUuid;
 	private long _offerId;
+	private long _InstanceId;
 	private long _companyId;
 	private Date _createDate;
 	private transient ExpandoBridge _expandoBridge;

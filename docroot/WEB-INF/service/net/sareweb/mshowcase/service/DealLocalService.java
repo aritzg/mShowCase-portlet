@@ -230,4 +230,10 @@ public interface DealLocalService extends PersistedModelLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<net.sareweb.mshowcase.model.Deal> getDealsByInstanceId(
+		long instanceId);
+
+	public long countDealsByInstanceId(long instanceId);
 }

@@ -249,6 +249,15 @@ public class DealLocalServiceWrapper implements DealLocalService,
 		_dealLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	public java.util.List<net.sareweb.mshowcase.model.Deal> getDealsByInstanceId(
+		long instanceId) {
+		return _dealLocalService.getDealsByInstanceId(instanceId);
+	}
+
+	public long countDealsByInstanceId(long instanceId) {
+		return _dealLocalService.countDealsByInstanceId(instanceId);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

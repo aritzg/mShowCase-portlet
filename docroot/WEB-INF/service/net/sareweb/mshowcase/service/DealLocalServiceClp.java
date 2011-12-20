@@ -83,6 +83,12 @@ public class DealLocalServiceClp implements DealLocalService {
 
 		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
+
+		_getDealsByInstanceIdMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getDealsByInstanceId", long.class);
+
+		_countDealsByInstanceIdMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"countDealsByInstanceId", long.class);
 	}
 
 	public net.sareweb.mshowcase.model.Deal addDeal(
@@ -545,6 +551,51 @@ public class DealLocalServiceClp implements DealLocalService {
 		}
 	}
 
+	public java.util.List<net.sareweb.mshowcase.model.Deal> getDealsByInstanceId(
+		long instanceId) {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getDealsByInstanceIdMethodKey17,
+				instanceId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<net.sareweb.mshowcase.model.Deal>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public long countDealsByInstanceId(long instanceId) {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_countDealsByInstanceIdMethodKey18,
+				instanceId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -567,4 +618,6 @@ public class DealLocalServiceClp implements DealLocalService {
 	private MethodKey _updateDealMethodKey14;
 	private MethodKey _getBeanIdentifierMethodKey15;
 	private MethodKey _setBeanIdentifierMethodKey16;
+	private MethodKey _getDealsByInstanceIdMethodKey17;
+	private MethodKey _countDealsByInstanceIdMethodKey18;
 }

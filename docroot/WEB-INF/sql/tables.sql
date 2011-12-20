@@ -22,6 +22,7 @@ create table msc_Deal (
 	dealId LONG not null primary key,
 	userId LONG,
 	offerId LONG,
+	InstanceId LONG,
 	companyId LONG,
 	createDate DATE null
 );
@@ -47,6 +48,8 @@ create table msc_Instance (
 	categoryLevel0 LONG,
 	categoryLevel1 LONG,
 	categoryLevel2 LONG,
+	logoImageId LONG,
+	logoImageURL VARCHAR(75) null,
 	userId LONG,
 	companyId LONG,
 	groupId LONG,

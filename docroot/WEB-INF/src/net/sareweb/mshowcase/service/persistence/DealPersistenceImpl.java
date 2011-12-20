@@ -298,6 +298,7 @@ public class DealPersistenceImpl extends BasePersistenceImpl<Deal>
 		dealImpl.setDealId(deal.getDealId());
 		dealImpl.setUserId(deal.getUserId());
 		dealImpl.setOfferId(deal.getOfferId());
+		dealImpl.setInstanceId(deal.getInstanceId());
 		dealImpl.setCompanyId(deal.getCompanyId());
 		dealImpl.setCreateDate(deal.getCreateDate());
 

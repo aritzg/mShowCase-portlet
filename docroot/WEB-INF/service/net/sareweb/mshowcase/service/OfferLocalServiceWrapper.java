@@ -249,6 +249,15 @@ public class OfferLocalServiceWrapper implements OfferLocalService,
 		_offerLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	public java.util.List<net.sareweb.mshowcase.model.Offer> getOffersByInstanceId(
+		long instanceId) {
+		return _offerLocalService.getOffersByInstanceId(instanceId);
+	}
+
+	public long countOffersByInstanceId(long instanceId) {
+		return _offerLocalService.countOffersByInstanceId(instanceId);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

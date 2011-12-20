@@ -242,6 +242,22 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		_categoryLevel2 = categoryLevel2;
 	}
 
+	public long getLogoImageId() {
+		return _logoImageId;
+	}
+
+	public void setLogoImageId(long logoImageId) {
+		_logoImageId = logoImageId;
+	}
+
+	public String getLogoImageURL() {
+		return _logoImageURL;
+	}
+
+	public void setLogoImageURL(String logoImageURL) {
+		_logoImageURL = logoImageURL;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -306,6 +322,8 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		clone.setCategoryLevel0(getCategoryLevel0());
 		clone.setCategoryLevel1(getCategoryLevel1());
 		clone.setCategoryLevel2(getCategoryLevel2());
+		clone.setLogoImageId(getLogoImageId());
+		clone.setLogoImageURL(getLogoImageURL());
 		clone.setUserId(getUserId());
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
@@ -358,7 +376,7 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{InstanceId=");
 		sb.append(getInstanceId());
@@ -380,6 +398,10 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		sb.append(getCategoryLevel1());
 		sb.append(", categoryLevel2=");
 		sb.append(getCategoryLevel2());
+		sb.append(", logoImageId=");
+		sb.append(getLogoImageId());
+		sb.append(", logoImageURL=");
+		sb.append(getLogoImageURL());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", companyId=");
@@ -394,7 +416,7 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Instance");
@@ -441,6 +463,14 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 		sb.append(getCategoryLevel2());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>logoImageId</column-name><column-value><![CDATA[");
+		sb.append(getLogoImageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>logoImageURL</column-name><column-value><![CDATA[");
+		sb.append(getLogoImageURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
@@ -473,6 +503,8 @@ public class InstanceClp extends BaseModelImpl<Instance> implements Instance {
 	private long _categoryLevel0;
 	private long _categoryLevel1;
 	private long _categoryLevel2;
+	private long _logoImageId;
+	private String _logoImageURL;
 	private long _userId;
 	private String _userUuid;
 	private long _companyId;

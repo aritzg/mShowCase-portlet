@@ -358,6 +358,8 @@ public class InstancePersistenceImpl extends BasePersistenceImpl<Instance>
 		instanceImpl.setCategoryLevel0(instance.getCategoryLevel0());
 		instanceImpl.setCategoryLevel1(instance.getCategoryLevel1());
 		instanceImpl.setCategoryLevel2(instance.getCategoryLevel2());
+		instanceImpl.setLogoImageId(instance.getLogoImageId());
+		instanceImpl.setLogoImageURL(instance.getLogoImageURL());
 		instanceImpl.setUserId(instance.getUserId());
 		instanceImpl.setCompanyId(instance.getCompanyId());
 		instanceImpl.setGroupId(instance.getGroupId());

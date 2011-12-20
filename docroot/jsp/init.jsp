@@ -16,6 +16,8 @@
 <%@page import="net.sareweb.mshowcase.model.Category"%>
 <%@page import="net.sareweb.mshowcase.model.Instance"%>
 
+<%@page import="net.sareweb.mshowcase.service.OfferLocalServiceUtil"%>
+
 
 <liferay-theme:defineObjects />
 

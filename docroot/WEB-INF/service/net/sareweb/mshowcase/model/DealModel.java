@@ -117,6 +117,20 @@ public interface DealModel extends BaseModel<Deal> {
 	public void setOfferId(long offerId);
 
 	/**
+	 * Returns the instance ID of this deal.
+	 *
+	 * @return the instance ID of this deal
+	 */
+	public long getInstanceId();
+
+	/**
+	 * Sets the instance ID of this deal.
+	 *
+	 * @param InstanceId the instance ID of this deal
+	 */
+	public void setInstanceId(long InstanceId);
+
+	/**
 	 * Returns the company ID of this deal.
 	 *
 	 * @return the company ID of this deal

@@ -81,12 +81,14 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 			{ "categoryLevel0", Types.BIGINT },
 			{ "categoryLevel1", Types.BIGINT },
 			{ "categoryLevel2", Types.BIGINT },
+			{ "logoImageId", Types.BIGINT },
+			{ "logoImageURL", Types.VARCHAR },
 			{ "userId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "groupId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table msc_Instance (InstanceId LONG not null primary key,name VARCHAR(75) null,description STRING null,phoneNumber VARCHAR(75) null,faxNumber VARCHAR(75) null,email VARCHAR(75) null,webPage VARCHAR(75) null,categoryLevel0 LONG,categoryLevel1 LONG,categoryLevel2 LONG,userId LONG,companyId LONG,groupId LONG,createDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table msc_Instance (InstanceId LONG not null primary key,name VARCHAR(75) null,description STRING null,phoneNumber VARCHAR(75) null,faxNumber VARCHAR(75) null,email VARCHAR(75) null,webPage VARCHAR(75) null,categoryLevel0 LONG,categoryLevel1 LONG,categoryLevel2 LONG,logoImageId LONG,logoImageURL VARCHAR(75) null,userId LONG,companyId LONG,groupId LONG,createDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table msc_Instance";
 	public static final String ORDER_BY_JPQL = " ORDER BY instance.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY msc_Instance.createDate ASC";
@@ -123,6 +125,8 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		model.setCategoryLevel0(soapModel.getCategoryLevel0());
 		model.setCategoryLevel1(soapModel.getCategoryLevel1());
 		model.setCategoryLevel2(soapModel.getCategoryLevel2());
+		model.setLogoImageId(soapModel.getLogoImageId());
+		model.setLogoImageURL(soapModel.getLogoImageURL());
 		model.setUserId(soapModel.getUserId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setGroupId(soapModel.getGroupId());
@@ -377,6 +381,29 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	}
 
 	@JSON
+	public long getLogoImageId() {
+		return _logoImageId;
+	}
+
+	public void setLogoImageId(long logoImageId) {
+		_logoImageId = logoImageId;
+	}
+
+	@JSON
+	public String getLogoImageURL() {
+		if (_logoImageURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _logoImageURL;
+		}
+	}
+
+	public void setLogoImageURL(String logoImageURL) {
+		_logoImageURL = logoImageURL;
+	}
+
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -476,6 +503,8 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		instanceImpl.setCategoryLevel0(getCategoryLevel0());
 		instanceImpl.setCategoryLevel1(getCategoryLevel1());
 		instanceImpl.setCategoryLevel2(getCategoryLevel2());
+		instanceImpl.setLogoImageId(getLogoImageId());
+		instanceImpl.setLogoImageURL(getLogoImageURL());
 		instanceImpl.setUserId(getUserId());
 		instanceImpl.setCompanyId(getCompanyId());
 		instanceImpl.setGroupId(getGroupId());
@@ -599,6 +628,16 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 		instanceCacheModel.categoryLevel2 = getCategoryLevel2();
 
+		instanceCacheModel.logoImageId = getLogoImageId();
+
+		instanceCacheModel.logoImageURL = getLogoImageURL();
+
+		String logoImageURL = instanceCacheModel.logoImageURL;
+
+		if ((logoImageURL != null) && (logoImageURL.length() == 0)) {
+			instanceCacheModel.logoImageURL = null;
+		}
+
 		instanceCacheModel.userId = getUserId();
 
 		instanceCacheModel.companyId = getCompanyId();
@@ -619,7 +658,7 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{InstanceId=");
 		sb.append(getInstanceId());
@@ -641,6 +680,10 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		sb.append(getCategoryLevel1());
 		sb.append(", categoryLevel2=");
 		sb.append(getCategoryLevel2());
+		sb.append(", logoImageId=");
+		sb.append(getLogoImageId());
+		sb.append(", logoImageURL=");
+		sb.append(getLogoImageURL());
 		sb.append(", userId=");
 		sb.append(getUserId());
 		sb.append(", companyId=");
@@ -655,7 +698,7 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Instance");
@@ -702,6 +745,14 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 		sb.append(getCategoryLevel2());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>logoImageId</column-name><column-value><![CDATA[");
+		sb.append(getLogoImageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>logoImageURL</column-name><column-value><![CDATA[");
+		sb.append(getLogoImageURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
@@ -738,6 +789,8 @@ public class InstanceModelImpl extends BaseModelImpl<Instance>
 	private long _categoryLevel0;
 	private long _categoryLevel1;
 	private long _categoryLevel2;
+	private long _logoImageId;
+	private String _logoImageURL;
 	private long _userId;
 	private String _userUuid;
 	private long _originalUserId;

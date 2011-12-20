@@ -41,6 +41,7 @@
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="offerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="InstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 	</class>
@@ -70,6 +71,8 @@
 		<property name="categoryLevel0" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="categoryLevel1" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="categoryLevel2" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="logoImageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="logoImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

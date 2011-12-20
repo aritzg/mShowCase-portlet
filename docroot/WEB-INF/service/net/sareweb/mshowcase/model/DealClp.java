@@ -92,6 +92,14 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 		_offerId = offerId;
 	}
 
+	public long getInstanceId() {
+		return _InstanceId;
+	}
+
+	public void setInstanceId(long InstanceId) {
+		_InstanceId = InstanceId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -125,6 +133,7 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 		clone.setDealId(getDealId());
 		clone.setUserId(getUserId());
 		clone.setOfferId(getOfferId());
+		clone.setInstanceId(getInstanceId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 
@@ -175,7 +184,7 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{dealId=");
 		sb.append(getDealId());
@@ -183,6 +192,8 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 		sb.append(getUserId());
 		sb.append(", offerId=");
 		sb.append(getOfferId());
+		sb.append(", InstanceId=");
+		sb.append(getInstanceId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createDate=");
@@ -193,7 +204,7 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("net.sareweb.mshowcase.model.Deal");
@@ -210,6 +221,10 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 		sb.append(
 			"<column><column-name>offerId</column-name><column-value><![CDATA[");
 		sb.append(getOfferId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
+		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -229,6 +244,7 @@ public class DealClp extends BaseModelImpl<Deal> implements Deal {
 	private long _userId;
 	private String _userUuid;
 	private long _offerId;
+	private long _InstanceId;
 	private long _companyId;
 	private Date _createDate;
 }

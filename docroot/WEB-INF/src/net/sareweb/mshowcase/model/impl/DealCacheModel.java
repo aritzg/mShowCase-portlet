@@ -33,7 +33,7 @@ import java.util.Date;
 public class DealCacheModel implements CacheModel<Deal>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{dealId=");
 		sb.append(dealId);
@@ -41,6 +41,8 @@ public class DealCacheModel implements CacheModel<Deal>, Serializable {
 		sb.append(userId);
 		sb.append(", offerId=");
 		sb.append(offerId);
+		sb.append(", InstanceId=");
+		sb.append(InstanceId);
 		sb.append(", companyId=");
 		sb.append(companyId);
 		sb.append(", createDate=");
@@ -56,6 +58,7 @@ public class DealCacheModel implements CacheModel<Deal>, Serializable {
 		dealImpl.setDealId(dealId);
 		dealImpl.setUserId(userId);
 		dealImpl.setOfferId(offerId);
+		dealImpl.setInstanceId(InstanceId);
 		dealImpl.setCompanyId(companyId);
 
 		if (createDate == Long.MIN_VALUE) {
@@ -73,6 +76,7 @@ public class DealCacheModel implements CacheModel<Deal>, Serializable {
 	public long dealId;
 	public long userId;
 	public long offerId;
+	public long InstanceId;
 	public long companyId;
 	public long createDate;
 }

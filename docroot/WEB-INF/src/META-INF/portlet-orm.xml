@@ -46,6 +46,7 @@
 			<id name="dealId" />
 			<basic name="userId" />
 			<basic name="offerId" />
+			<basic name="InstanceId" />
 			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
@@ -83,6 +84,8 @@
 			<basic name="categoryLevel0" />
 			<basic name="categoryLevel1" />
 			<basic name="categoryLevel2" />
+			<basic name="logoImageId" />
+			<basic name="logoImageURL" />
 			<basic name="userId" />
 			<basic name="companyId" />
 			<basic name="groupId" />

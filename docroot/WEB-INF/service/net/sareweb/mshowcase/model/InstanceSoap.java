@@ -41,6 +41,8 @@ public class InstanceSoap implements Serializable {
 		soapModel.setCategoryLevel0(model.getCategoryLevel0());
 		soapModel.setCategoryLevel1(model.getCategoryLevel1());
 		soapModel.setCategoryLevel2(model.getCategoryLevel2());
+		soapModel.setLogoImageId(model.getLogoImageId());
+		soapModel.setLogoImageURL(model.getLogoImageURL());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setGroupId(model.getGroupId());
@@ -177,6 +179,22 @@ public class InstanceSoap implements Serializable {
 		_categoryLevel2 = categoryLevel2;
 	}
 
+	public long getLogoImageId() {
+		return _logoImageId;
+	}
+
+	public void setLogoImageId(long logoImageId) {
+		_logoImageId = logoImageId;
+	}
+
+	public String getLogoImageURL() {
+		return _logoImageURL;
+	}
+
+	public void setLogoImageURL(String logoImageURL) {
+		_logoImageURL = logoImageURL;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -219,6 +237,8 @@ public class InstanceSoap implements Serializable {
 	private long _categoryLevel0;
 	private long _categoryLevel1;
 	private long _categoryLevel2;
+	private long _logoImageId;
+	private String _logoImageURL;
 	private long _userId;
 	private long _companyId;
 	private long _groupId;

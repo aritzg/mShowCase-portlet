@@ -347,6 +347,42 @@ public class InstanceWrapper implements Instance, ModelWrapper<Instance> {
 	}
 
 	/**
+	* Returns the logo image ID of this instance.
+	*
+	* @return the logo image ID of this instance
+	*/
+	public long getLogoImageId() {
+		return _instance.getLogoImageId();
+	}
+
+	/**
+	* Sets the logo image ID of this instance.
+	*
+	* @param logoImageId the logo image ID of this instance
+	*/
+	public void setLogoImageId(long logoImageId) {
+		_instance.setLogoImageId(logoImageId);
+	}
+
+	/**
+	* Returns the logo image u r l of this instance.
+	*
+	* @return the logo image u r l of this instance
+	*/
+	public java.lang.String getLogoImageURL() {
+		return _instance.getLogoImageURL();
+	}
+
+	/**
+	* Sets the logo image u r l of this instance.
+	*
+	* @param logoImageURL the logo image u r l of this instance
+	*/
+	public void setLogoImageURL(java.lang.String logoImageURL) {
+		_instance.setLogoImageURL(logoImageURL);
+	}
+
+	/**
 	* Returns the user ID of this instance.
 	*
 	* @return the user ID of this instance

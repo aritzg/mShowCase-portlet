@@ -257,6 +257,15 @@ public class DealLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.util.List<net.sareweb.mshowcase.model.Deal> getDealsByInstanceId(
+		long instanceId) {
+		return getService().getDealsByInstanceId(instanceId);
+	}
+
+	public static long countDealsByInstanceId(long instanceId) {
+		return getService().countDealsByInstanceId(instanceId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -14,26 +14,60 @@
 
 package net.sareweb.mshowcase.service.impl;
 
+import java.util.List;
+import java.util.Vector;
+
+import net.sareweb.mshowcase.model.Deal;
 import net.sareweb.mshowcase.service.base.DealLocalServiceBaseImpl;
+
+import com.liferay.portal.kernel.dao.orm.Criterion;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the deal local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link net.sareweb.mshowcase.service.DealLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link net.sareweb.mshowcase.service.DealLocalService} interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author Aritz Galdos
  * @see net.sareweb.mshowcase.service.base.DealLocalServiceBaseImpl
  * @see net.sareweb.mshowcase.service.DealLocalServiceUtil
  */
 public class DealLocalServiceImpl extends DealLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link net.sareweb.mshowcase.service.DealLocalServiceUtil} to access the deal local service.
-	 */
+	public List<Deal> getDealsByInstanceId(long instanceId) {
+		DynamicQuery dq = DynamicQueryFactoryUtil.forClass(Deal.class);
+		Criterion instanceIdCrt = PropertyFactoryUtil.forName("instanceId").eq(
+				instanceId);
+		dq.add(instanceIdCrt);
+		try {
+			return getInstancePersistence().findWithDynamicQuery(dq);
+		} catch (SystemException e) {
+			e.printStackTrace();
+			return new Vector<Deal>();
+		}
+	}
+
+	public long countDealsByInstanceId(long instanceId) {
+		DynamicQuery dq = DynamicQueryFactoryUtil.forClass(Deal.class);
+		Criterion instanceIdCrt = PropertyFactoryUtil.forName("instanceId").eq(
+				instanceId);
+		dq.add(instanceIdCrt);
+		try {
+			return getInstancePersistence().countWithDynamicQuery(dq);
+		} catch (SystemException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }

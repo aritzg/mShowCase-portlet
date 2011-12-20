@@ -34,7 +34,7 @@ import java.util.Date;
 public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{InstanceId=");
 		sb.append(InstanceId);
@@ -56,6 +56,10 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 		sb.append(categoryLevel1);
 		sb.append(", categoryLevel2=");
 		sb.append(categoryLevel2);
+		sb.append(", logoImageId=");
+		sb.append(logoImageId);
+		sb.append(", logoImageURL=");
+		sb.append(logoImageURL);
 		sb.append(", userId=");
 		sb.append(userId);
 		sb.append(", companyId=");
@@ -119,6 +123,15 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 		instanceImpl.setCategoryLevel0(categoryLevel0);
 		instanceImpl.setCategoryLevel1(categoryLevel1);
 		instanceImpl.setCategoryLevel2(categoryLevel2);
+		instanceImpl.setLogoImageId(logoImageId);
+
+		if (logoImageURL == null) {
+			instanceImpl.setLogoImageURL(StringPool.BLANK);
+		}
+		else {
+			instanceImpl.setLogoImageURL(logoImageURL);
+		}
+
 		instanceImpl.setUserId(userId);
 		instanceImpl.setCompanyId(companyId);
 		instanceImpl.setGroupId(groupId);
@@ -145,6 +158,8 @@ public class InstanceCacheModel implements CacheModel<Instance>, Serializable {
 	public long categoryLevel0;
 	public long categoryLevel1;
 	public long categoryLevel2;
+	public long logoImageId;
+	public String logoImageURL;
 	public long userId;
 	public long companyId;
 	public long groupId;

@@ -19,6 +19,9 @@
 		<column name="categoryLevel0" type="long" />
 		<column name="categoryLevel1" type="long" />
 		<column name="categoryLevel2" type="long" />
+		
+		<column name="logoImageId" type="long" />
+		<column name="logoImageURL" type="String" />
 
 		<!-- Audit fields -->
 		<column name="userId" type="long" />
@@ -132,6 +135,7 @@
 		
 		<column name="userId" type="long" />
 		<column name="offerId" type="long" />
+		<column name="InstanceId" type="long"/> <!-- Redundant, cant be get through offer.getInstance -->
 		
 		<!-- Audit fields -->
 		<column name="companyId" type="long" />

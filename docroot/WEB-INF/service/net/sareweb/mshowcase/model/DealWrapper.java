@@ -131,6 +131,24 @@ public class DealWrapper implements Deal, ModelWrapper<Deal> {
 	}
 
 	/**
+	* Returns the instance ID of this deal.
+	*
+	* @return the instance ID of this deal
+	*/
+	public long getInstanceId() {
+		return _deal.getInstanceId();
+	}
+
+	/**
+	* Sets the instance ID of this deal.
+	*
+	* @param InstanceId the instance ID of this deal
+	*/
+	public void setInstanceId(long InstanceId) {
+		_deal.setInstanceId(InstanceId);
+	}
+
+	/**
 	* Returns the company ID of this deal.
 	*
 	* @return the company ID of this deal
