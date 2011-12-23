@@ -76,11 +76,11 @@ public class OfferClp extends BaseModelImpl<Offer> implements Offer {
 	}
 
 	public long getInstanceId() {
-		return _InstanceId;
+		return _instanceId;
 	}
 
-	public void setInstanceId(long InstanceId) {
-		_InstanceId = InstanceId;
+	public void setInstanceId(long instanceId) {
+		_instanceId = instanceId;
 	}
 
 	public String getOfferText() {
@@ -352,7 +352,7 @@ public class OfferClp extends BaseModelImpl<Offer> implements Offer {
 
 		sb.append("{offerId=");
 		sb.append(getOfferId());
-		sb.append(", InstanceId=");
+		sb.append(", instanceId=");
 		sb.append(getInstanceId());
 		sb.append(", offerText=");
 		sb.append(getOfferText());
@@ -393,7 +393,7 @@ public class OfferClp extends BaseModelImpl<Offer> implements Offer {
 		sb.append(getOfferId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
+			"<column><column-name>instanceId</column-name><column-value><![CDATA[");
 		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
@@ -447,7 +447,7 @@ public class OfferClp extends BaseModelImpl<Offer> implements Offer {
 	}
 
 	private long _offerId;
-	private long _InstanceId;
+	private long _instanceId;
 	private String _offerText;
 	private String _offerTextCurrentLanguageId;
 	private Date _beginDate;

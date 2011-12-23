@@ -1,4 +1,3 @@
-<%@page import="com.liferay.portlet.PortletURLUtil"%>
 <%@page import="net.sareweb.mshowcase.portlets.p000.MyInstancePortlet"%>
 
 <%@include file="/jsp/init.jsp"%>

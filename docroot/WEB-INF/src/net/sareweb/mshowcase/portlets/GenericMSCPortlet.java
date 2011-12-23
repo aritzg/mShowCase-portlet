@@ -29,5 +29,7 @@ public class GenericMSCPortlet extends MVCPortlet {
 	public static final String PARAM_RENDER_VIEW = "render_view";
 	public static final String PARAM_RENDER_EDIT = "render_edit";
 	public static final String PARAM_RENDER_LIST = "render_list";
+	
+	
 
 }

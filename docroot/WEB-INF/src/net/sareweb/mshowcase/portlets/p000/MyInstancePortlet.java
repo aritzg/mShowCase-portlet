@@ -1,6 +1,7 @@
 package net.sareweb.mshowcase.portlets.p000;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -16,9 +17,11 @@ import javax.portlet.ResourceResponse;
 
 import net.sareweb.mshowcase.model.Category;
 import net.sareweb.mshowcase.model.Instance;
+import net.sareweb.mshowcase.model.Offer;
 import net.sareweb.mshowcase.portlets.GenericMSCPortlet;
 import net.sareweb.mshowcase.service.CategoryLocalServiceUtil;
 import net.sareweb.mshowcase.service.InstanceLocalServiceUtil;
+import net.sareweb.mshowcase.service.OfferLocalServiceUtil;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -28,9 +31,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
-/**
- * Portlet implementation class InstancesPortlet
- */
 public class MyInstancePortlet extends GenericMSCPortlet {
 
 	@Override
@@ -49,6 +49,13 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 
 				prepareDataForEditPage(renderRequest);
 				viewJSP = PATH_EDIT;
+
+			} else if (PARAM_RENDER_VIEW_OFFER.equals(param_render)) {
+				viewJSP = PATH_VIEW_OFFER;
+
+			} else if (PARAM_RENDER_EDIT_OFFER.equals(param_render)) {
+				viewJSP = PATH_EDIT_OFFER;
+
 			} else {
 				prepareDataForViewPage(renderRequest);
 				viewJSP = PATH_VIEW;
@@ -102,6 +109,27 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 			}
 		}
 		sendRedirect(actionRequest, actionResponse);
+	}
+
+	public void saveOffer(ActionRequest actionRequest,
+			ActionResponse actionResponse) throws IOException {
+		long offerId = ParamUtil.getLong(actionRequest, PARAM_OFFER_ID, 0);
+		Offer offer = null;
+		try {
+			if (offerId == 0) {
+
+				offer = OfferLocalServiceUtil
+						.createOffer(CounterLocalServiceUtil.increment());
+
+			} else {
+				offer = OfferLocalServiceUtil.getOffer(offerId);
+			}
+			
+		} catch (SystemException e) {
+			_log.error("Error savin goffer", e);
+		} catch (PortalException e) {
+			_log.error("Error obtaining offer", e);
+		}
 	}
 
 	@Override
@@ -168,7 +196,18 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 			instance = InstanceLocalServiceUtil.getInstance(instance
 					.getInstanceId());
 			renderRequest.setAttribute(ATTR_INSTANCE, instance);
+
+			getInstanceOffers(renderRequest, instance.getInstanceId());
 		}
+	}
+
+	private void getInstanceOffers(RenderRequest renderRequest, long instanceId)
+			throws PortalException, SystemException {
+		List<Offer> offers = Collections.emptyList();
+		if (instanceId != 0) {
+			offers = OfferLocalServiceUtil.getOffersByInstanceId(instanceId);
+		}
+		renderRequest.setAttribute(ATTR_OFFERS, offers);
 	}
 
 	private boolean hasCurrentUserAnInstance(ThemeDisplay themeDisplay) {
@@ -232,13 +271,21 @@ public class MyInstancePortlet extends GenericMSCPortlet {
 	public static final String PARAM_PHONE = "phone";
 	public static final String PARAM_WEB = "web";
 
+	public static final String PARAM_OFFER_ID = "offerId";
+
+	public static final String PARAM_RENDER_EDIT_OFFER = "render_edit_offer";
+	public static final String PARAM_RENDER_VIEW_OFFER = "render_view_offer";
+
 	public static final String ATTR_INSTANCE = "instance";
 	public static final String ATTR_CATEGORIES_0 = "categories0";
 	public static final String ATTR_CATEGORIES_1 = "categories1";
 	public static final String ATTR_CATEGORIES_2 = "categories2";
+	public static final String ATTR_OFFERS = "offers";
 
 	public static final String PATH_VIEW = "/jsp/p000/view.jsp";
 	public static final String PATH_EDIT = "/jsp/p000/edit.jsp";
+	public static final String PATH_VIEW_OFFER = "/jsp/p000/view_offer.jsp";
+	public static final String PATH_EDIT_OFFER = "/jsp/p000/edit_offer.jsp";
 	public static final String PATH_ERROR = "/jsp/error.jsp";
 
 }

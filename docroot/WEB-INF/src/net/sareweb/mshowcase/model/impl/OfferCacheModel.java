@@ -38,8 +38,8 @@ public class OfferCacheModel implements CacheModel<Offer>, Serializable {
 
 		sb.append("{offerId=");
 		sb.append(offerId);
-		sb.append(", InstanceId=");
-		sb.append(InstanceId);
+		sb.append(", instanceId=");
+		sb.append(instanceId);
 		sb.append(", offerText=");
 		sb.append(offerText);
 		sb.append(", beginDate=");
@@ -71,7 +71,7 @@ public class OfferCacheModel implements CacheModel<Offer>, Serializable {
 		OfferImpl offerImpl = new OfferImpl();
 
 		offerImpl.setOfferId(offerId);
-		offerImpl.setInstanceId(InstanceId);
+		offerImpl.setInstanceId(instanceId);
 
 		if (offerText == null) {
 			offerImpl.setOfferText(StringPool.BLANK);
@@ -128,7 +128,7 @@ public class OfferCacheModel implements CacheModel<Offer>, Serializable {
 	}
 
 	public long offerId;
-	public long InstanceId;
+	public long instanceId;
 	public String offerText;
 	public long beginDate;
 	public long endDate;

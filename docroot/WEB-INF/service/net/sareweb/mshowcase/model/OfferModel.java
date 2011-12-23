@@ -86,9 +86,9 @@ public interface OfferModel extends BaseModel<Offer> {
 	/**
 	 * Sets the instance ID of this offer.
 	 *
-	 * @param InstanceId the instance ID of this offer
+	 * @param instanceId the instance ID of this offer
 	 */
-	public void setInstanceId(long InstanceId);
+	public void setInstanceId(long instanceId);
 
 	/**
 	 * Returns the offer text of this offer.

@@ -13,8 +13,11 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 
+<%@page import="com.liferay.portlet.PortletURLUtil"%>
+
 <%@page import="net.sareweb.mshowcase.model.Category"%>
 <%@page import="net.sareweb.mshowcase.model.Instance"%>
+<%@page import="net.sareweb.mshowcase.model.Offer"%>
 
 <%@page import="net.sareweb.mshowcase.service.OfferLocalServiceUtil"%>
 

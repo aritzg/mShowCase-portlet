@@ -105,11 +105,11 @@ public class OfferSoap implements Serializable {
 	}
 
 	public long getInstanceId() {
-		return _InstanceId;
+		return _instanceId;
 	}
 
-	public void setInstanceId(long InstanceId) {
-		_InstanceId = InstanceId;
+	public void setInstanceId(long instanceId) {
+		_instanceId = instanceId;
 	}
 
 	public String getOfferText() {
@@ -201,7 +201,7 @@ public class OfferSoap implements Serializable {
 	}
 
 	private long _offerId;
-	private long _InstanceId;
+	private long _instanceId;
 	private String _offerText;
 	private Date _beginDate;
 	private Date _endDate;

@@ -102,7 +102,7 @@
 		<!-- PK field -->
 		<column name="offerId" type="long" primary="true" />
 		<!-- FK fields -->
-		<column name="InstanceId" type="long"/>
+		<column name="instanceId" type="long"/>
 
 		<column name="offerText" type="String" localized="true" />
 		<column name="beginDate" type="Date" />

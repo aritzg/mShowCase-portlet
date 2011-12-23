@@ -112,7 +112,7 @@
 		<id name="offerId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="InstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="instanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="offerText" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="beginDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />

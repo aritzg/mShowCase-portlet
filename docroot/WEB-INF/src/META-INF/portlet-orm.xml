@@ -139,7 +139,7 @@
 	<mapped-superclass class="net.sareweb.mshowcase.model.impl.OfferModelImpl">
 		<attributes>
 			<id name="offerId" />
-			<basic name="InstanceId" />
+			<basic name="instanceId" />
 			<basic name="offerText" />
 			<basic name="beginDate">
 				<temporal>TIMESTAMP</temporal>

@@ -86,10 +86,10 @@ public class OfferWrapper implements Offer, ModelWrapper<Offer> {
 	/**
 	* Sets the instance ID of this offer.
 	*
-	* @param InstanceId the instance ID of this offer
+	* @param instanceId the instance ID of this offer
 	*/
-	public void setInstanceId(long InstanceId) {
-		_offer.setInstanceId(InstanceId);
+	public void setInstanceId(long instanceId) {
+		_offer.setInstanceId(instanceId);
 	}
 
 	/**

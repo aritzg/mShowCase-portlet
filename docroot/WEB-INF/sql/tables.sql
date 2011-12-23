@@ -83,7 +83,7 @@ create table msc_Location (
 
 create table msc_Offer (
 	offerId LONG not null primary key,
-	InstanceId LONG,
+	instanceId LONG,
 	offerText STRING null,
 	beginDate DATE null,
 	endDate DATE null,

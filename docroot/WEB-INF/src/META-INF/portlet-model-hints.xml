@@ -79,7 +79,7 @@
 	</model>
 	<model name="net.sareweb.mshowcase.model.Offer">
 		<field name="offerId" type="long" />
-		<field name="InstanceId" type="long" />
+		<field name="instanceId" type="long" />
 		<field name="offerText" type="String" localized="true" />
 		<field name="beginDate" type="Date" />
 		<field name="endDate" type="Date" />

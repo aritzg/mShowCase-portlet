@@ -71,7 +71,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 	public static final String TABLE_NAME = "msc_Offer";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "offerId", Types.BIGINT },
-			{ "InstanceId", Types.BIGINT },
+			{ "instanceId", Types.BIGINT },
 			{ "offerText", Types.VARCHAR },
 			{ "beginDate", Types.TIMESTAMP },
 			{ "endDate", Types.TIMESTAMP },
@@ -84,7 +84,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifyDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table msc_Offer (offerId LONG not null primary key,InstanceId LONG,offerText STRING null,beginDate DATE null,endDate DATE null,price DOUBLE,transactions INTEGER,imageId LONG,imageURL VARCHAR(75) null,userId LONG,companyId LONG,createDate DATE null,modifyDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table msc_Offer (offerId LONG not null primary key,instanceId LONG,offerText STRING null,beginDate DATE null,endDate DATE null,price DOUBLE,transactions INTEGER,imageId LONG,imageURL VARCHAR(75) null,userId LONG,companyId LONG,createDate DATE null,modifyDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table msc_Offer";
 	public static final String ORDER_BY_JPQL = " ORDER BY offer.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY msc_Offer.createDate ASC";
@@ -182,11 +182,11 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 	@JSON
 	public long getInstanceId() {
-		return _InstanceId;
+		return _instanceId;
 	}
 
-	public void setInstanceId(long InstanceId) {
-		_InstanceId = InstanceId;
+	public void setInstanceId(long instanceId) {
+		_instanceId = instanceId;
 	}
 
 	@JSON
@@ -485,7 +485,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 		offerCacheModel.offerId = getOfferId();
 
-		offerCacheModel.InstanceId = getInstanceId();
+		offerCacheModel.instanceId = getInstanceId();
 
 		offerCacheModel.offerText = getOfferText();
 
@@ -558,7 +558,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 
 		sb.append("{offerId=");
 		sb.append(getOfferId());
-		sb.append(", InstanceId=");
+		sb.append(", instanceId=");
 		sb.append(getInstanceId());
 		sb.append(", offerText=");
 		sb.append(getOfferText());
@@ -599,7 +599,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 		sb.append(getOfferId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>InstanceId</column-name><column-value><![CDATA[");
+			"<column><column-name>instanceId</column-name><column-value><![CDATA[");
 		sb.append(getInstanceId());
 		sb.append("]]></column-value></column>");
 		sb.append(
@@ -657,7 +657,7 @@ public class OfferModelImpl extends BaseModelImpl<Offer> implements OfferModel {
 			Offer.class
 		};
 	private long _offerId;
-	private long _InstanceId;
+	private long _instanceId;
 	private String _offerText;
 	private String _offerTextCurrentLanguageId;
 	private Date _beginDate;
